@@ -1,6 +1,4 @@
-
-import global.GlobalPanel;
-
+import global.GlobalGUI;
 import javax.swing.*;
 import java.awt.*;
 public class Main extends JFrame{
@@ -26,7 +24,7 @@ public class Main extends JFrame{
                 (windowSize.height - WINDOW_HEIGHT) / 2);
     }
     public static void main(String[]args){
-        new Main("");
+        new GlobalGUI("database");
+        //new Main("");
     }
-
 }

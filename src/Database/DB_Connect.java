@@ -2,6 +2,7 @@ package Database;
 import java.sql.*;
 
 public class DB_Connect {
+    static int cnt = 0;
     private Connection connection;
     private ResultSet rs;
     private Statement st;
@@ -14,7 +15,11 @@ public class DB_Connect {
             Class.forName(driverName);
             connection = DriverManager.getConnection(url, user, password);
             st = connection.createStatement();
-            System.out.println("[Connection suceesful!]");
+            if(cnt == 0) {
+                System.out.println("[Connection successful!]");
+                cnt++;
+            }
+
 
         } catch (ClassNotFoundException e) {
             System.out.println("[로드 오류]\n" + e.getStackTrace());
@@ -37,18 +42,45 @@ public class DB_Connect {
         return false;
     }
 
-    public boolean isAdmin(String Id) { // 아이디 중복확인
+    public boolean isAdmin(String id) { // 아이디 중복확인
         try {
-            String SQL1 = "SELECT * FROM tempTable WHERE user_id = '" + Id + "';".toString();
+            String SQL1 = "SELECT * FROM tempTable WHERE user_id = '" + id + "';".toString();
             rs = st.executeQuery(SQL1);
             if (rs.next()) {
-                if (rs.getString("user_id").equals(Id)) {
+                if (rs.getString("user_id").equals(id)) {
                     return true;
                 }
             }
         } catch (Exception e) {
-            System.out.println("데이터베이스 검색 오류 : " + e.getMessage());
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
         return false;
     }
+
+
+    public boolean login(String id, String pw) { // 로그인
+        boolean idFlag = false;
+        boolean pwFlag = false;
+        try {
+            String SQL1 = "SELECT user_id FROM tempTable WHERE user_id = '" + id + "';".toString();
+            rs = st.executeQuery(SQL1);
+            if (rs.next()) {
+                if (rs.getString("user_id").equals(id)) {
+                    idFlag = true;
+                }
+            }
+            String SQL2 = "SELECT user_pw FROM tempTable WHERE user_pw = '" + pw + "';".toString();
+            rs = st.executeQuery(SQL2);
+            if (rs.next()) {
+                if (rs.getString("user_pw").equals(pw)) {
+                    pwFlag = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+        if(idFlag == true && pwFlag == true) return true;
+        else return false;
+    }
+
 }
