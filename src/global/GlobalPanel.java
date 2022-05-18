@@ -1,7 +1,6 @@
 package global;
 import javax.swing.*;
 import java.awt.*;
-
 public class GlobalPanel extends JPanel {
     private final Image img;
 

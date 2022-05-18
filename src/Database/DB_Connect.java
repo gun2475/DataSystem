@@ -82,5 +82,4 @@ public class DB_Connect {
         if(idFlag == true && pwFlag == true) return true;
         else return false;
     }
-
 }
