@@ -128,7 +128,7 @@ public class sign_Dialog extends JDialog {
             public void mouseExited(MouseEvent e) {
                 signUpbtn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
-
+ 
             @Override
             public void mousePressed(MouseEvent e) {
                 String pass = new String(pwText.getPassword());
