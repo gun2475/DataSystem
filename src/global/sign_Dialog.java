@@ -133,7 +133,11 @@ public class sign_Dialog extends JDialog {
             public void mousePressed(MouseEvent e) {
                 String pass = new String(pwText.getPassword());
                 String passcheck = new String(pwCheckText.getPassword());
-                if (idlabel == null || pass == null || passcheck == null) {
+                String weight_c = new String(weightText.getText());
+                String height_c = new String(heightText.getText());
+                String age_c = new String(ageText.getText());
+                String sex_c = new String(sexText.getText());
+                if (idlabel == null || pass == null || passcheck == null || weight_c == null || height_c == null || age_c == null || sex_c == null) {
                     MessageBox.showMessageDialog(null, "빈칸을 입력해주세요.");
                 } else if (!check) {
                     MessageBox.showMessageDialog(null, "아이디를 중복확인해 주세요.");

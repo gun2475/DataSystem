@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import Database.*;
 
 public class GlobalGUI extends JFrame{
-    protected String user_id;
+    private String user_id;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     private sign_Dialog sign = new sign_Dialog();
@@ -42,6 +42,9 @@ public class GlobalGUI extends JFrame{
         }
         //setDefaultFont();*/
         setVisible(true);
+    }
+    public String getUser_id(){
+        return user_id;
     }
     public void createMenu(){
         JMenuBar mb = new JMenuBar();
