@@ -133,11 +133,11 @@ public class sign_Dialog extends JDialog {
             public void mousePressed(MouseEvent e) {
                 String pass = new String(pwText.getPassword());
                 String passcheck = new String(pwCheckText.getPassword());
-                String weight_c = new String(weightText.getText());
-                String height_c = new String(heightText.getText());
-                String age_c = new String(ageText.getText());
+                float weight_c = Float.parseFloat(weightText.getText());
+                float height_c = Float.parseFloat(heightText.getText());
+                int age_c = Integer.parseInt(ageText.getText());
                 String sex_c = new String(sexText.getText());
-                if (idlabel == null || pass == null || passcheck == null || weight_c == null || height_c == null || age_c == null || sex_c == null) {
+                if (idlabel == null || pass == null || passcheck == null || weight_c == 0 || height_c == 0 || age_c == 0 || sex_c == null) {
                     MessageBox.showMessageDialog(null, "빈칸을 입력해주세요.");
                 } else if (!check) {
                     MessageBox.showMessageDialog(null, "아이디를 중복확인해 주세요.");
@@ -146,7 +146,7 @@ public class sign_Dialog extends JDialog {
                 } else if (!pass.equals(passcheck)) {
                     MessageBox.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
                 } else {
-                    if (dbCon.Enrollment(idText.getText(), pass)) {
+                    if (dbCon.Enrollment(idText.getText(), pass, weight_c, height_c, sex_c, age_c)) {
                         MessageBox.showMessageDialog(null, "회원가입이 완료되었습니다.");
                         setVisible(false);
                     } else {
