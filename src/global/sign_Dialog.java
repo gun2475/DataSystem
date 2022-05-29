@@ -73,46 +73,46 @@ public class sign_Dialog extends JDialog {
         });
         signUpPanel.add(overlapBtn);
 
-        pwlabel.setBounds(50, 100, 100, 20);
+        pwlabel.setBounds(50, 90, 100, 20);
         signUpPanel.add(pwlabel);
 
-        pwText.setBounds(50, 120, 100, 20);
+        pwText.setBounds(50, 110, 100, 20);
         signUpPanel.add(pwText);
 
-        pwChecklabel.setBounds(180, 100, 100, 20);
+        pwChecklabel.setBounds(180, 90, 100, 20);
         signUpPanel.add(pwChecklabel);
 
-        pwCheckText.setBounds(180, 120, 100, 20);
+        pwCheckText.setBounds(180, 110, 100, 20);
         signUpPanel.add(pwCheckText);
 
         ///weight
-        weightlabel.setBounds(180, 140, 100, 20);
+        weightlabel.setBounds(50, 140, 100, 20);
         signUpPanel.add(weightlabel);
 
-        weightText.setBounds(180, 120, 100, 20);
+        weightText.setBounds(50, 160, 100, 20);
         signUpPanel.add(weightText);
         ///
 
         ///height
-        heightlabel.setBounds(180, 100, 100, 20);
+        heightlabel.setBounds(180, 140, 100, 20);
         signUpPanel.add(heightlabel);
 
-        heightText.setBounds(180, 120, 100, 20);
+        heightText.setBounds(180, 160, 100, 20);
         signUpPanel.add(heightText);
         ///
 
         ///age
-        agelabel.setBounds(180, 100, 100, 20);
+        agelabel.setBounds(50, 190, 100, 20);
         signUpPanel.add(agelabel);
 
-        ageText.setBounds(180, 120, 100, 20);
+        ageText.setBounds(50, 210, 100, 20);
         signUpPanel.add(ageText);
         ///
         ///sex
-        sexlabel.setBounds(180, 100, 100, 20);
+        sexlabel.setBounds(180, 190, 100, 20);
         signUpPanel.add(sexlabel);
 
-        sexText.setBounds(180, 120, 100, 20);
+        sexText.setBounds(180, 210, 100, 20);
         signUpPanel.add(sexText);
         ///
         signUpbtn.setBounds(120, 250, 100, 20);
