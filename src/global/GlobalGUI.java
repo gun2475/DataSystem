@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import Database.*;
 
 public class GlobalGUI extends JFrame{
+    protected String user_id;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     private sign_Dialog sign = new sign_Dialog();
@@ -85,10 +86,15 @@ public class GlobalGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 boolean loginFlag = false;
                 loginFlag = dbCon.login(loginID_tf.getText(), loginPW_tf.getText());
-                if(loginFlag == true) System.out.println("로그인 성공");
+                if(loginFlag == true) {
+                    user_id = loginID_tf.getText();
+                    System.out.println("로그인 성공");
+                    System.out.println(user_id);
+                    my_main.setVisible(true);
+                    setVisible(false);
+                }
                 else System.out.println("로그인 실패");
-                my_main.setVisible(true);
-                panel.add(my_main.mainPanel);
+
             }
         });
         panel.add(loginID_lb);

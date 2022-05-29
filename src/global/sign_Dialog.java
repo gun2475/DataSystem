@@ -17,9 +17,18 @@ public class sign_Dialog extends JDialog {
     private JLabel idlabel = new JLabel("아이디");
     private JLabel pwlabel = new JLabel("비밀번호");
     private JLabel pwChecklabel = new JLabel("비밀번호 확인");
+
+    private JLabel weightlabel = new JLabel("몸무게");
+    private JLabel heightlabel = new JLabel("키");
+    private JLabel agelabel = new JLabel("나이");
+    private JLabel sexlabel = new JLabel("성별");
     private JTextField idText = new JTextField(15);
     private JPasswordField pwText = new JPasswordField(15);
     private JPasswordField pwCheckText = new JPasswordField(15);
+    private JTextField weightText = new JTextField(15);
+    private JTextField heightText = new JTextField(15);
+    private JTextField ageText = new JTextField(15);
+    private JTextField sexText = new JTextField(15);
     private JButton signUpbtn = new JButton("회원가입");
     private JButton overlapBtn = new JButton("중복확인");
     private boolean check = false;
@@ -76,7 +85,37 @@ public class sign_Dialog extends JDialog {
         pwCheckText.setBounds(180, 120, 100, 20);
         signUpPanel.add(pwCheckText);
 
-        signUpbtn.setBounds(120, 180, 100, 20);
+        ///weight
+        weightlabel.setBounds(180, 140, 100, 20);
+        signUpPanel.add(weightlabel);
+
+        weightText.setBounds(180, 120, 100, 20);
+        signUpPanel.add(weightText);
+        ///
+
+        ///height
+        heightlabel.setBounds(180, 100, 100, 20);
+        signUpPanel.add(heightlabel);
+
+        heightText.setBounds(180, 120, 100, 20);
+        signUpPanel.add(heightText);
+        ///
+
+        ///age
+        agelabel.setBounds(180, 100, 100, 20);
+        signUpPanel.add(agelabel);
+
+        ageText.setBounds(180, 120, 100, 20);
+        signUpPanel.add(ageText);
+        ///
+        ///sex
+        sexlabel.setBounds(180, 100, 100, 20);
+        signUpPanel.add(sexlabel);
+
+        sexText.setBounds(180, 120, 100, 20);
+        signUpPanel.add(sexText);
+        ///
+        signUpbtn.setBounds(120, 250, 100, 20);
         signUpbtn.setContentAreaFilled(false);
         signUpbtn.setFocusPainted(false);
         signUpbtn.addMouseListener(new MouseAdapter() {
