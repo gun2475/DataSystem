@@ -56,7 +56,7 @@ public class main_Dialog extends JDialog {
         food.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new food_Dialog(id);
+                new food_Dialog();
             }
         });
     }

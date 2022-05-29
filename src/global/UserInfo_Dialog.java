@@ -80,8 +80,10 @@ public class UserInfo_Dialog extends JDialog {
                         sexShow.getText().equals(sexText.getText())&&ageShow.getText().equals(ageText.getText())) {
                     JOptionPane.showMessageDialog(null, "변경 사항이 없습니다!", "notice", JOptionPane.INFORMATION_MESSAGE);
                 }
-                else JOptionPane.showMessageDialog(null, "수정 되었습니다! 창을 다시 띄어주세요!",
-                        "notice", JOptionPane.INFORMATION_MESSAGE); setVisible(false);
+                else {
+                    JOptionPane.showMessageDialog(null, "수정 되었습니다! 창을 다시 띄어주세요!",
+                            "notice", JOptionPane.INFORMATION_MESSAGE); setVisible(false);
+                }
             }
         });
 
