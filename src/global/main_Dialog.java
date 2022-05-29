@@ -10,6 +10,7 @@ public class main_Dialog extends JDialog {
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
+    static JLabel username = new JLabel();
     main_Dialog(){
         dbCon.connect();
         setContentPane(mainPanel);
