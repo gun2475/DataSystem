@@ -10,7 +10,6 @@ public class GlobalGUI extends JFrame{
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     private sign_Dialog sign = new sign_Dialog();
-    private main_Dialog my_main = new main_Dialog();
     static JPanel panel = new JPanel();
 
     private DB_Connect dbCon = new DB_Connect();
@@ -93,7 +92,7 @@ public class GlobalGUI extends JFrame{
                     user_id = loginID_tf.getText();
                     System.out.println("로그인 성공");
                     System.out.println(user_id);
-                    my_main.setVisible(true);
+                    new main_Dialog(user_id);
                     setVisible(false);
                 }
                 else System.out.println("로그인 실패");
