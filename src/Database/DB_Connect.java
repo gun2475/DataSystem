@@ -3,6 +3,7 @@ import java.sql.*;
 
 public class DB_Connect {
     static int cnt = 0;
+    private String userName = "";
     private Connection connection;
     private ResultSet rs;
     private Statement st;
@@ -79,7 +80,14 @@ public class DB_Connect {
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
-        if(idFlag == true && pwFlag == true) return true;
+        if(idFlag == true && pwFlag == true) {
+            userName = id;
+            return true;
+        }
         else return false;
+    }
+
+    public String getUserName(){
+        return userName;
     }
 }
