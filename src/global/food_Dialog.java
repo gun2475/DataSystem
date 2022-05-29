@@ -37,10 +37,9 @@ public class food_Dialog extends JDialog {
         }
         food.add(food_list);
 
-
-
-
-
+    }
+    public static void main(String args[]){
+        new food_Dialog();
     }
 }
 

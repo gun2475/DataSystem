@@ -96,7 +96,7 @@ public class DB_Connect {
     {
         Vector<String> vec = new Vector<String>();
         try {
-            String SQL1 = "SELECT * FROM Food WHERE food_name;";
+            String SQL1 = "SELECT * FROM Food;";
             rs = st.executeQuery(SQL1);
             while(rs.next()) {
                 vec.add(rs.getString("food_name"));
