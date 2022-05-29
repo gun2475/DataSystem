@@ -1,8 +1,9 @@
 package Database;
 import java.sql.*;
-
+import java.util.Vector;
 public class DB_Connect {
     static int cnt = 0;
+    public String food_name[] = new String[100];
     private String userName = "";
     private Connection connection;
     private ResultSet rs;
@@ -89,5 +90,26 @@ public class DB_Connect {
 
     public String getUserName(){
         return userName;
+    }
+
+    public Vector<String> getfoodname()
+    {
+        Vector<String> vec = new Vector<String>();
+        try {
+            String SQL1 = "SELECT * FROM Food WHERE food_name;";
+            rs = st.executeQuery(SQL1);
+            while(rs.next()) {
+                vec.add(rs.getString("food_name"));
+                System.out.println(rs.getString("food_name"));
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+        for(int i=0; i<vec.size(); i++)
+        {
+            System.out.println(vec.get(i));
+        }
+        return vec;
+
     }
 }
