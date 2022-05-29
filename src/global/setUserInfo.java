@@ -14,6 +14,7 @@ public class setUserInfo extends JDialog {
     final static int Info_WIDTH = 500;
     static JLabel username = new JLabel();
     setUserInfo(String id){
+        setTitle("수정하세요");
         String name = id;
         dbCon.connect();
         setContentPane(InfoPanel);
@@ -38,11 +39,15 @@ public class setUserInfo extends JDialog {
         exit.setBorderPainted(false); //버튼 투명하게 만들기
         exit.setContentAreaFilled(false);
         InfoPanel.add(exit);
+
         rectify.setBounds(255,450,50,50);
         rectify.setVisible(true);
         rectify.setBorderPainted(false); //버튼 투명하게 만들기
         rectify.setContentAreaFilled(false);
         InfoPanel.add(rectify);
+
+
+
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,6 +60,7 @@ public class setUserInfo extends JDialog {
 
             }
         });
+
 
     }
 }

@@ -41,10 +41,22 @@ public class main_Dialog extends JDialog {
         profileChange.setBorderPainted(false); //버튼 투명하게 만들기
         profileChange.setContentAreaFilled(false);
         mainPanel.add(profileChange);
+
+        JButton food = new JButton("food");
+        food.setBounds(100,100,300,100);
+        food.setVisible(true);
+        mainPanel.add(food);
+
         profileChange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new setUserInfo(id);
+            }
+        });
+        food.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new food_Dialog(id);
             }
         });
     }
