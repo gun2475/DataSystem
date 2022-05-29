@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="이름이 지정되지 않았습니다" type="Application" factoryName="Application" nameIsGenerated="true">
+  <configuration default="false" name="main" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="Main" />
     <module name="DataSystem" />
     <method v="2">

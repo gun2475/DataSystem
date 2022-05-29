@@ -10,8 +10,9 @@ public class main_Dialog extends JDialog {
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
-    static JLabel username = new JLabel();
+    static JLabel username = new JLabel(GlobalGUI.getUser_id());
     main_Dialog(){
+        String name = GlobalGUI.getUser_id();
         dbCon.connect();
         setContentPane(mainPanel);
         mainPanel.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
@@ -21,5 +22,7 @@ public class main_Dialog extends JDialog {
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((windowSize.width - WINDOW_WIDTH) / 2,
                 (windowSize.height - WINDOW_HEIGHT) / 2);
+
+        mainPanel.add(username);
     }
 }
