@@ -30,7 +30,7 @@ public class DB_Connect {
 
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
         try {
-            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" + weight + "',,'" + height + "',,'" + sex + "',,'" + age + "');";
+            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" + weight + "','" + height + "','" + sex + "','" + age + "');";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
