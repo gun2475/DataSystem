@@ -29,7 +29,7 @@ public class food_Dialog extends JDialog {
         JComboBox<String> food_list = new JComboBox<String>();
         food_list.setBounds(50,50,100,20);
         food_list.setVisible(true);
-        vec = dbCon.getfoodname();
+        vec = dbCon.get_food();
         for(int i=0; i<vec.size(); i++)
         {
             System.out.println(vec.get(i));
@@ -37,9 +37,6 @@ public class food_Dialog extends JDialog {
         }
         food.add(food_list);
 
-    }
-    public static void main(String args[]){
-        new food_Dialog();
     }
 }
 

@@ -91,11 +91,10 @@ public class GlobalGUI extends JFrame{
                 if(loginFlag == true) {
                     user_id = loginID_tf.getText();
                     System.out.println("로그인 성공");
-                    System.out.println(user_id);
                     new main_Dialog(user_id);
                     setVisible(false);
                 }
-                else System.out.println("로그인 실패");
+                else JOptionPane.showMessageDialog(null, "ID와 PW를 확인해주세요.", "Invaild user", JOptionPane.ERROR_MESSAGE);
 
             }
         });

@@ -44,7 +44,7 @@ public class main_Dialog extends JDialog {
         profileChange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new setUserInfo(id);
+                new UserInfo_Dialog(id);
             }
         });
     }

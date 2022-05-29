@@ -3,7 +3,7 @@ import java.sql.*;
 import java.util.Vector;
 public class DB_Connect {
     static int cnt = 0;
-    public String food_name[] = new String[100];
+    private String[] user_info = new String[4];
     private String userName = "";
     private Connection connection;
     private ResultSet rs;
@@ -32,8 +32,9 @@ public class DB_Connect {
 
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
         try {
-            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" + weight + "','" + height + "','" + sex + "','" + age + "');";
-            PreparedStatement pstmt = connection.prepareStatement(SQL1);
+            String SQL = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" +
+                    weight + "','" + height + "','" + sex + "','" + age + "');";
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
             int re = pstmt.executeUpdate();
             if (re == 1) {
                 return true;
@@ -46,8 +47,8 @@ public class DB_Connect {
 
     public boolean isAdmin(String id) { // 아이디 중복확인
         try {
-            String SQL1 = "SELECT * FROM User WHERE id = '" + id + "';".toString();
-            rs = st.executeQuery(SQL1);
+            String SQL = "SELECT * FROM User WHERE id = '" + id + "';".toString();
+            rs = st.executeQuery(SQL);
             if (rs.next()) {
                 if (rs.getString("id").equals(id)) {
                     return true;
@@ -88,28 +89,51 @@ public class DB_Connect {
         else return false;
     }
 
-    public String getUserName(){
+    public String getUser_name(){
         return userName;
     }
-
-    public Vector<String> getfoodname()
-    {
-        Vector<String> vec = new Vector<String>();
+    public String[] getUser_info(String id){
         try {
-            String SQL1 = "SELECT * FROM Food;";
-            rs = st.executeQuery(SQL1);
+            String SQL = "SELECT weight, height, sex, age FROM User WHERE id = '" + id + "';";
+            rs = st.executeQuery(SQL);
             while(rs.next()) {
-                vec.add(rs.getString("food_name"));
-                System.out.println(rs.getString("food_name"));
+                user_info[0] = rs.getString("weight");
+                user_info[1] = rs.getString("height");
+                user_info[2] = rs.getString("sex");
+                user_info[3] = rs.getString("age");
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
-        for(int i=0; i<vec.size(); i++)
-        {
-            System.out.println(vec.get(i));
+        return user_info;
+    }
+    public boolean setUser_info(String id, float weight, float height, String sex, int age){
+        try {
+            String SQL = "UPDATE User SET weight=" + weight + ",height=" +
+                    height + ",sex='" + sex + "',age="+ age +" WHERE ID='"+id+"'";
+            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            int re = pstmt.executeUpdate();
+            if (re == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+        return false;
+    }
+
+    public Vector<String> get_food()
+    {
+        Vector<String> vec = new Vector<String>();
+        try {
+            String SQL = "SELECT * FROM Food;";
+            rs = st.executeQuery(SQL);
+            while(rs.next()) {
+                vec.add(rs.getString("food_name"));
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
         return vec;
-
     }
 }
