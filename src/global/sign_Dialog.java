@@ -1,7 +1,7 @@
 package global;
 import Database.DB_Connect;
 
-import java.awt.Cursor;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -28,6 +28,7 @@ public class sign_Dialog extends JDialog {
     public sign_Dialog() {
         dbCon.connect();
         signUpPanel.setLayout(null);
+        signUpPanel.setSize(500,1000);
         setTitle("회원가입");
         setContentPane(signUpPanel);
         idlabel.setBounds(50, 20, 100, 20);

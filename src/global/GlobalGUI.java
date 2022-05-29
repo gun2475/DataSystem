@@ -55,6 +55,7 @@ public class GlobalGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 sign.setVisible(true);
+                sign.setSize(350,400);
             }
         });
     }
@@ -63,7 +64,6 @@ public class GlobalGUI extends JFrame{
         JLabel loginPW_lb = new JLabel("pw :");
         JTextField loginID_tf = new JTextField();
         JTextField loginPW_tf = new JTextField();
-
 
         loginID_lb.setSize(100,20);
         loginID_lb.setLocation(this.getWidth() / 2 - 150, this.getHeight() /2 - 25);
