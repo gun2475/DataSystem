@@ -30,7 +30,7 @@ public class DB_Connect {
 
     public boolean Enrollment(String myId, String myPw) { // 회원가입
         try {
-            String SQL1 = "INSERT INTO tempTable(user_id, user_pw) VALUES('" + myId + "','" + myPw + "');";
+            String SQL1 = "INSERT INTO User(id, pw) VALUES('" + myId + "','" + myPw + "');";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
@@ -44,10 +44,10 @@ public class DB_Connect {
 
     public boolean isAdmin(String id) { // 아이디 중복확인
         try {
-            String SQL1 = "SELECT * FROM tempTable WHERE user_id = '" + id + "';".toString();
+            String SQL1 = "SELECT * FROM User WHERE id = '" + id + "';".toString();
             rs = st.executeQuery(SQL1);
             if (rs.next()) {
-                if (rs.getString("user_id").equals(id)) {
+                if (rs.getString("id").equals(id)) {
                     return true;
                 }
             }
@@ -62,17 +62,17 @@ public class DB_Connect {
         boolean idFlag = false;
         boolean pwFlag = false;
         try {
-            String SQL1 = "SELECT user_id FROM tempTable WHERE user_id = '" + id + "';".toString();
+            String SQL1 = "SELECT id FROM User WHERE id = '" + id + "';".toString();
             rs = st.executeQuery(SQL1);
             if (rs.next()) {
-                if (rs.getString("user_id").equals(id)) {
+                if (rs.getString("id").equals(id)) {
                     idFlag = true;
                 }
             }
-            String SQL2 = "SELECT user_pw FROM tempTable WHERE user_pw = '" + pw + "';".toString();
+            String SQL2 = "SELECT pw FROM User WHERE pw = '" + pw + "';".toString();
             rs = st.executeQuery(SQL2);
             if (rs.next()) {
-                if (rs.getString("user_pw").equals(pw)) {
+                if (rs.getString("pw").equals(pw)) {
                     pwFlag = true;
                 }
             }
