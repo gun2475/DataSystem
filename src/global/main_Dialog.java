@@ -13,7 +13,8 @@ public class main_Dialog extends JDialog {
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     static JLabel username = new JLabel();
-    main_Dialog(String id){
+
+    public main_Dialog(String id){
         String name = id;
         dbCon.connect();
         setContentPane(mainPanel);
@@ -26,7 +27,10 @@ public class main_Dialog extends JDialog {
         setLocation((windowSize.width - WINDOW_WIDTH) / 2,
                 (windowSize.height - WINDOW_HEIGHT) / 2);
         username.setText(name+"님 환영합니다.");
-        username.setBounds(10,10,150,15);
+        Font f = new Font("돋움체",Font.CENTER_BASELINE,20);
+        username.setForeground(new Color(178,102,255));
+        username.setFont(f);
+        username.setBounds(10,10,400,20);
         username.setVisible(true);
         mainPanel.add(username);
         ImageIcon profileChange_png = new ImageIcon("src/asset/profileChange.png"); //이미지파일 크기 조정하는 하드코딩
