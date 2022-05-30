@@ -57,14 +57,17 @@ public class food_Dialog extends JDialog {
         calla.setVisible(true);
         calla.setFont(font);
         add(calla);
+
         carla.setBounds(50,150,300,35);
         carla.setVisible(true);
         carla.setFont(font);
         add(carla);
+
         prola.setBounds(50,200,300,35);
         prola.setVisible(true);
         prola.setFont(font);
         add(prola);
+
         fatla.setBounds(50,250,300,35);
         fatla.setVisible(true);
         fatla.setFont(font);
