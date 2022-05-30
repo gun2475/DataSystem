@@ -31,6 +31,7 @@ public class food_Dialog extends JDialog {
     private float sumfat =0;
 
     private String fname = "";
+    private int count = 0;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     Vector<String> vec = new Vector<String>();
@@ -123,7 +124,7 @@ public class food_Dialog extends JDialog {
 
                 sumfat += myfInfo[3];
                 sumfatla.setText("지방 : " + sumfat + "Kcal");
-
+                fname = food_list.getSelectedItem().toString();
                 food_addlist.addItem(fname);
             }
         });
@@ -135,18 +136,25 @@ public class food_Dialog extends JDialog {
         fInfo_dlete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sumcal -= myfInfo[0];
-                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
+                for(int i=0; i< food_addlist.getItemCount(); i++)
+                {
+                    if(fname.equals(food_addlist.getItemAt(i)))
+                    {
+                        sumcal -= myfInfo[0];
+                        sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
-                sumcar -= myfInfo[1];
-                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+                        sumcar -= myfInfo[1];
+                        sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
 
-                sumpro -= myfInfo[2];
-                sumprola.setText("단백질 : " + sumpro + "Kcal");
+                        sumpro -= myfInfo[2];
+                        sumprola.setText("단백질 : " + sumpro + "Kcal");
 
-                sumfat -= myfInfo[3];
-                sumfatla.setText("지방 : " + sumfat + "Kcal");
-                food_addlist.removeItem(fname);
+                        sumfat -= myfInfo[3];
+                        sumfatla.setText("지방 : " + sumfat + "Kcal");
+                        food_addlist.removeItem(fname);
+                    }
+                }
+
             }
         });
         add(fInfo_dlete);
