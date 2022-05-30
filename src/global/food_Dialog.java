@@ -10,9 +10,11 @@ public class food_Dialog extends JDialog {
     static JPanel food = new JPanel();
     private DB_Connect dbCon = new DB_Connect();
     float[] myfInfo = new float[4];
+    String User_if[] = new String[4];
     private JButton fInfo_import = new JButton("불러오기");
 
-    private JButton fInfo_add = new JButton("추가하기");
+    private JButton fInfo_add = new JButton("식단 추가하기");
+    private JButton User_kcal = new JButton("칼로리 계산하기");
     private JButton fInfo_dlete = new JButton("제거하기");
     private JButton fInfo_clear = new JButton("초기화하기");
     private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
@@ -30,13 +32,21 @@ public class food_Dialog extends JDialog {
     private float sumpro =0;
     private float sumfat =0;
 
+    private JLabel base_metabolic = new JLabel("기초 대사량 : ");
+    private JLabel maintenance_cal = new JLabel("유지 대사량 : ");
+    private JLabel target_cal = new JLabel("목표 칼로리 : ");
+
+    private float base =0;
+    private float maintenance =0;
+    private float target =0;
+
     private String fname = "";
     private int count = 0;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     Vector<String> vec = new Vector<String>();
     Vector<String> food_vec = new Vector<String>();
-    public food_Dialog() {
+    public food_Dialog(String id) {
         Font font = new Font("Serif", Font.BOLD, 25);
 
         dbCon.connect();
@@ -200,7 +210,59 @@ public class food_Dialog extends JDialog {
         sumfatla.setFont(font);
         add(sumfatla);
 
+        User_if = dbCon.getUser_info(id);
 
+        User_kcal.setBounds(100, 500, 100, 20);
+        User_kcal.setVisible(true);//계산하기 함수
+        User_kcal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               /* user_info[0] = rs.getString("weight");
+                user_info[1] = rs.getString("height");
+                user_info[2] = rs.getString("sex");
+                user_info[3] = rs.getString("age");*/
+                float wei = Float.parseFloat(User_if[0]);
+                float hei = Float.parseFloat(User_if[1]);
+                float age = Float.parseFloat(User_if[3]);
+                if(User_if[2].equals("남성"))
+                {
+                    base =0;
+                    base_metabolic.setText("기초 대사량 : " + base + "Kcal");
+
+                    maintenance = 0;
+                    maintenance_cal.setText("유지 칼로리 : " + maintenance + "Kcal");
+
+                    target = 0;
+                    target_cal.setText("목표 칼로리 : " + target + "Kcal");
+                }
+                else {
+                    base =0;
+                    base_metabolic.setText("기초 대사량 : " + base + "Kcal");
+
+                    maintenance = 0;
+                    maintenance_cal.setText("유지 칼로리 : " + maintenance + "Kcal");
+
+                    target = 0;
+                    target_cal.setText("목표 칼로리 : " + target + "Kcal");
+                }
+            }
+        });
+        add(User_kcal);
+
+        base_metabolic.setBounds(50, 300, 300, 35);
+        base_metabolic.setVisible(true);
+        base_metabolic.setFont(font);
+        add(base_metabolic);
+
+        maintenance_cal.setBounds(50, 400, 300, 35);
+        maintenance_cal.setVisible(true);
+        maintenance_cal.setFont(font);
+        add(maintenance_cal);
+
+        target_cal.setBounds(50, 500, 300, 35);
+        target_cal.setVisible(true);
+        target_cal.setFont(font);
+        add(target_cal);
     }
 
 }

@@ -1,8 +1,8 @@
 package global;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+
 import Database.*;
 
 public class GlobalGUI extends JFrame{
@@ -79,13 +79,14 @@ public class GlobalGUI extends JFrame{
 
         loginPW_tf.setLocation(this.getWidth() / 2 - 100, this.getHeight() /2);
         loginPW_tf.setSize(100,20);
-
+        
         JButton login_btn = new JButton("로그인");
         login_btn.setLocation(this.getWidth() / 2 + 20, this.getHeight() / 2);
         login_btn.setSize(100,20);
         login_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 boolean loginFlag = false;
                 loginFlag = dbCon.login(loginID_tf.getText(), loginPW_tf.getText());
                 if(loginFlag == true) {

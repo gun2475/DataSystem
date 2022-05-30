@@ -60,7 +60,7 @@ public class main_Dialog extends JDialog {
         food.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new food_Dialog();
+                new food_Dialog(name);
             }
         });
     }
