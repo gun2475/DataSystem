@@ -5,13 +5,14 @@ import Database.DB_Connect;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
     static JPanel food = new JPanel();
-    private DB_Connect dbCon = new DB_Connect();
+    private final DB_Connect dbCon = new DB_Connect();
     double[] myfInfo = new double[4];
-    String User_if[] = new String[4];
-    private JButton fInfo_import = new JButton("불러오기");
+    String[] User_if = new String[4];
+    JButton fInfo_import = new JButton("불러오기");
 
     private JButton fInfo_add = new JButton("식단 추가하기");
     private JButton User_kcal = new JButton("칼로리 계산하기");
@@ -41,7 +42,11 @@ public class food_Dialog extends JDialog {
     private JLabel protein_g = new JLabel("단백질 : ");
     private JLabel Fat_g = new JLabel("지방 : ");
 
-    private String[] atv={"거의 없다(거의 좌식생활을 하고 운동 안함)", "조금 있다(활동량이 보통이거나 주 1-3회 운동)", "보통(활동량이 다소 많거나 주 3-5회 운동)", "꽤 있다(활동량이 많거나, 주 6-7회 운동)","아주 많다(활동량이 매우 많거나,거의 매일 하루 2번 운동)"};
+    private String[] atv={"거의 없다(거의 좌식생활을 하고 운동 안함)",
+            "조금 있다(활동량이 보통이거나 주 1-3회 운동)",
+            "보통(활동량이 다소 많거나 주 3-5회 운동)",
+            "꽤 있다(활동량이 많거나, 주 6-7회 운동)",
+            "아주 많다(활동량이 매우 많거나,거의 매일 하루 2번 운동)"};
 
     private float base =0;
     private float maintenance =0;
@@ -51,9 +56,7 @@ public class food_Dialog extends JDialog {
     private float carbohydrate =0;
     private float protein =0;
     private float Fat =0;
-
     private String fname = "";
-    private int count = 0;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     Vector<String> vec = new Vector<String>();
@@ -78,6 +81,7 @@ public class food_Dialog extends JDialog {
         noticela.setVisible(true);
         add(noticela);
 
+        ////////////////////////////////////////////////////////////////////////콤보박스, 해당 음식 영양소 가져오기
         JComboBox<String> food_list = new JComboBox<String>();
         food_list.setBounds(50, 50, 120, 20);
         food_list.setVisible(true);
@@ -86,29 +90,24 @@ public class food_Dialog extends JDialog {
             food_list.addItem(vec.get(i));
         }
         food.add(food_list);
-
-
+        ////////////////////////////////////////////////////////////////////////라벨 설정
         calla.setBounds(50, 100, 300, 35);
         calla.setVisible(true);
         calla.setFont(font);
         add(calla);
-
         carla.setBounds(50, 150, 300, 35);
         carla.setVisible(true);
         carla.setFont(font);
         add(carla);
-
         prola.setBounds(50, 200, 300, 35);
         prola.setVisible(true);
         prola.setFont(font);
         add(prola);
-
         fatla.setBounds(50, 250, 300, 35);
         fatla.setVisible(true);
         fatla.setFont(font);
         add(fatla);
-
-
+        ////////////////////////////////////////////////////////////////////////영양소 정보 나타내는 메서드
         fInfo_import.setBounds(170, 50, 100, 20);
         fInfo_import.setVisible(true);
         fInfo_import.addActionListener(new ActionListener() {
@@ -123,63 +122,75 @@ public class food_Dialog extends JDialog {
             }
         });
         add(fInfo_import);
-
-        fInfo_add.setBounds(370, 50, 100, 20);
-        fInfo_add.setVisible(true);
-
+        ////////////////////////////////////////////////////////////////////////식단 추가하기
         JComboBox<String> food_addlist = new JComboBox<String>();
-        food_addlist.setBounds(500, 50, 120, 20);
+        food_addlist.setBounds(500, 50, 120, 30);
         food_addlist.setVisible(true);
         food.add(food_list);
+        ////////////////////////////////////////////////////////////////////////
+        fInfo_add.setBounds(370, 50, 110, 20);
+        fInfo_add.setVisible(true);
+
         fInfo_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sumcal += myfInfo[0];
                 sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
-                sumcar += myfInfo[1];
-                sumcarla.setText("탄수화물 : " + (int)sumcar + "g");
+                BigDecimal car = new BigDecimal(String.valueOf(myfInfo[0]));
 
-                sumpro += myfInfo[2];
-                sumprola.setText("단백질 : " + (int)sumpro + "g");
+                sumcar += Math.round(myfInfo[1]*100)/100.0;
+                sumcarla.setText("탄수화물 : " + sumcar + "g");
 
-                sumfat += myfInfo[3];
+                BigDecimal pro = new BigDecimal(String.valueOf(myfInfo[1]));
+                sumpro += Math.round(myfInfo[2]*100)/100.0;
+                sumprola.setText("단백질 : " + sumpro + "g");
+
+                BigDecimal fat = new BigDecimal(String.valueOf(myfInfo[2]));
+                sumfat += Math.round(myfInfo[3]*100)/100.0;
                 sumfatla.setText("지방 : " + sumfat + "g");
+
                 fname = food_list.getSelectedItem().toString();
                 food_addlist.addItem(fname);
             }
         });
         add(fInfo_add);
         add(food_addlist);
-
+        ////////////////////////////////////////////////////////////////////////식단 빼기
         fInfo_dlete.setBounds(370, 100, 100, 20);
         fInfo_dlete.setVisible(true);
         fInfo_dlete.addActionListener(new ActionListener() {
+            int tempCnt = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(int i=0; i< food_addlist.getItemCount(); i++)
-                {
-                    if(fname.equals(food_addlist.getItemAt(i)))
-                    {
-                        sumcal -= myfInfo[0];
-                        sumcalla.setText("칼로리 : " + sumcal + "Kcal");
-
-                        sumcar -= myfInfo[1];
-                        sumcarla.setText("탄수화물 : " + (int)sumcar + "g");
-
-                        sumpro -= myfInfo[2];
-                        sumprola.setText("단백질 : " + (int)sumpro + "g");
-
-                        sumfat -= myfInfo[3];
-                        sumfatla.setText("지방 : " + (int)sumfat + "g");
-                        food_addlist.removeItem(fname);
-                    }
+                if(food_addlist.getItemCount() != 0) {
+                    String temp_foodName = food_addlist.getSelectedItem().toString();
+                    myfInfo = dbCon.get_fInfo(temp_foodName);
+                    food_addlist.removeItemAt(food_addlist.getSelectedIndex());
+                    tempCnt = 0;
                 }
+                else if(food_addlist.getItemCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "식단이 없습니다.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    tempCnt = 1;
+                }
+                if(tempCnt == 0){
+                    sumcal -= myfInfo[0];
+                    sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
+                    sumcar -= Math.round(myfInfo[1]*100)/100.0;
+                    sumcarla.setText("탄수화물 : " + sumcar + "g");
+
+                    sumpro -= Math.round(myfInfo[2]*100)/100.0;
+                    sumprola.setText("단백질 : " + sumpro + "g");
+
+                    sumfat -= Math.round(myfInfo[3]*100)/100.0;
+                    sumfatla.setText("지방 : " + sumfat + "g");
+                }
             }
         });
         add(fInfo_dlete);
-
+        ////////////////////////////////////////////////////////////////////////식단 초기화하기
         fInfo_clear.setBounds(370, 150, 100, 20);
         fInfo_clear.setVisible(true);
         fInfo_clear.addActionListener(new ActionListener() {
@@ -200,7 +211,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(fInfo_clear);
-
+        ////////////////////////////////////////////////////////////////////////
         sumcalla.setBounds(500, 100, 300, 35);
         sumcalla.setVisible(true);
         sumcalla.setFont(font);
@@ -220,8 +231,6 @@ public class food_Dialog extends JDialog {
         sumfatla.setVisible(true);
         sumfatla.setFont(font);
         add(sumfatla);
-
-        sumfatla.setForeground(Color.WHITE);
 
         User_if = dbCon.getUser_info(id);
 
