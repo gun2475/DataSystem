@@ -85,6 +85,11 @@ public class food_Dialog extends JDialog {
         });
         add(fInfo_import);
     }
+    public static void main(String[] args)
+    {
+        new food_Dialog();
+    }
+
 }
 
 
