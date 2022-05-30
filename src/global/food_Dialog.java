@@ -9,7 +9,7 @@ import java.util.Vector;
 public class food_Dialog extends JDialog {
     static JPanel food = new JPanel();
     private DB_Connect dbCon = new DB_Connect();
-    float[] myfInfo = new float[4];
+    double[] myfInfo = new double[4];
     String User_if[] = new String[4];
     private JButton fInfo_import = new JButton("불러오기");
 
@@ -27,13 +27,13 @@ public class food_Dialog extends JDialog {
     private JLabel sumcarla = new JLabel("탄수화물 : ");
     private JLabel sumprola = new JLabel("단백질 : ");
     private JLabel sumfatla = new JLabel("지방 : ");
-    private float sumcal =0;
-    private float sumcar =0;
-    private float sumpro =0;
-    private float sumfat =0;
+    private int sumcal =0;
+    private double sumcar =0;
+    private double sumpro =0;
+    private double sumfat =0;
 
     private JLabel base_metabolic = new JLabel("기초 대사량 : ");
-    private JLabel maintenance_cal = new JLabel("유지 대사량 : ");
+    private JLabel maintenance_cal = new JLabel("유지 칼로리 : ");
     private JLabel target_upcal = new JLabel("목표 증량 칼로리 : ");
     private JLabel target_downcal = new JLabel("목표 감량 칼로리 : ");
 
@@ -138,10 +138,10 @@ public class food_Dialog extends JDialog {
                 sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
                 sumcar += myfInfo[1];
-                sumcarla.setText("탄수화물 : " + sumcar + "g");
+                sumcarla.setText("탄수화물 : " + (int)sumcar + "g");
 
                 sumpro += myfInfo[2];
-                sumprola.setText("단백질 : " + sumpro + "g");
+                sumprola.setText("단백질 : " + (int)sumpro + "g");
 
                 sumfat += myfInfo[3];
                 sumfatla.setText("지방 : " + sumfat + "g");
@@ -165,13 +165,13 @@ public class food_Dialog extends JDialog {
                         sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
                         sumcar -= myfInfo[1];
-                        sumcarla.setText("탄수화물 : " + sumcar + "g");
+                        sumcarla.setText("탄수화물 : " + (int)sumcar + "g");
 
                         sumpro -= myfInfo[2];
-                        sumprola.setText("단백질 : " + sumpro + "g");
+                        sumprola.setText("단백질 : " + (int)sumpro + "g");
 
                         sumfat -= myfInfo[3];
-                        sumfatla.setText("지방 : " + sumfat + "g");
+                        sumfatla.setText("지방 : " + (int)sumfat + "g");
                         food_addlist.removeItem(fname);
                     }
                 }
