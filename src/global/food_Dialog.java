@@ -12,14 +12,28 @@ public class food_Dialog extends JDialog {
     float[] myfInfo = new float[4];
     private JButton fInfo_import = new JButton("불러오기");
 
+    private JButton fInfo_add = new JButton("추가하기");
+    private JButton fInfo_dlete = new JButton("제거하기");
     private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
     private JLabel calla = new JLabel("칼로리 : ");
     private JLabel carla = new JLabel("탄수화물 : ");
     private JLabel prola = new JLabel("단백질 : ");
     private JLabel fatla = new JLabel("지방 : ");
+
+    private JLabel sumcalla = new JLabel("총 칼로리 : ");
+    private JLabel sumcarla = new JLabel("총 탄수화물 : ");
+    private JLabel sumprola = new JLabel("총 단백질 : ");
+    private JLabel sumfatla = new JLabel("총 지방 : ");
+    private float sumcal =0;
+    private float sumcar =0;
+    private float sumpro =0;
+    private float sumfat =0;
+
+    private String fname = "";
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     Vector<String> vec = new Vector<String>();
+    Vector<String> food_vec = new Vector<String>();
     public food_Dialog()
     {
         Font font = new Font("Serif", Font.BOLD, 25);
@@ -81,12 +95,77 @@ public class food_Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 myfInfo = dbCon.get_fInfo(food_list.getSelectedItem().toString());
                 calla.setText("칼로리 : " + myfInfo[0] + "Kcal");
+                sumcal += myfInfo[0];
+                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
+
+
                 carla.setText("탄수화물 : " + myfInfo[1] +"g");
+                sumcar += myfInfo[1];
+                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+
+
                 prola.setText("단백질 : " + myfInfo[2]+"g");
+                sumpro += myfInfo[2];
+                sumprola.setText("단백질 : " + sumpro + "Kcal");
+
+
                 fatla.setText("지방 : " + myfInfo[3]+"g");
+                sumfat += myfInfo[3];
+                sumfatla.setText("지방 : " + sumfat + "Kcal");
+
+
+                fname =food_list.getSelectedItem().toString();
             }
         });
         add(fInfo_import);
+
+        fInfo_add.setBounds(370,50,100,20);
+        fInfo_add.setVisible(true);
+
+        JComboBox<String> food_addlist = new JComboBox<String>();
+        food_addlist.setBounds(500,50,120,20);
+        food_addlist.setVisible(true);
+        food.add(food_list);
+        fInfo_add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                food_addlist.addItem(fname);
+            }
+        });
+        add(fInfo_add);
+        add(food_addlist);
+
+        fInfo_dlete.setBounds(370,100,100,20);
+        fInfo_dlete.setVisible(true);
+        fInfo_dlete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                food_addlist.removeItem(fname);
+            }
+        });
+        add(fInfo_dlete);
+
+        sumcalla.setBounds(500,100,300,35);
+        sumcalla.setVisible(true);
+        sumcalla.setFont(font);
+        add(sumcalla);
+
+        sumcarla.setBounds(500,150,300,35);
+        sumcarla.setVisible(true);
+        sumcarla.setFont(font);
+        add(sumcarla);
+
+        sumprola.setBounds(500,200,300,35);
+        sumprola.setVisible(true);
+        sumprola.setFont(font);
+        add(sumprola);
+
+        sumfatla.setBounds(500,250,300,35);
+        sumfatla.setVisible(true);
+        sumfatla.setFont(font);
+        add(sumfatla);
+
+
     }
     public static void main(String[] args)
     {
