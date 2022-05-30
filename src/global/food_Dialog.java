@@ -34,11 +34,23 @@ public class food_Dialog extends JDialog {
 
     private JLabel base_metabolic = new JLabel("기초 대사량 : ");
     private JLabel maintenance_cal = new JLabel("유지 대사량 : ");
-    private JLabel target_cal = new JLabel("목표 칼로리 : ");
+    private JLabel target_upcal = new JLabel("목표 증량 칼로리 : ");
+    private JLabel target_downcal = new JLabel("목표 감량 칼로리 : ");
+
+    private JLabel carbohydrate_g = new JLabel("탄수화물 :");
+    private JLabel protein_g = new JLabel("단백질 : ");
+    private JLabel Fat_g = new JLabel("지방 : ");
+
+    private String[] atv={"거의 없다(거의 좌식생활을 하고 운동 안함)", "조금 있다(활동량이 보통이거나 주 1-3회 운동)", "보통(활동량이 다소 많거나 주 3-5회 운동)", "꽤 있다(활동량이 많거나, 주 6-7회 운동)","아주 많다(활동량이 매우 많거나,거의 매일 하루 2번 운동)"};
 
     private float base =0;
     private float maintenance =0;
-    private float target =0;
+    private float targetup =0;
+    private float targetdown =0;
+
+    private float carbohydrate =0;
+    private float protein =0;
+    private float Fat =0;
 
     private String fname = "";
     private int count = 0;
@@ -48,7 +60,6 @@ public class food_Dialog extends JDialog {
     Vector<String> food_vec = new Vector<String>();
     public food_Dialog(String id) {
         Font font = new Font("Serif", Font.BOLD, 25);
-
         dbCon.connect();
         setTitle("나만의 식단");
         setContentPane(food);
@@ -127,13 +138,13 @@ public class food_Dialog extends JDialog {
                 sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
                 sumcar += myfInfo[1];
-                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+                sumcarla.setText("탄수화물 : " + sumcar + "g");
 
                 sumpro += myfInfo[2];
-                sumprola.setText("단백질 : " + sumpro + "Kcal");
+                sumprola.setText("단백질 : " + sumpro + "g");
 
                 sumfat += myfInfo[3];
-                sumfatla.setText("지방 : " + sumfat + "Kcal");
+                sumfatla.setText("지방 : " + sumfat + "g");
                 fname = food_list.getSelectedItem().toString();
                 food_addlist.addItem(fname);
             }
@@ -154,13 +165,13 @@ public class food_Dialog extends JDialog {
                         sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
                         sumcar -= myfInfo[1];
-                        sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+                        sumcarla.setText("탄수화물 : " + sumcar + "g");
 
                         sumpro -= myfInfo[2];
-                        sumprola.setText("단백질 : " + sumpro + "Kcal");
+                        sumprola.setText("단백질 : " + sumpro + "g");
 
                         sumfat -= myfInfo[3];
-                        sumfatla.setText("지방 : " + sumfat + "Kcal");
+                        sumfatla.setText("지방 : " + sumfat + "g");
                         food_addlist.removeItem(fname);
                     }
                 }
@@ -178,13 +189,13 @@ public class food_Dialog extends JDialog {
                 sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
                 sumcar = 0;
-                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+                sumcarla.setText("탄수화물 : " + sumcar + "g");
 
                 sumpro = 0;
-                sumprola.setText("단백질 : " + sumpro + "Kcal");
+                sumprola.setText("단백질 : " + sumpro + "g");
 
                 sumfat = 0;
-                sumfatla.setText("지방 : " + sumfat + "Kcal");
+                sumfatla.setText("지방 : " + sumfat + "g");
                 food_addlist.removeAllItems();
             }
         });
@@ -210,9 +221,11 @@ public class food_Dialog extends JDialog {
         sumfatla.setFont(font);
         add(sumfatla);
 
+        sumfatla.setForeground(Color.WHITE);
+
         User_if = dbCon.getUser_info(id);
 
-        User_kcal.setBounds(100, 500, 100, 20);
+        User_kcal.setBounds(200, 300, 100, 20);
         User_kcal.setVisible(true);//계산하기 함수
         User_kcal.addActionListener(new ActionListener() {
             @Override
@@ -226,43 +239,93 @@ public class food_Dialog extends JDialog {
                 float age = Float.parseFloat(User_if[3]);
                 if(User_if[2].equals("남성"))
                 {
-                    base =0;
-                    base_metabolic.setText("기초 대사량 : " + base + "Kcal");
+                    base = 66 + ((float)13.7 * wei) + (5 * hei) - ((float)6.8 * age);
+                    base_metabolic.setText("기초 대사량 : " + (int)base + "Kcal");
 
-                    maintenance = 0;
-                    maintenance_cal.setText("유지 칼로리 : " + maintenance + "Kcal");
+                    maintenance = base * (float) 1.55;
+                    maintenance_cal.setText("유지 칼로리 : " + (int)maintenance + "Kcal");
 
-                    target = 0;
-                    target_cal.setText("목표 칼로리 : " + target + "Kcal");
+                    targetup = maintenance + (maintenance*(float)0.2);
+                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
+
+                    targetdown = maintenance - (maintenance*(float)0.2);
+                    target_downcal.setText("목표 감량 칼로리 : " + (int)targetdown + "Kcal");
+
+                    carbohydrate = (targetdown*(float)0.5)/4;
+                    protein = (targetdown*(float)0.3)/4;
+                    Fat = (targetdown*(float)0.2)/9;
+
+                    carbohydrate_g.setText("탄수화물 : " + (int)carbohydrate + "g");
+                    protein_g.setText("단백질 : " + (int)protein + "g");
+                    Fat_g.setText("지방 : " + (int)Fat + "g");
+
                 }
                 else {
-                    base =0;
-                    base_metabolic.setText("기초 대사량 : " + base + "Kcal");
+                    base =665 + ((float)19.6 * wei) + ((float)1.7 * hei) - ((float)4.7 * age);;
+                    base_metabolic.setText("기초 대사량 : " + (int)base + "Kcal");
 
-                    maintenance = 0;
-                    maintenance_cal.setText("유지 칼로리 : " + maintenance + "Kcal");
+                    maintenance = base * (float) 1.55;
+                    maintenance_cal.setText("유지 칼로리 : " + (int)maintenance + "Kcal");
 
-                    target = 0;
-                    target_cal.setText("목표 칼로리 : " + target + "Kcal");
+                    targetup = maintenance + (maintenance*(float)0.2);
+                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
+
+                    targetdown =maintenance - (maintenance*(float)0.2);
+                    target_downcal.setText("목표 감량 칼로리 : " + (int)targetdown + "Kcal");
+
+                    carbohydrate = (targetdown*(float)0.5)/4;
+                    protein = (targetdown*(float)0.3)/4;
+                    Fat = (targetdown*(float)0.2)/9;
+
+                    carbohydrate_g.setText("탄수화물 : " + (int)carbohydrate + "g");
+                    protein_g.setText("단백질 : " + (int)protein + "g");
+                    Fat_g.setText("지방 : " + (int)Fat + "g");
                 }
             }
         });
         add(User_kcal);
 
-        base_metabolic.setBounds(50, 300, 300, 35);
+        base_metabolic.setBounds(50, 350, 450, 35);
         base_metabolic.setVisible(true);
         base_metabolic.setFont(font);
         add(base_metabolic);
 
-        maintenance_cal.setBounds(50, 400, 300, 35);
+        maintenance_cal.setBounds(50, 400, 450, 35);
         maintenance_cal.setVisible(true);
         maintenance_cal.setFont(font);
         add(maintenance_cal);
 
-        target_cal.setBounds(50, 500, 300, 35);
-        target_cal.setVisible(true);
-        target_cal.setFont(font);
-        add(target_cal);
+        target_upcal.setBounds(50, 450, 450, 35);
+        target_upcal.setVisible(true);
+        target_upcal.setFont(font);
+        add(target_upcal);
+
+        target_downcal.setBounds(50, 500, 450, 35);
+        target_downcal.setVisible(true);
+        target_downcal.setFont(font);
+        add(target_downcal);
+
+        carbohydrate_g.setBounds(500, 350, 450, 35);
+        carbohydrate_g.setVisible(true);
+        carbohydrate_g.setFont(font);
+        add(carbohydrate_g);
+
+        protein_g.setBounds(500, 400, 450, 35);
+        protein_g.setVisible(true);
+        protein_g.setFont(font);
+        add(protein_g);
+
+        Fat_g.setBounds(500, 450, 450, 35);
+        Fat_g.setVisible(true);
+        Fat_g.setFont(font);
+        add(Fat_g);
+
+
+
+
+
+
+
     }
 
 }
