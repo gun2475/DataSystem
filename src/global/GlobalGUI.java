@@ -66,7 +66,7 @@ public class GlobalGUI extends JFrame{
         JLabel loginID_lb = new JLabel("id :");
         JLabel loginPW_lb = new JLabel("pw :");
         JTextField loginID_tf = new JTextField();
-        JTextField loginPW_tf = new JTextField();
+        JPasswordField loginPW_tf = new JPasswordField();
 
         loginID_lb.setSize(100,20);
         loginID_lb.setLocation(this.getWidth() / 2 - 150, this.getHeight() /2 - 25);
