@@ -14,6 +14,7 @@ public class food_Dialog extends JDialog {
 
     private JButton fInfo_add = new JButton("추가하기");
     private JButton fInfo_dlete = new JButton("제거하기");
+    private JButton fInfo_clear = new JButton("초기화하기");
     private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
     private JLabel calla = new JLabel("칼로리 : ");
     private JLabel carla = new JLabel("탄수화물 : ");
@@ -95,25 +96,9 @@ public class food_Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 myfInfo = dbCon.get_fInfo(food_list.getSelectedItem().toString());
                 calla.setText("칼로리 : " + myfInfo[0] + "Kcal");
-                sumcal += myfInfo[0];
-                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
-
-
                 carla.setText("탄수화물 : " + myfInfo[1] +"g");
-                sumcar += myfInfo[1];
-                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
-
-
                 prola.setText("단백질 : " + myfInfo[2]+"g");
-                sumpro += myfInfo[2];
-                sumprola.setText("단백질 : " + sumpro + "Kcal");
-
-
                 fatla.setText("지방 : " + myfInfo[3]+"g");
-                sumfat += myfInfo[3];
-                sumfatla.setText("지방 : " + sumfat + "Kcal");
-
-
                 fname =food_list.getSelectedItem().toString();
             }
         });
@@ -129,6 +114,17 @@ public class food_Dialog extends JDialog {
         fInfo_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sumcal += myfInfo[0];
+                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
+
+                sumcar += myfInfo[1];
+                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+
+                sumpro += myfInfo[2];
+                sumprola.setText("단백질 : " + sumpro + "Kcal");
+
+                sumfat += myfInfo[3];
+                sumfatla.setText("지방 : " + sumfat + "Kcal");
                 food_addlist.addItem(fname);
             }
         });
@@ -144,6 +140,27 @@ public class food_Dialog extends JDialog {
             }
         });
         add(fInfo_dlete);
+
+        fInfo_clear.setBounds(370,150,100,20);
+        fInfo_clear.setVisible(true);
+        fInfo_clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sumcal = 0;
+                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
+
+                sumcar = 0;
+                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+
+                sumpro = 0;
+                sumprola.setText("단백질 : " + sumpro + "Kcal");
+
+                sumfat = 0;
+                sumfatla.setText("지방 : " + sumfat + "Kcal");
+                food_addlist.addItem(fname);
+            }
+        });
+        add( fInfo_clear);
 
         sumcalla.setBounds(500,100,300,35);
         sumcalla.setVisible(true);
