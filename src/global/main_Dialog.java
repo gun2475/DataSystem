@@ -19,7 +19,6 @@ public class main_Dialog extends JDialog {
         dbCon.connect();
         setContentPane(mainPanel);
         mainPanel.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
-        setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         setVisible(true);
         mainPanel.setVisible(true);
         mainPanel.setLayout(null);
