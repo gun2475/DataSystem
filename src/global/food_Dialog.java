@@ -135,6 +135,17 @@ public class food_Dialog extends JDialog {
         fInfo_dlete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sumcal -= myfInfo[0];
+                sumcalla.setText("칼로리 : " + sumcal + "Kcal");
+
+                sumcar -= myfInfo[1];
+                sumcarla.setText("탄수화물 : " + sumcar + "Kcal");
+
+                sumpro -= myfInfo[2];
+                sumprola.setText("단백질 : " + sumpro + "Kcal");
+
+                sumfat -= myfInfo[3];
+                sumfatla.setText("지방 : " + sumfat + "Kcal");
                 food_addlist.removeItem(fname);
             }
         });
@@ -156,7 +167,7 @@ public class food_Dialog extends JDialog {
 
                 sumfat = 0;
                 sumfatla.setText("지방 : " + sumfat + "Kcal");
-                food_addlist.addItem(fname);
+                food_addlist.removeAllItems();
             }
         });
         add(fInfo_clear);
