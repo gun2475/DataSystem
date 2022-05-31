@@ -144,15 +144,15 @@ public class food_Dialog extends JDialog {
 
                 BigDecimal car = new BigDecimal(String.valueOf(myfInfo[0]));
 
-                sumcar += Math.round(myfInfo[1]*100)/100.0;
+                sumcar += (float)(Math.round(myfInfo[1] *100)) / 100.0;
                 sumcarla.setText("탄수화물 : " + sumcar + "g");
 
                 BigDecimal pro = new BigDecimal(String.valueOf(myfInfo[1]));
-                sumpro += Math.round(myfInfo[2]*100)/100.0;
+                sumpro += (float)(Math.round(myfInfo[2] *100)) / 100.0;
                 sumprola.setText("단백질 : " + sumpro + "g");
 
                 BigDecimal fat = new BigDecimal(String.valueOf(myfInfo[2]));
-                sumfat += Math.round(myfInfo[3]*100)/100.0;
+                sumfat += (float)(Math.round(myfInfo[3]*100))/100.0;
                 sumfatla.setText("지방 : " + sumfat + "g");
 
                 fname = food_list.getSelectedItem().toString();
@@ -184,13 +184,13 @@ public class food_Dialog extends JDialog {
                     sumcal -= myfInfo[0];
                     sumcalla.setText("칼로리 : " + sumcal + "Kcal");
 
-                    sumcar -= Math.round(myfInfo[1]*100)/100.0;
+                    sumcar -= Math.round(myfInfo[1] *100) / 100.0;
                     sumcarla.setText("탄수화물 : " + sumcar + "g");
 
-                    sumpro -= Math.round(myfInfo[2]*100)/100.0;
+                    sumpro -= Math.round(myfInfo[2] *100) / 100.0;
                     sumprola.setText("단백질 : " + sumpro + "g");
 
-                    sumfat -= Math.round(myfInfo[3]*100)/100.0;
+                    sumfat -= Math.round(myfInfo[3] *100) / 100.0;
                     sumfatla.setText("지방 : " + sumfat + "g");
                 }
             }

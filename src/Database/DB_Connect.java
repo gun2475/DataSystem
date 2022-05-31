@@ -3,8 +3,9 @@ import java.sql.*;
 import java.util.Vector;
 public class DB_Connect {
     static int cnt = 0;
+    private float bmi;
     private double[] fInfo = new double[4];
-    private String[] user_info = new String[4];
+    private String[] user_info = new String[5];
     private String userName = "";
     private Connection connection;
     private ResultSet rs;
@@ -33,8 +34,9 @@ public class DB_Connect {
 
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
         try {
-            String SQL = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" +
-                    weight + "','" + height + "','" + sex + "','" + age + "');";
+            bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
+            String SQL = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
+                    weight + "','" + height + "','" + sex + "','" + age + "'," + bmi + ");";
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             int re = pstmt.executeUpdate();
             if (re == 1) {
@@ -95,13 +97,14 @@ public class DB_Connect {
     }
     public String[] getUser_info(String id){
         try {
-            String SQL = "SELECT weight, height, sex, age FROM User WHERE id = '" + id + "';";
+            String SQL = "SELECT weight, height, sex, age, bmi FROM User WHERE id = '" + id + "';";
             rs = st.executeQuery(SQL);
             while(rs.next()) {
                 user_info[0] = rs.getString("weight");
                 user_info[1] = rs.getString("height");
                 user_info[2] = rs.getString("sex");
                 user_info[3] = rs.getString("age");
+                user_info[4] = rs.getString("bmi");
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
@@ -109,9 +112,10 @@ public class DB_Connect {
         return user_info;
     }
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
+        bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
             String SQL = "UPDATE User SET weight=" + weight + ",height=" +
-                    height + ",sex='" + sex + "',age="+ age +" WHERE ID='"+id+"'";
+                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE ID='"+id+"'";
             PreparedStatement pstmt = connection.prepareStatement(SQL);
             int re = pstmt.executeUpdate();
             if (re == 1) {

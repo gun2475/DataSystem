@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserInfo_Dialog extends JDialog {
-    private String[] my_info = new String[4];
+    private String[] my_info = new String[5];
     private JLabel weightlabel = new JLabel("몸무게: ");
     private JLabel weightShow = new JLabel("");
     private JLabel heightlabel = new JLabel("키: ");
@@ -17,10 +17,16 @@ public class UserInfo_Dialog extends JDialog {
     private JLabel ageShow = new JLabel("");
     private JLabel sexlabel = new JLabel("성별: ");
     private JLabel sexShow = new JLabel("");
+
+    private JLabel bmilabel = new JLabel("BMI: ");
+
+    private JLabel bmiShow = new JLabel("");
+
     private JTextField weightText = new JTextField(15);
     private JTextField heightText = new JTextField(15);
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
+    private JTextField bmiText = new JTextField(15);
     private JPanel InfoPanel = new JPanel();
     private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
@@ -117,6 +123,11 @@ public class UserInfo_Dialog extends JDialog {
         sexShow.setBounds(210,190,100,20);
         InfoPanel.add(sexShow);
         /////////////////////////////////////////////////////////////
+        bmilabel.setBounds(50,240,100,20);
+        InfoPanel.add(bmilabel);
+        bmiShow.setBounds(80,240,100,20);
+        InfoPanel.add(bmiShow);
+        /////////////////////////////////////////////////////////////
         my_info = dbCon.getUser_info(name);
         weightText.setText(my_info[0]);
         heightText.setText(my_info[1]);
@@ -126,5 +137,6 @@ public class UserInfo_Dialog extends JDialog {
         heightShow.setText(my_info[1]);
         sexShow.setText(my_info[2]);
         ageShow.setText(my_info[3]);
+        bmiShow.setText(my_info[4]);
     }
 }
