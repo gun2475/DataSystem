@@ -12,12 +12,15 @@ public class food_Dialog extends JDialog {
     private final DB_Connect dbCon = new DB_Connect();
     double[] myfInfo = new double[4];
     String[] User_if = new String[4];
+
     JButton fInfo_import = new JButton("불러오기");
 
     private JButton fInfo_add = new JButton("식단 추가하기");
     private JButton User_kcal = new JButton("칼로리 계산하기");
     private JButton fInfo_dlete = new JButton("제거하기");
     private JButton fInfo_clear = new JButton("초기화하기");
+    private JButton food_select = new JButton("아침");
+    
     private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
     private JLabel calla = new JLabel("칼로리 : ");
     private JLabel carla = new JLabel("탄수화물 : ");
@@ -61,6 +64,8 @@ public class food_Dialog extends JDialog {
     final static int WINDOW_WIDTH = 1280;
     Vector<String> vec = new Vector<String>();
     Vector<String> food_vec = new Vector<String>();
+
+    private  JList<String> scrollLIst_br = new JList<String>(food_vec);
     public food_Dialog(String id) {
         Font font = new Font("Serif", Font.BOLD, 25);
         dbCon.connect();
@@ -151,6 +156,7 @@ public class food_Dialog extends JDialog {
                 sumfatla.setText("지방 : " + sumfat + "g");
 
                 fname = food_list.getSelectedItem().toString();
+                food_vec.add(fname);
                 food_addlist.addItem(fname);
             }
         });
@@ -329,7 +335,19 @@ public class food_Dialog extends JDialog {
         Fat_g.setFont(font);
         add(Fat_g);
 
+        food_select.setBounds(700, 50, 100, 20);
+        food_select.setVisible(true);
+        food_select.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scrollLIst_br.setListData(food_vec);
+            }
+        });
+        add(food_select);
 
+        scrollLIst_br.setBounds(700, 100, 100, 100);
+        scrollLIst_br.setVisible(true);
+        add(scrollLIst_br);
 
 
 
