@@ -1,6 +1,5 @@
 package global;
 import Database.DB_Connect;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,6 +32,7 @@ public class sign_Dialog extends JDialog {
     private JButton overlapBtn = new JButton("중복확인");
     private boolean check = false;
     public DB_Connect dbCon = new DB_Connect();
+
 
     public sign_Dialog() {
         dbCon.connect();

@@ -1,5 +1,6 @@
 package Database;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Vector;
 public class DB_Connect {
     static int cnt = 0;
@@ -14,6 +15,8 @@ public class DB_Connect {
     private String user = "dbid";
     private String password = "DBID!!!dbpw1";
     private String driverName = "com.mysql.cj.jdbc.Driver";
+    LocalDate now = LocalDate.now();
+
     public void connect(){
         try {
             Class.forName(driverName);
@@ -33,15 +36,24 @@ public class DB_Connect {
     }
 
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
+        boolean flag1 = false;
+        boolean flag2 = false;
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
-            String SQL = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
+            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
                     weight + "','" + height + "','" + sex + "','" + age + "'," + bmi + ");";
-            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
-                return true;
+                flag1 = true;
             }
+            String SQL2 = "INSERT INTO Achievement(id, date) VALUES('" + myId + "','" + now + "');";
+            pstmt = connection.prepareStatement(SQL2);
+            re = pstmt.executeUpdate();
+            if (re == 1) {
+                flag2 = true;
+            }
+            if(flag1 && flag2) return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -155,6 +167,14 @@ public class DB_Connect {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
         return fInfo;
+    }
+
+    public float get_weight(String userName){
+
+        return 1;
+    }
+    public String get_date(String userName){
+        return "";
     }
 
 

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.time.LocalDate;import java.time.ZoneId;
 public class UserInfo_Dialog extends JDialog {
     private String[] my_info = new String[5];
     private JLabel weightlabel = new JLabel("몸무게: ");
@@ -31,6 +31,7 @@ public class UserInfo_Dialog extends JDialog {
     private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
     final static int Info_WIDTH = 360;
+    LocalDate now = LocalDate.now();
     static JLabel username = new JLabel();
     UserInfo_Dialog(String id) {
         String name = id;
