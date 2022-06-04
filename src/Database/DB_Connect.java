@@ -170,20 +170,20 @@ public class DB_Connect {
         return fInfo;
     }
 
-    public float get_weight(String userName){
-
-        return 1;
-    }
-    public String get_date_bmi(String userName){
+    public String[] get_date_bmi(String userName){
+        Vector<Timestamp> vec = new Vector<>();
         try {
+            /*
             String SQL1 = "SELECT date FROM Achievement WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
-            while(rs.next()) {
-                user_bmi[0] = rs.getString("date"); // 날짜
+            if(rs.next()) {
+                user_bmi[0] = rs.getTimestamp("date").toString();
             }
+            */
+
             String SQL2 = "SELECT bmi FROM User WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL2);
-            while(rs.next()) {
+            if(rs.next()) {
                 user_bmi[1] = rs.getString("bmi"); // bmi
             }
         } catch (Exception e) {
@@ -191,8 +191,7 @@ public class DB_Connect {
         }
 
         //user_bmi[0]
-        return "";
+        return user_bmi;
     }
-
 
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class main_Dialog extends JDialog {
+
     private JPanel mainPanel = new JPanel();
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
@@ -15,6 +16,9 @@ public class main_Dialog extends JDialog {
     static JLabel username = new JLabel();
 
     public main_Dialog(String id){
+        String[] m = dbCon.get_date_bmi(id);
+        System.out.println(m[0]);
+        System.out.println(m[1]);
         String name = id;
         dbCon.connect();
         setContentPane(mainPanel);

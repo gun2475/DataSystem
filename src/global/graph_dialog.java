@@ -19,20 +19,25 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.*;
 
 public class graph_dialog {
-    final static int WINDOW_HEIGHT = 720;
-    final static int WINDOW_WIDTH = 1280;
+    final static int WINDOW_HEIGHT = 600;
+    final static int WINDOW_WIDTH = 840;
+    String[] my_bmi = new String[2];
     JFreeChart chart = getChart();
     ChartFrame frame = new ChartFrame("Bar chart", chart);
+
     DB_Connect dbCon = new DB_Connect();
     graph_dialog(String id){
         dbCon.connect();
+        Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setVisible(true);
-        Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
     }
     public JFreeChart getChart(){
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
-        dataset1.addValue(9.0, "T1", "1월");
+        float my_bmiF = Float.parseFloat(my_bmi[1]);
+        String my_date = my_bmi[0];
+        //dataset1.addValue(9.0, "T1", "1월");
+        dataset1.addValue(1, "T1", my_bmi[0]);
         dataset1.addValue(7.0, "T1", "2월");
         dataset1.addValue(2.0, "T1", "3월");
         dataset1.addValue(6.0, "T1", "4월");
@@ -63,8 +68,8 @@ public class graph_dialog {
 
         final CategoryPlot plot = new CategoryPlot();
         plot.setDataset(dataset1);
-        plot.setDataset(2, dataset1);
-        plot.setRenderer(2, renderer1);
+        plot.setDataset(1, dataset1);
+        plot.setRenderer(1, renderer1);
 
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
@@ -76,6 +81,7 @@ public class graph_dialog {
         plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // 카테고리 라벨 위치 조정
 
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
+        plot.getRangeAxis().setRange(0,50);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정
 
         // 세팅된 plot을 바탕으로 chart 생성
