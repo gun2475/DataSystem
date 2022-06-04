@@ -353,7 +353,6 @@ public class food_Dialog extends JDialog {
                     JTA_br.append(str + "\n");
                 }
                 food_vec.clear();
-
             }
         });
         add(food_br);
