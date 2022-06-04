@@ -353,6 +353,9 @@ public class food_Dialog extends JDialog {
                     JTA_br.append(str + "\n");
                 }
                 food_vec.clear();
+                food_addlist.removeAllItems();
+                food_addlist.revalidate();
+
             }
         });
         add(food_br);
@@ -367,7 +370,8 @@ public class food_Dialog extends JDialog {
                     JTA_lun.append(str + "\n");
                 }
                 food_vec.clear();
-
+                food_addlist.removeAllItems();
+                food_addlist.revalidate();
             }
         });
         add(food_lun);
@@ -388,23 +392,23 @@ public class food_Dialog extends JDialog {
 
         JTA_br.setText("");
         JTA_br.setForeground(Color.red); // 텍스트 빨간색으로 변경
-        JTA_br.setBounds(800, 50, 300, 150);
+        JTA_br.setBounds(800, 50, 300, 130);
         JTA_br.setVisible(true);
         JTA_br.setEnabled(false);
         add(JTA_br);
 
-        JTextArea JTA_lun = new JTextArea();
+
         JTA_lun.setText("");
         JTA_lun.setForeground(Color.red); // 텍스트 빨간색으로 변경
-        JTA_lun.setBounds(800, 200, 300, 150);
+        JTA_lun.setBounds(800, 200, 300, 130);
         JTA_lun.setVisible(true);
         JTA_lun.setEnabled(false);
         add(JTA_lun);
 
-        JTextArea JTA_din = new JTextArea();
+
         JTA_din.setText("");
         JTA_din.setForeground(Color.red); // 텍스트 빨간색으로 변경
-        JTA_din.setBounds(800, 350, 300, 150);
+        JTA_din.setBounds(800, 350, 300, 130);
         JTA_din.setVisible(true);
         JTA_din.setEnabled(false);
         add(JTA_din);
