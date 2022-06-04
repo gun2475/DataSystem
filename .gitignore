@@ -1,1 +1,7 @@
 /.metadata/
+/ .mysql-connector-java-8.0.20
+.idea/libraries/jcommon_1_0_23.xml
+.idea/libraries/jfreechart_1_0_19.xml
+.idea/libraries/jfreechart_1_0.xml
+.idea/libraries/jfreechart_1_0.xml
+DataSystem.iml
