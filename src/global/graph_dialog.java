@@ -22,10 +22,12 @@ public class graph_dialog {
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 840;
     String[] my_bmi = new String[2];
+    String user_id;
+    DB_Connect dbCon = new DB_Connect();
     JFreeChart chart = getChart();
     ChartFrame frame = new ChartFrame("Bar chart", chart);
-    DB_Connect dbCon = new DB_Connect();
     graph_dialog(String id){
+        this.user_id = id;
         dbCon.connect();
         System.out.println("굿1");
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,10 +35,12 @@ public class graph_dialog {
         frame.setVisible(true);
         my_bmi = dbCon.get_date_bmi(id);
         System.out.println("굿2");
-        System.out.println(my_bmi[0]);
-        System.out.println(my_bmi[1]);
     }
     public JFreeChart getChart(){
+        dbCon.connect();
+        my_bmi = dbCon.get_date_bmi(user_id);
+        System.out.println(my_bmi[0]);
+        System.out.println(my_bmi[1]);
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
         dataset1.addValue(9.0, "T1", "1월");
         //dataset1.addValue(my_bmiF, "T1", my_bmi[0]);
