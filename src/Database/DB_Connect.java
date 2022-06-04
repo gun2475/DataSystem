@@ -176,13 +176,15 @@ public class DB_Connect {
     }
     public String get_date_bmi(String userName){
         try {
-            String SQL = "SELECT date, bmi FROM Food WHERE food_name = '" + fName + "';";
-            rs = st.executeQuery(SQL);
+            String SQL1 = "SELECT date FROM Achievement WHERE id = '" + userName + "';";
+            rs = st.executeQuery(SQL1);
             while(rs.next()) {
-                fInfo[0] = rs.getDouble("food_cal"); // 칼로리
-                fInfo[1] = rs.getDouble("food_car"); // 탄수화물
-                fInfo[2] = rs.getDouble("food_pro"); // 단백질
-                fInfo[3] = rs.getDouble("food_fat"); // 지방
+                user_bmi[0] = rs.getString("date"); // 날짜
+            }
+            String SQL2 = "SELECT bmi FROM User WHERE id = '" + userName + "';";
+            rs = st.executeQuery(SQL2);
+            while(rs.next()) {
+                user_bmi[1] = rs.getString("bmi"); // bmi
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());

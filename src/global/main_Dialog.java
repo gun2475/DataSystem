@@ -63,5 +63,14 @@ public class main_Dialog extends JDialog {
                 new food_Dialog(name);
             }
         });
+
+        JButton graph = new JButton("그래프");
+        graph.setBounds(100,500,300,100);
+        graph.setVisible(true);
+        mainPanel.add(graph);
+        graph.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { new graph_dialog(name);}
+        });
     }
 }
