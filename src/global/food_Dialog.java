@@ -68,9 +68,12 @@ public class food_Dialog extends JDialog {
     Vector<String> vec = new Vector<String>();
     Vector<String> food_vec = new Vector<String>();
 
-    private  JList<String> scrollLIst_br = new JList<String>(food_vec);
+
 
     JTextArea JTA_br = new JTextArea();
+    JTextArea JTA_lun = new JTextArea();
+    JTextArea JTA_din = new JTextArea();
+
     public food_Dialog(String id) {
         Font font = new Font("Serif", Font.BOLD, 25);
         dbCon.connect();
@@ -345,10 +348,12 @@ public class food_Dialog extends JDialog {
         food_br.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTA_br.removeAll();
+                JTA_br.setText("");
                 for (String str : food_vec) {
                     JTA_br.append(str + "\n");
                 }
+                food_vec.clear();
+
             }
         });
         add(food_br);
@@ -358,7 +363,12 @@ public class food_Dialog extends JDialog {
         food_lun.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                scrollLIst_br.setListData(food_vec);
+                JTA_lun.setText("");
+                for (String str : food_vec) {
+                    JTA_lun.append(str + "\n");
+                }
+                food_vec.clear();
+
             }
         });
         add(food_lun);
@@ -368,18 +378,16 @@ public class food_Dialog extends JDialog {
         food_din.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                scrollLIst_br.setListData(food_vec);
+                JTA_din.setText("");
+                for (String str : food_vec) {
+                    JTA_din.append(str + "\n");
+                }
+                food_vec.clear();
             }
         });
         add(food_din);
 
-        scrollLIst_br.setBounds(700, 50, 100, 100);
-        scrollLIst_br.setVisible(true);
-        add(scrollLIst_br);
-
-
-
-        JTA_br.setText("setEnabled(false)");
+        JTA_br.setText("");
         JTA_br.setForeground(Color.red); // 텍스트 빨간색으로 변경
         JTA_br.setBounds(800, 50, 300, 150);
         JTA_br.setVisible(true);
@@ -387,7 +395,7 @@ public class food_Dialog extends JDialog {
         add(JTA_br);
 
         JTextArea JTA_lun = new JTextArea();
-        JTA_lun.setText("setEnabled(false)");
+        JTA_lun.setText("");
         JTA_lun.setForeground(Color.red); // 텍스트 빨간색으로 변경
         JTA_lun.setBounds(800, 200, 300, 150);
         JTA_lun.setVisible(true);
@@ -395,7 +403,7 @@ public class food_Dialog extends JDialog {
         add(JTA_lun);
 
         JTextArea JTA_din = new JTextArea();
-        JTA_din.setText("setEnabled(false)");
+        JTA_din.setText("");
         JTA_din.setForeground(Color.red); // 텍스트 빨간색으로 변경
         JTA_din.setBounds(800, 350, 300, 150);
         JTA_din.setVisible(true);
@@ -406,7 +414,12 @@ public class food_Dialog extends JDialog {
 
 
     }
+    public static void repaintGUI() {
+        food.repaint();
+        food.revalidate();
 
+        System.out.println("GUI를 다시 그리는 중...");
+    }
 }
 
 
