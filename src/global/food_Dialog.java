@@ -19,7 +19,10 @@ public class food_Dialog extends JDialog {
     private JButton User_kcal = new JButton("칼로리 계산하기");
     private JButton fInfo_dlete = new JButton("제거하기");
     private JButton fInfo_clear = new JButton("초기화하기");
-    private JButton food_select = new JButton("아침");
+
+    private JButton food_br = new JButton("아침");
+    private JButton food_lun = new JButton("점심");
+    private JButton food_din = new JButton("저녁");
     
     private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
     private JLabel calla = new JLabel("칼로리 : ");
@@ -66,6 +69,8 @@ public class food_Dialog extends JDialog {
     Vector<String> food_vec = new Vector<String>();
 
     private  JList<String> scrollLIst_br = new JList<String>(food_vec);
+
+    JTextArea JTA_br = new JTextArea();
     public food_Dialog(String id) {
         Font font = new Font("Serif", Font.BOLD, 25);
         dbCon.connect();
@@ -335,20 +340,67 @@ public class food_Dialog extends JDialog {
         Fat_g.setFont(font);
         add(Fat_g);
 
-        food_select.setBounds(700, 50, 100, 20);
-        food_select.setVisible(true);
-        food_select.addActionListener(new ActionListener() {
+        food_br.setBounds(700, 50, 100, 20);
+        food_br.setVisible(true);
+        food_br.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTA_br.removeAll();
+                for (String str : food_vec) {
+                    JTA_br.append(str + "\n");
+                }
+            }
+        });
+        add(food_br);
+
+        food_lun.setBounds(700, 200, 100, 20);
+        food_lun.setVisible(true);
+        food_lun.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 scrollLIst_br.setListData(food_vec);
             }
         });
-        add(food_select);
+        add(food_lun);
 
-        scrollLIst_br.setBounds(700, 100, 100, 100);
+        food_din.setBounds(700, 350, 100, 20);
+        food_din.setVisible(true);
+        food_din.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scrollLIst_br.setListData(food_vec);
+            }
+        });
+        add(food_din);
+
+        scrollLIst_br.setBounds(700, 50, 100, 100);
         scrollLIst_br.setVisible(true);
         add(scrollLIst_br);
 
+
+
+        JTA_br.setText("setEnabled(false)");
+        JTA_br.setForeground(Color.red); // 텍스트 빨간색으로 변경
+        JTA_br.setBounds(800, 50, 300, 150);
+        JTA_br.setVisible(true);
+        JTA_br.setEnabled(false);
+        add(JTA_br);
+
+        JTextArea JTA_lun = new JTextArea();
+        JTA_lun.setText("setEnabled(false)");
+        JTA_lun.setForeground(Color.red); // 텍스트 빨간색으로 변경
+        JTA_lun.setBounds(800, 200, 300, 150);
+        JTA_lun.setVisible(true);
+        JTA_lun.setEnabled(false);
+        add(JTA_lun);
+
+        JTextArea JTA_din = new JTextArea();
+        JTA_din.setText("setEnabled(false)");
+        JTA_din.setForeground(Color.red); // 텍스트 빨간색으로 변경
+        JTA_din.setBounds(800, 350, 300, 150);
+        JTA_din.setVisible(true);
+        JTA_din.setEnabled(false);
+        add(JTA_din);
 
 
 
