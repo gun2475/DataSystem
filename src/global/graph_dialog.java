@@ -24,20 +24,22 @@ public class graph_dialog {
     String[] my_bmi = new String[2];
     JFreeChart chart = getChart();
     ChartFrame frame = new ChartFrame("Bar chart", chart);
-
     DB_Connect dbCon = new DB_Connect();
     graph_dialog(String id){
         dbCon.connect();
+        System.out.println("굿1");
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setVisible(true);
+        my_bmi = dbCon.get_date_bmi(id);
+        System.out.println("굿2");
+        System.out.println(my_bmi[0]);
+        System.out.println(my_bmi[1]);
     }
     public JFreeChart getChart(){
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
-        float my_bmiF = Float.parseFloat(my_bmi[1]);
-        String my_date = my_bmi[0];
-        //dataset1.addValue(9.0, "T1", "1월");
-        dataset1.addValue(1, "T1", my_bmi[0]);
+        dataset1.addValue(9.0, "T1", "1월");
+        //dataset1.addValue(my_bmiF, "T1", my_bmi[0]);
         dataset1.addValue(7.0, "T1", "2월");
         dataset1.addValue(2.0, "T1", "3월");
         dataset1.addValue(6.0, "T1", "4월");

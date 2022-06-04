@@ -16,9 +16,6 @@ public class main_Dialog extends JDialog {
     static JLabel username = new JLabel();
 
     public main_Dialog(String id){
-        String[] m = dbCon.get_date_bmi(id);
-        System.out.println(m[0]);
-        System.out.println(m[1]);
         String name = id;
         dbCon.connect();
         setContentPane(mainPanel);
@@ -68,13 +65,16 @@ public class main_Dialog extends JDialog {
             }
         });
 
+        String[] m = dbCon.get_date_bmi(id);
+        System.out.println(m[0]);
+        System.out.println(m[1]);
         JButton graph = new JButton("그래프");
         graph.setBounds(100,500,300,100);
         graph.setVisible(true);
         mainPanel.add(graph);
         graph.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { new graph_dialog(name);}
+            public void actionPerformed(ActionEvent e) { new graph_dialog(id);}
         });
     }
 }
