@@ -170,25 +170,32 @@ public class DB_Connect {
         return fInfo;
     }
 
-    public String[] get_date_bmi(String userName){
-        Vector<Timestamp> vec = new Vector<>();
+    public Vector<Double> get_date_bmi(String userName){
+        Vector<Double> data = new Vector<>();
         try {
 
             String SQL1 = "SELECT date FROM Achievement WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
             if(rs.next()) {
-                user_bmi[0] = rs.getTimestamp("date").toString();
+                LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
+                double month = date.getMonthValue();
+                double day = date.getDayOfMonth();
+                data.add(month);
+                data.add(day);
+
             }
             String SQL2 = "SELECT bmi FROM User WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL2);
             if(rs.next()) {
-                user_bmi[1] = rs.getString("bmi"); // bmi
+                data.add(rs.getDouble("bmi"));
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
+
+        System.out.println(data.get(0));
         //user_bmi[0]
-        return user_bmi;
+        return data;
     }
 
 }

@@ -1,6 +1,7 @@
 package global;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 import javax.swing.*;
 import Database.DB_Connect;
 import org.jfree.chart.*;
@@ -21,27 +22,33 @@ import org.jfree.ui.*;
 public class graph_dialog {
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 840;
-    String[] my_bmi = new String[2];
+    Vector<Double> data2 = new Vector<>();
     String user_id;
     DB_Connect dbCon = new DB_Connect();
-    JFreeChart chart = getChart();
-    ChartFrame frame = new ChartFrame("Bar chart", chart);
+    JFreeChart chart;
+
     graph_dialog(String id){
+
         this.user_id = id;
-        dbCon.connect();
         System.out.println("굿1");
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        frame.setVisible(true);
-        my_bmi = dbCon.get_date_bmi(id);
+        chart = getChart();
+        ChartFrame frame2 = new ChartFrame("Bar chart1",chart);
+        frame2.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame2.setVisible(true);
         System.out.println("굿2");
+
     }
+
     public JFreeChart getChart(){
         dbCon.connect();
-        my_bmi = dbCon.get_date_bmi(user_id);
-        System.out.println(my_bmi[0]);
-        System.out.println(my_bmi[1]);
+        data2 = dbCon.get_date_bmi(user_id);
+        System.out.println(data2.get(0));
+        System.out.println(data2.get(1));
+        System.out.println(data2.get(2));
+
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
+        dataset1.addValue(data2.get(2),"T1",data2.get(0).toString()+"월 "+data2.get(1).toString()+"일");
         dataset1.addValue(9.0, "T1", "1월");
         //dataset1.addValue(my_bmiF, "T1", my_bmi[0]);
         dataset1.addValue(7.0, "T1", "2월");
@@ -87,7 +94,7 @@ public class graph_dialog {
         plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // 카테고리 라벨 위치 조정
 
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
-        plot.getRangeAxis().setRange(0,50);
+        plot.getRangeAxis().setRange(0,600);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정
 
         // 세팅된 plot을 바탕으로 chart 생성
