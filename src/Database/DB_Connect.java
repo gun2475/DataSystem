@@ -7,6 +7,7 @@ public class DB_Connect {
     private float bmi;
     private double[] fInfo = new double[4];
     private String[] user_info = new String[5];
+    private String[] user_bmi = new String[2];
     private String userName = "";
     private Connection connection;
     private ResultSet rs;
@@ -173,7 +174,21 @@ public class DB_Connect {
 
         return 1;
     }
-    public String get_date(String userName){
+    public String get_date_bmi(String userName){
+        try {
+            String SQL = "SELECT date, bmi FROM Food WHERE food_name = '" + fName + "';";
+            rs = st.executeQuery(SQL);
+            while(rs.next()) {
+                fInfo[0] = rs.getDouble("food_cal"); // 칼로리
+                fInfo[1] = rs.getDouble("food_car"); // 탄수화물
+                fInfo[2] = rs.getDouble("food_pro"); // 단백질
+                fInfo[3] = rs.getDouble("food_fat"); // 지방
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+
+        //user_bmi[0]
         return "";
     }
 
