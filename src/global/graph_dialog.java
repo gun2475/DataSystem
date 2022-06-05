@@ -94,7 +94,7 @@ public class graph_dialog {
         plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // 카테고리 라벨 위치 조정
 
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
-        plot.getRangeAxis().setRange(0,600);
+        plot.getRangeAxis().setRange(10,50);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정
 
         // 세팅된 plot을 바탕으로 chart 생성
