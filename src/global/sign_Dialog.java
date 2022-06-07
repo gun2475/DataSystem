@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 public class sign_Dialog extends JDialog {
-    private JPanel signUpPanel = new JPanel();
+    private JPanel signUpPanel = new GlobalPanel("src/asset/sign.png");
     private JOptionPane MessageBox = new JOptionPane();
     private JLabel idlabel = new JLabel("아이디");
     private JLabel pwlabel = new JLabel("비밀번호");
@@ -47,6 +47,10 @@ public class sign_Dialog extends JDialog {
         overlapBtn.setBounds(180, 40, 90, 20);
         overlapBtn.setContentAreaFilled(false);
         overlapBtn.setFocusPainted(false);
+        overlapBtn.setForeground(Color.white);
+        overlapBtn.setFont(new Font("나눔고딕",Font.BOLD,10));
+        signUpPanel.repaint();
+        signUpPanel.revalidate();
         overlapBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

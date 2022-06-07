@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class main_Dialog extends JDialog {
 
-    private JPanel mainPanel = new JPanel();
+    private JPanel mainPanel = new GlobalPanel("src/asset/sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
