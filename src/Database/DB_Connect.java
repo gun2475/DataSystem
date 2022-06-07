@@ -48,7 +48,7 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "INSERT INTO Date_bmi(id, date, bmi) VALUES('" + myId + "','" + now + "','" + bmi + "');";
+            String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi) VALUES('" + myId + "','" + now + "','" + bmi + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
             if (re == 1) {
@@ -125,25 +125,28 @@ public class DB_Connect {
         return user_info;
     }
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
+        boolean flag1 = false;
+        boolean flag2 = false;
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
             String SQL1 = "UPDATE User SET weight=" + weight + ",height=" +
-                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE ID='"+id+"'";
+                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE id='"+id+"'";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
-                return true;
+                flag1 = true;
             }
-            String SQL2 = "UPDATE Date_bmi SET bmi = " + bmi + " WHERE ID='"+id+"'";
+            String SQL2 = "UPDATE Date_bmi2 SET bmi = " + bmi + " WHERE id='" +id+ "' and date = '" + now + "'";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
             if (re == 1) {
-                return true;
+                flag2 = true;
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
-        return false;
+        if(flag1 == true && flag2 == true) return true;
+        else return false;
     }
 
     public Vector<String> get_food()
@@ -179,7 +182,7 @@ public class DB_Connect {
     public Vector<Double> get_date_bmi(String userName){
         Vector<Double> data = new Vector<>();
         try {
-            String SQL1 = "SELECT date, bmi FROM Date_bmi WHERE id = '" + userName + "';";
+            String SQL1 = "SELECT date, bmi FROM Date_bmi2 WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
             while(rs.next()) {
                 LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
