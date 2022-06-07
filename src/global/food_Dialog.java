@@ -24,7 +24,7 @@ public class food_Dialog extends JDialog {
     private JButton food_lun = new JButton("점심");
     private JButton food_din = new JButton("저녁");
     
-    private JLabel noticela = new JLabel("음식 선택 후 불러오기를 눌러주세요");
+    private JLabel noticela = new JLabel("음식을 선택해주세요");
     private JLabel calla = new JLabel("칼로리 : ");
     private JLabel carla = new JLabel("탄수화물 : ");
     private JLabel prola = new JLabel("단백질 : ");
