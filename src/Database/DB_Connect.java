@@ -39,6 +39,7 @@ public class DB_Connect {
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
         boolean flag1 = false;
         boolean flag2 = false;
+        //int target_cal = 0;
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
             String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
@@ -48,6 +49,7 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
+            //String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi, target_cal) VALUES('" + myId + "','" + now + "','" + bmi + "' + target_cal);";
             String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi) VALUES('" + myId + "','" + now + "','" + bmi + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
@@ -127,6 +129,7 @@ public class DB_Connect {
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         boolean flag1 = false;
         boolean flag2 = false;
+        // 똑같은거
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
             String SQL1 = "UPDATE User SET weight=" + weight + ",height=" +
@@ -192,7 +195,7 @@ public class DB_Connect {
                 data.add(day);
                 data.add(rs.getDouble("bmi"));
             }
-        } catch (Exception e) {
+        }  catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
 
@@ -200,5 +203,26 @@ public class DB_Connect {
         //user_bmi[0]
         return data;
     }
+
+    public boolean set_myeatCal(String userName, String date, float myeat_cal)
+    {
+        try
+        {
+            String SQL1 = "UPDATE Date_bmi2 SET target_cal=" + weight + ",height=" +
+                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE id='"+id+"'";
+            PreparedStatement pstmt = connection.prepareStatement(SQL1);
+            int re = pstmt.executeUpdate();
+            if (re == 1) {
+                return true;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+        return false;
+    }
+
+
+
 
 }
