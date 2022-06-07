@@ -28,7 +28,6 @@ public class graph_dialog {
     JFreeChart chart;
 
     graph_dialog(String id){
-
         this.user_id = id;
         System.out.println("굿1");
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,31 +36,23 @@ public class graph_dialog {
         frame2.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame2.setVisible(true);
         System.out.println("굿2");
-
     }
 
     public JFreeChart getChart(){
+        int cnt = 0;
         dbCon.connect();
         data2 = dbCon.get_date_bmi(user_id);
-        System.out.println(data2.get(0));
-        System.out.println(data2.get(1));
-        System.out.println(data2.get(2));
 
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
-        dataset1.addValue(data2.get(2),"T1",data2.get(0).toString()+"월 "+data2.get(1).toString()+"일");
-        dataset1.addValue(9.0, "T1", "1월");
-        //dataset1.addValue(my_bmiF, "T1", my_bmi[0]);
-        dataset1.addValue(7.0, "T1", "2월");
-        dataset1.addValue(2.0, "T1", "3월");
-        dataset1.addValue(6.0, "T1", "4월");
-        dataset1.addValue(6.0, "T1", "5월");
-        dataset1.addValue(9.0, "T1", "6월");
-        dataset1.addValue(5.0, "T1", "7월");
-        dataset1.addValue(4.0, "T1", "8월");
-        dataset1.addValue(8.0, "T1", "9월");
-        dataset1.addValue(8.0, "T1", "10월");
-        dataset1.addValue(8.0, "T1", "11월");
-        dataset1.addValue(8.0, "T1", "12월");
+        for(int i = 0; i < data2.size() / 3; i++){
+            int month_i = data2.get(0 + cnt * 3).intValue();
+            int day_i = data2.get(1 + cnt * 3).intValue();
+            String month = Integer.toString(month_i) + "월 ";
+            String day = Integer.toString(day_i) + "일";
+            dataset1.addValue(data2.get(2 + cnt * 3),"T1",month+day);
+            cnt++;
+        }
+
         final LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
         final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER);

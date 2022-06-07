@@ -42,13 +42,13 @@ public class DB_Connect {
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
             String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
-                    weight + "','" + height + "','" + sex + "','" + age + "'," + bmi + ");";
+                    weight + "','" + height + "','" + sex + "','" + age + "','"+ bmi +"');";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "INSERT INTO Achievement(id, date) VALUES('" + myId + "','" + now + "');";
+            String SQL2 = "INSERT INTO Date_bmi(id, date, bmi) VALUES('" + myId + "','" + now + "','" + bmi + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
             if (re == 1) {
@@ -127,10 +127,16 @@ public class DB_Connect {
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
-            String SQL = "UPDATE User SET weight=" + weight + ",height=" +
+            String SQL1 = "UPDATE User SET weight=" + weight + ",height=" +
                     height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE ID='"+id+"'";
-            PreparedStatement pstmt = connection.prepareStatement(SQL);
+            PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
+            if (re == 1) {
+                return true;
+            }
+            String SQL2 = "UPDATE Date_bmi SET bmi = " + bmi + " WHERE ID='"+id+"'";
+            pstmt = connection.prepareStatement(SQL2);
+            re = pstmt.executeUpdate();
             if (re == 1) {
                 return true;
             }
@@ -173,20 +179,14 @@ public class DB_Connect {
     public Vector<Double> get_date_bmi(String userName){
         Vector<Double> data = new Vector<>();
         try {
-
-            String SQL1 = "SELECT date FROM Achievement WHERE id = '" + userName + "';";
+            String SQL1 = "SELECT date, bmi FROM Date_bmi WHERE id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
-            if(rs.next()) {
+            while(rs.next()) {
                 LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
                 double month = date.getMonthValue();
                 double day = date.getDayOfMonth();
                 data.add(month);
                 data.add(day);
-
-            }
-            String SQL2 = "SELECT bmi FROM User WHERE id = '" + userName + "';";
-            rs = st.executeQuery(SQL2);
-            if(rs.next()) {
                 data.add(rs.getDouble("bmi"));
             }
         } catch (Exception e) {
