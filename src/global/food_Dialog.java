@@ -118,6 +118,18 @@ public class food_Dialog extends JDialog {
         for (int i = 0; i < vec.size(); i++) {
             food_list.addItem(vec.get(i));
         }
+        ////////////////////////////////////////////////////////////////////////영양소 정보 나타내는 메서드
+        food_list.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myfInfo = dbCon.get_fInfo(food_list.getSelectedItem().toString());
+                calla.setText("칼로리 : " + myfInfo[0] + "Kcal");
+                carla.setText("탄수화물 : " + myfInfo[1] + "g");
+                prola.setText("단백질 : " + myfInfo[2] + "g");
+                fatla.setText("지방 : " + myfInfo[3] + "g");
+                fname = food_list.getSelectedItem().toString();
+            }
+        });
         food.add(food_list);
         ////////////////////////////////////////////////////////////////////////라벨 설정
         calla.setBounds(50, 100, 300, 35);
@@ -136,21 +148,7 @@ public class food_Dialog extends JDialog {
         fatla.setVisible(true);
         fatla.setFont(font);
         add(fatla);
-        ////////////////////////////////////////////////////////////////////////영양소 정보 나타내는 메서드
-        fInfo_import.setBounds(170, 50, 100, 20);
-        fInfo_import.setVisible(true);
-        fInfo_import.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                myfInfo = dbCon.get_fInfo(food_list.getSelectedItem().toString());
-                calla.setText("칼로리 : " + myfInfo[0] + "Kcal");
-                carla.setText("탄수화물 : " + myfInfo[1] + "g");
-                prola.setText("단백질 : " + myfInfo[2] + "g");
-                fatla.setText("지방 : " + myfInfo[3] + "g");
-                fname = food_list.getSelectedItem().toString();
-            }
-        });
-        add(fInfo_import);
+
         ////////////////////////////////////////////////////////////////////////식단 추가하기
         JComboBox<String> food_addlist = new JComboBox<String>();
         food_addlist.setBounds(500, 50, 120, 30);
