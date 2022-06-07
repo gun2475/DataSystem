@@ -27,7 +27,7 @@ public class main_Dialog extends JDialog {
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((windowSize.width - WINDOW_WIDTH) / 2,
                 (windowSize.height - WINDOW_HEIGHT) / 2);
-        username.setText(name+"님 환영합니다.");
+        username.setText(name+"님 반갑습니다.");
         Font f = new Font("돋움체",Font.CENTER_BASELINE,20);
         username.setForeground(new Color(178,102,255));
         username.setFont(f);
@@ -46,10 +46,15 @@ public class main_Dialog extends JDialog {
         profileChange.setBorderPainted(false); //버튼 투명하게 만들기
         profileChange.setContentAreaFilled(false);
         mainPanel.add(profileChange);
-
-        JButton food = new JButton("food");
-        food.setBounds(100,100,300,100);
+        ImageIcon button_1_png = new ImageIcon("src/asset/button_1.png");
+        Image img_1 = button_1_png.getImage();
+        Image changeImg_1 = img_1.getScaledInstance(300,100,Image.SCALE_SMOOTH);
+        ImageIcon change_png_1 = new ImageIcon(changeImg_1);
+        JButton food = new JButton(change_png_1);
+        food.setBounds(100,200,300,100);
         food.setVisible(true);
+        food.setBorderPainted(false); //버튼 투명하게 만들기
+        food.setContentAreaFilled(false);
         mainPanel.add(food);
 
         profileChange.addActionListener(new ActionListener() {
@@ -65,10 +70,16 @@ public class main_Dialog extends JDialog {
             }
         });
 
+        ImageIcon button_2_png = new ImageIcon("src/asset/button_2.png");
+        Image img_2 = button_2_png.getImage();
+        Image changeImg_2 = img_2.getScaledInstance(300,100,Image.SCALE_SMOOTH);
+        ImageIcon change_png_2 = new ImageIcon(changeImg_2);
+        JButton graph = new JButton(change_png_2);
 
-        JButton graph = new JButton("그래프");
         graph.setBounds(100,500,300,100);
         graph.setVisible(true);
+        graph.setBorderPainted(false); //버튼 투명하게 만들기
+        graph.setContentAreaFilled(false);
         mainPanel.add(graph);
         graph.addActionListener(new ActionListener() {
             @Override
