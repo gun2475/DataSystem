@@ -1,5 +1,4 @@
 package global;
-import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 import Database.DB_Connect;
@@ -50,10 +49,6 @@ public class graph_dialog {
             dataset1.addValue(data1.get(2 + cnt1 * 3),"bmi",month+day);
             cnt1++;
         }
-
-        //date[0] = up_rate
-        //date[1] = down_rate;
-        //date[2] = md;
         data2 = dbCon.get_rate(user_id);
         DefaultCategoryDataset dataset2 = new DefaultCategoryDataset(); // targetDown
         DefaultCategoryDataset dataset3 = new DefaultCategoryDataset(); // targetUp

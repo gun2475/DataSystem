@@ -1,14 +1,13 @@
 package global;
 
 import Database.DB_Connect;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;import java.time.ZoneId;
+import java.time.LocalDate;
 public class UserInfo_Dialog extends JDialog {
-    private String[] my_info = new String[5];
+    private String[] my_info;
     private JLabel weightlabel = new JLabel("몸무게: ");
     private JLabel weightShow = new JLabel("");
     private JLabel heightlabel = new JLabel("키: ");
@@ -44,8 +43,7 @@ public class UserInfo_Dialog extends JDialog {
         InfoPanel.setLayout(null);
         setSize(Info_WIDTH, Info_HEIGHT);
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((windowSize.width - Info_WIDTH) / 2,
-                (windowSize.height - Info_HEIGHT) / 2);
+        setLocation((windowSize.width - Info_WIDTH) / 2,(windowSize.height - Info_HEIGHT) / 2);
 
         ImageIcon exit_png = new ImageIcon("src/asset/exit.png");
         ImageIcon rectify_png = new ImageIcon("src/asset/rectify.png");
@@ -62,13 +60,13 @@ public class UserInfo_Dialog extends JDialog {
 
         exit.setBounds(80, 280, 50, 50);
         exit.setVisible(true);
-        exit.setBorderPainted(false); //버튼 투명하게 만들기
+        exit.setBorderPainted(false);
         exit.setContentAreaFilled(false);
         InfoPanel.add(exit);
 
         rectify.setBounds(200, 280, 50, 50);
         rectify.setVisible(true);
-        rectify.setBorderPainted(false); //버튼 투명하게 만들기
+        rectify.setBorderPainted(false);
         rectify.setContentAreaFilled(false);
         InfoPanel.add(rectify);
         exit.addActionListener(new ActionListener() {

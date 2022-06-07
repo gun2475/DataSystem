@@ -2,26 +2,14 @@ package global;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-
 import Database.*;
-
-
-
-
 public class GlobalGUI extends JFrame{
     static String user_id;
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 720;
     private sign_Dialog sign = new sign_Dialog();
     static JPanel panel = new GlobalPanel("src/asset/background.png");
-
-
-
-
     private DB_Connect dbCon = new DB_Connect();
-
     public GlobalGUI(String title){
         super();
         dbCon.connect();
@@ -36,19 +24,9 @@ public class GlobalGUI extends JFrame{
         repaintGUI();
         login();
         requestFocusInWindow();
-
-
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((windowSize.width - WINDOW_WIDTH) / 2,
                 (windowSize.height - WINDOW_HEIGHT) / 2); //화면 중앙에 띄우기
-        /*try {
-            //Font f = Font.createFont(Font.TRUETYPE_FONT, new File(FONT_PATH));
-            //GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //ge.registerFont(f);
-        } catch (//IOException | FontFormatException e) {
-            //e.printStackTrace();
-        }
-        //setDefaultFont();*/
         setVisible(true);
     }
     public static String getUser_id(){
@@ -59,8 +37,6 @@ public class GlobalGUI extends JFrame{
         panel.revalidate();
         System.out.println("GUI를 다시 그리는 중...");
     }
-
-
     public void createMenu(){
         JMenuBar mb = new JMenuBar();
         JMenu accountMenu = new JMenu("계정 관리");
@@ -84,26 +60,20 @@ public class GlobalGUI extends JFrame{
         JLabel loginPW_lb = new JLabel("pw :");
         JTextField loginID_tf = new JTextField();
         JPasswordField loginPW_tf = new JPasswordField();
-
         loginID_lb.setSize(100,20);
         loginID_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() /2 - 25);
-
         loginPW_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() / 2);
         loginPW_lb.setSize(100,20);
-
         loginID_tf.setLocation(this.getWidth() / 2 - 80 , this.getHeight() / 2 - 25);
         loginID_tf.setSize(100,20);
-
         loginPW_tf.setLocation(this.getWidth() / 2 - 80, this.getHeight() /2);
         loginPW_tf.setSize(100,20);
-        
         JButton login_btn = new JButton("로그인");
         login_btn.setLocation(this.getWidth() / 2 + 30, this.getHeight() / 2);
         login_btn.setSize(100,20);
         login_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 boolean loginFlag = false;
                 loginFlag = dbCon.login(loginID_tf.getText(), loginPW_tf.getText());
                 if(loginFlag == true) {
@@ -113,7 +83,6 @@ public class GlobalGUI extends JFrame{
                     setVisible(false);
                 }
                 else JOptionPane.showMessageDialog(null, "ID와 PW를 확인해주세요.", "Invaild user", JOptionPane.ERROR_MESSAGE);
-
             }
         });
         panel.add(loginID_lb);
@@ -122,6 +91,4 @@ public class GlobalGUI extends JFrame{
         panel.add(loginPW_tf);
         panel.add(login_btn);
     }
-
 }
-

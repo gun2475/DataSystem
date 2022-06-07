@@ -1,20 +1,15 @@
 package global;
-
 import javax.swing.*;
 import Database.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class main_Dialog extends JDialog {
-
     private JPanel mainPanel = new GlobalPanel("src/asset/sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 500;
     static JLabel username = new JLabel();
-
     public main_Dialog(String id){
         setTitle("메인");
         String name = id;
@@ -26,8 +21,7 @@ public class main_Dialog extends JDialog {
         mainPanel.setLayout(null);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((windowSize.width - WINDOW_WIDTH) / 2,
-                (windowSize.height - WINDOW_HEIGHT) / 2);
+        setLocation((windowSize.width - WINDOW_WIDTH) / 2, (windowSize.height - WINDOW_HEIGHT) / 2);
         username.setText(name+"님 반갑습니다.");
         Font f = new Font("돋움체",Font.CENTER_BASELINE,20);
         username.setForeground(new Color(178,102,255));
@@ -54,7 +48,7 @@ public class main_Dialog extends JDialog {
         JButton food = new JButton(change_png_1);
         food.setBounds(90,200,300,100);
         food.setVisible(true);
-        food.setBorderPainted(false); //버튼 투명하게 만들기
+        food.setBorderPainted(false);
         food.setContentAreaFilled(false);
         mainPanel.add(food);
 
@@ -79,7 +73,7 @@ public class main_Dialog extends JDialog {
 
         graph.setBounds(90,350,300,100);
         graph.setVisible(true);
-        graph.setBorderPainted(false); //버튼 투명하게 만들기
+        graph.setBorderPainted(false);
         graph.setContentAreaFilled(false);
         mainPanel.add(graph);
         graph.addActionListener(new ActionListener() {

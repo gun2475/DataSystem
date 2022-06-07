@@ -164,7 +164,6 @@ public class sign_Dialog extends JDialog {
                 }
             }
         });
-
         signUpPanel.add(signUpbtn);
 
         setSize(350, 250);

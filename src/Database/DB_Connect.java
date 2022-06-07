@@ -119,10 +119,6 @@ public class DB_Connect {
         }
         else return false;
     }
-
-    public String getUser_name(){
-        return userName;
-    }
     public String[] getUser_info(String id){
         try {
             String SQL = "SELECT weight, height, sex, age, bmi FROM User WHERE id = '" + id + "';";
@@ -196,7 +192,6 @@ public class DB_Connect {
         if(flag1 == true && flag2 == true) return true;
         else return false;
     }
-
     public Vector<String> get_food()
     {
         Vector<String> vec = new Vector<String>();
@@ -226,7 +221,6 @@ public class DB_Connect {
         }
         return fInfo;
     }
-
     public Vector<Double> get_date_bmi(String userName){
         Vector<Double> data = new Vector<>();
         try {
@@ -245,16 +239,13 @@ public class DB_Connect {
         }
         return data;
     }
-
     public boolean set_myeatCal(String userName, String date, int eatcal)
     {
         boolean flag = false;
-        //insert into Date_bmi2(mycal) VALUES(mycal) WHERE id = '', date = now;
         try
         {
             PreparedStatement pstmt;
             int re;
-
             String SQL1 = "select date FROM Date_bmi2 where id = '" + userName + "' and date = '" + now + "';";
             rs = st.executeQuery(SQL1);
             if(rs.next()){
@@ -263,7 +254,6 @@ public class DB_Connect {
                     flag = true;
                 }
             }
-
             if(flag == true){
                 String SQL2 = "UPDATE Date_bmi2 SET my_cal = '" + eatcal + "' WHERE id='" + userName + "' and date = '" + now + "'";
                 pstmt = connection.prepareStatement(SQL2);
@@ -290,7 +280,6 @@ public class DB_Connect {
         }
         return false;
     }
-
     public Vector<String> get_rate(String id){
         Vector<String> data = new Vector<>();
         try {

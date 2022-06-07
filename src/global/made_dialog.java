@@ -1,7 +1,6 @@
 package global;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
 
 public class made_dialog extends JDialog{
@@ -27,7 +26,7 @@ public class made_dialog extends JDialog{
         welcome.setBounds(75,30,400,80);
         welcome.setVisible(true);
         madePanel.add(welcome);
-        ImageIcon profileChange_png = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png = new ImageIcon("src/asset/jaemin.png");
         Image img = profileChange_png.getImage();
         Image changeImg = img.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png = new ImageIcon(changeImg);
@@ -48,7 +47,7 @@ public class made_dialog extends JDialog{
         madePanel.add(jaemin_id);
         madePanel.add(jaemin_work);
 
-        ImageIcon profileChange_png_1 = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_1 = new ImageIcon("src/asset/jaemin.png");
         Image img_1 = profileChange_png_1.getImage();
         Image changeImg_1 = img_1.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_1 = new ImageIcon(changeImg_1);
@@ -69,7 +68,7 @@ public class made_dialog extends JDialog{
         madePanel.add(hyunsu_id);
         madePanel.add(hyunsu_work);
 
-        ImageIcon profileChange_png_2 = new ImageIcon("src/asset/daehui.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_2 = new ImageIcon("src/asset/daehui.png");
         Image img_2 = profileChange_png_2.getImage();
         Image changeImg_2 = img_2.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_2 = new ImageIcon(changeImg_2);
@@ -90,7 +89,7 @@ public class made_dialog extends JDialog{
         madePanel.add(daehee_id);
         madePanel.add(daehee_work);
 
-        ImageIcon profileChange_png_3 = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_3 = new ImageIcon("src/asset/jaemin.png");
         Image img_3 = profileChange_png_3.getImage();
         Image changeImg_3 = img_3.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_3 = new ImageIcon(changeImg_3);
@@ -111,7 +110,7 @@ public class made_dialog extends JDialog{
         madePanel.add(youngwoo_id);
         madePanel.add(youngwoo_work);
 
-        ImageIcon profileChange_png_4 = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_4 = new ImageIcon("src/asset/jaemin.png");
         Image img_4 = profileChange_png_4.getImage();
         Image changeImg_4 = img_4.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_4 = new ImageIcon(changeImg_4);
@@ -132,7 +131,7 @@ public class made_dialog extends JDialog{
         madePanel.add(jongsik_id);
         madePanel.add(jongsik_work);
 
-        ImageIcon profileChange_png_5 = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_5 = new ImageIcon("src/asset/jaemin.png");
         Image img_5 = profileChange_png_4.getImage();
         Image changeImg_5 = img_5.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_5 = new ImageIcon(changeImg_5);

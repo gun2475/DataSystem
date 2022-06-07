@@ -13,9 +13,6 @@ public class food_Dialog extends JDialog {
     private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];
-
-    private JButton fInfo_import = new JButton("불러오기");
-
     private JButton fInfo_add = new JButton("식단 추가하기");
     private JButton User_kcal = new JButton("칼로리 계산하기");
     private JButton fInfo_dlete = new JButton("제거하기");
@@ -84,8 +81,6 @@ public class food_Dialog extends JDialog {
     JRadioButton diet_sel1= new JRadioButton("");
     JRadioButton diet_sel2 = new JRadioButton("");
     ButtonGroup diet_sel = new ButtonGroup();
-
-    private int eatfood = 0;
     private JButton eatfood_update = new JButton("적용하기");
     public food_Dialog(String id) {
         setTitle("식단 관리");
@@ -276,10 +271,6 @@ public class food_Dialog extends JDialog {
         User_kcal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* user_info[0] = rs.getString("weight");
-                user_info[1] = rs.getString("height");
-                user_info[2] = rs.getString("sex");
-                user_info[3] = rs.getString("age");*/
                 float wei = Float.parseFloat(User_if[0]);
                 float hei = Float.parseFloat(User_if[1]);
                 float age = Float.parseFloat(User_if[3]);
