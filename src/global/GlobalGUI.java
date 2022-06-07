@@ -2,15 +2,23 @@ package global;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 import Database.*;
+
+
+
 
 public class GlobalGUI extends JFrame{
     static String user_id;
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 1280;
     private sign_Dialog sign = new sign_Dialog();
-    static JPanel panel = new JPanel();
+    static JPanel panel = new GlobalPanel("src/asset/background.png");
+
+
+
 
     private DB_Connect dbCon = new DB_Connect();
 
@@ -25,6 +33,7 @@ public class GlobalGUI extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+        repaintGUI();
         login();
         requestFocusInWindow();
 
@@ -45,6 +54,13 @@ public class GlobalGUI extends JFrame{
     public static String getUser_id(){
         return user_id;
     }
+    public static void repaintGUI(){
+        panel.repaint();
+        panel.revalidate();
+        System.out.println("GUI를 다시 그리는 중...");
+    }
+
+
     public void createMenu(){
         JMenuBar mb = new JMenuBar();
         JMenu accountMenu = new JMenu("계정 관리");
@@ -105,4 +121,6 @@ public class GlobalGUI extends JFrame{
         panel.add(loginPW_tf);
         panel.add(login_btn);
     }
+
 }
+
