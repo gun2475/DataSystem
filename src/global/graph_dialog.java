@@ -20,7 +20,9 @@ import org.jfree.ui.*;
 public class graph_dialog {
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 840;
-    Vector<Double> data2 = new Vector<>();
+    Vector<Double> data1 = new Vector<>();
+
+    Vector<String> data2 = new Vector<>();
     String user_id;
     DB_Connect dbCon = new DB_Connect();
     JFreeChart chart;
@@ -29,38 +31,46 @@ public class graph_dialog {
         this.user_id = id;
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         chart = getChart();
-        ChartFrame frame2 = new ChartFrame("Bmi Graph",chart);
-        frame2.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        frame2.setVisible(true);
+        ChartFrame frame = new ChartFrame("Bmi Graph",chart);
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame.setVisible(true);
     }
 
     public JFreeChart getChart(){
-        int cnt = 0;
+        int cnt1 = 0;
+        int cnt2 = 0;
         dbCon.connect();
-        data2 = dbCon.get_date_bmi(user_id);
-
+        data1 = dbCon.get_date_bmi(user_id);
         DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
-        for(int i = 0; i < data2.size() / 3; i++){
-            int month_i = data2.get(0 + cnt * 3).intValue();
-            int day_i = data2.get(1 + cnt * 3).intValue();
-            String month = Integer.toString(month_i) + "월 ";
+        for(int i = 0; i < data1.size() / 3; i++){
+            int month_i = data1.get(0 + cnt1 * 3).intValue();
+            int day_i = data1.get(1 + cnt1 * 3).intValue();
+            String month = Integer.toString(month_i) + "월";
             String day = Integer.toString(day_i) + "일";
-            dataset1.addValue(data2.get(2 + cnt * 3),"bmi",month+day);
-            cnt++;
+            dataset1.addValue(data1.get(2 + cnt1 * 3),"bmi",month+day);
+            cnt1++;
         }
 
-        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
-        dataset2.addValue(98.7, "목표칼로리 대비 달성률(%)", "6월8일");
-        dataset2.addValue(100.7, "목표칼로리 대비 달성률(%)", "6월9일");
-        dataset2.addValue(102.7, "목표칼로리 대비 달성률(%)", "6월10일");
-        dataset2.addValue(103.7, "목표칼로리 대비 달성률(%)", "6월11일");
-        dataset2.addValue(90.7, "목표칼로리 대비 달성률(%)", "6월12일");
-        dataset2.addValue(87.7, "목표칼로리 대비 달성률(%)", "6월13일");
-
-
+        //date[0] = up_rate
+        //date[1] = down_rate;
+        //date[2] = md;
+        data2 = dbCon.get_rate(user_id);
+        DefaultCategoryDataset dataset2 = new DefaultCategoryDataset(); // targetDown
+        DefaultCategoryDataset dataset3 = new DefaultCategoryDataset(); // targetUp
+        for(int i = 0; i < data2.size() / 3; i++){
+            String date = data2.get(2 + cnt2 * 3);
+            double down_rate = Double.parseDouble(data2.get(1 + cnt2 * 3));
+            dataset2.addValue(down_rate,"감량 목표 칼로리(%)",date);
+            double up_rate = Double.parseDouble(data2.get(0 + cnt2 * 3));
+            dataset3.addValue(up_rate,"증량 목표 칼로리(%)",date);
+            System.out.println(down_rate);
+            System.out.println(up_rate);
+            cnt2++;
+        }
 
         final LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
         final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
+        final LineAndShapeRenderer renderer3 = new LineAndShapeRenderer();
         //////////////////////////////////공통옵션//////////////////////////////////////////
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
         final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER);
@@ -90,13 +100,24 @@ public class graph_dialog {
         renderer2.setSeriesPaint(0,new Color(0,191,255));
         renderer2.setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
         ///////////////////////////////////////////////////////////////////////////////
-        final CategoryPlot plot = new CategoryPlot(); // plot 생성
+        renderer3.setBaseItemLabelGenerator(generator);
+        renderer3.setBaseItemLabelsVisible(true);
+        renderer3.setBaseShapesVisible(true);
+        renderer3.setDrawOutlines(true);
+        renderer3.setUseFillPaint(true);
+        renderer3.setBaseFillPaint(Color.WHITE);
+        renderer3.setBaseItemLabelFont(f);
+        renderer3.setBasePositiveItemLabelPosition(p_below);
+        renderer3.setSeriesPaint(0,new Color(60,179,113));
+        renderer3.setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
+        ///////////////////////////////////////////////////////////////////////////////
+        final CategoryPlot plot = new CategoryPlot(); // plot 생성 및 데이터 적재
         plot.setDataset(1, dataset1);
         plot.setRenderer(1, renderer1);
-        /////////////////////////////////////////plot에 데이터1 적재
         plot.setDataset(2, dataset2);
         plot.setRenderer(2, renderer2);
-
+        plot.setDataset(3, dataset3);
+        plot.setRenderer(3, renderer3);
         ///////////////////////////////////plot 기본 설정
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
@@ -108,15 +129,11 @@ public class graph_dialog {
         plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // 카테고리 라벨 위치 조정
 
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
-        plot.getRangeAxis().setRange(10,150);
+        plot.getRangeAxis().setRange(0,150);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정
 
         // 세팅된 plot을 바탕으로 chart 생성
         final JFreeChart chart = new JFreeChart(plot);
-        // chart.setTitle("Overlaid Bar Chart"); // 차트 타이틀
-        // TextTitle copyright = new TextTitle("JFreeChart WaferMapPlot", new Font("SansSerif", Font.PLAIN, 9));
-        // copyright.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        // chart.addSubtitle(copyright); // 차트 서브 타이틀
         return chart;
     }
 }

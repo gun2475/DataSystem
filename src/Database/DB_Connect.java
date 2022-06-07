@@ -7,7 +7,6 @@ public class DB_Connect {
     private float bmi;
     private double[] fInfo = new double[4];
     private String[] user_info = new String[5];
-    private String[] user_bmi = new String[2];
     private String userName = "";
     private Connection connection;
     private ResultSet rs;
@@ -290,5 +289,29 @@ public class DB_Connect {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
         return false;
+    }
+
+    public Vector<String> get_rate(String id){
+        Vector<String> data = new Vector<>();
+        try {
+            String SQL = "SELECT date, my_cal, targetUp_cal, targetDown_cal FROM Date_bmi2 WHERE id = '" + id + "';";
+            rs = st.executeQuery(SQL);
+            while(rs.next()) {
+                LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
+                double my_eat = rs.getInt("my_cal");
+                double targetUp = rs.getInt("targetUp_cal");
+                double targetDown = rs.getInt("targetDown_cal");
+                String up_rate = Double.toString(Math.round(my_eat / targetUp * 100));
+                String down_rate = Double.toString(Math.round(my_eat / targetDown * 100));
+                String md = Integer.toString(date.getMonthValue()) + "월" +
+                                Integer.toString(date.getDayOfMonth()) + "일";
+                data.add(up_rate);
+                data.add(down_rate);
+                data.add(md);
+            }
+        } catch (Exception e) {
+            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
+        }
+        return data;
     }
 }
