@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
     LocalDate now = LocalDate.now();
-    private static JPanel food = new GlobalPanel("src/asset/food_background.png");
+    private static JPanel food = new GlobalPanel("src/asset/sign.png");
     private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];
@@ -41,7 +41,7 @@ public class food_Dialog extends JDialog {
     private JLabel diet_sumprola = new JLabel("단백질 : ");
     private JLabel diet_sumfatla = new JLabel("지방 : ");
 
-    private float diet_scalla =0;
+    private int diet_scalla =0;
     private float diet_scarla =0;
     private float diet_sprola =0;
     private float diet_sfatla =0;
@@ -63,12 +63,6 @@ public class food_Dialog extends JDialog {
     private JLabel protein_g = new JLabel("단백질 : ");
     private JLabel Fat_g = new JLabel("지방 : ");
 
-    private String[] atv={"거의 없다(거의 좌식생활을 하고 운동 안함)",
-            "조금 있다(활동량이 보통이거나 주 1-3회 운동)",
-            "보통(활동량이 다소 많거나 주 3-5회 운동)",
-            "꽤 있다(활동량이 많거나, 주 6-7회 운동)",
-            "아주 많다(활동량이 매우 많거나,거의 매일 하루 2번 운동)"};
-
     private float base =0;
     private float maintenance =0;
     private float targetup =0;
@@ -79,7 +73,7 @@ public class food_Dialog extends JDialog {
     private float Fat =0;
     private String fname = "";
     final static int WINDOW_HEIGHT = 720;
-    final static int WINDOW_WIDTH = 1280;
+    final static int WINDOW_WIDTH = 900;
     Vector<String> vec = new Vector<String>();
     Vector<String> food_vec = new Vector<String>();
 
@@ -155,11 +149,11 @@ public class food_Dialog extends JDialog {
 
         ////////////////////////////////////////////////////////////////////////식단 추가하기
         JComboBox<String> food_addlist = new JComboBox<String>();
-        food_addlist.setBounds(500, 50, 120, 20);
+        food_addlist.setBounds(400, 50, 120, 20);
         food_addlist.setVisible(true);
         food.add(food_list);
         ////////////////////////////////////////////////////////////////////////
-        fInfo_add.setBounds(370, 50, 120, 20);
+        fInfo_add.setBounds(270, 50, 120, 20);
         fInfo_add.setVisible(true);
 
         fInfo_add.addActionListener(new ActionListener() {
@@ -188,7 +182,7 @@ public class food_Dialog extends JDialog {
         add(fInfo_add);
         add(food_addlist);
         ////////////////////////////////////////////////////////////////////////식단 빼기
-        fInfo_dlete.setBounds(370, 100, 120, 20);
+        fInfo_dlete.setBounds(270, 100, 120, 20);
         fInfo_dlete.setVisible(true);
         fInfo_dlete.addActionListener(new ActionListener() {
             int tempCnt = 0;
@@ -222,20 +216,17 @@ public class food_Dialog extends JDialog {
         });
         add(fInfo_dlete);
         ////////////////////////////////////////////////////////////////////////식단 초기화하기
-        fInfo_clear.setBounds(370, 150, 120, 20);
+        fInfo_clear.setBounds(270, 150, 120, 20);
         fInfo_clear.setVisible(true);
         fInfo_clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sumcal = 0;
                 sumcalla.setText("칼로리 : " + sumcal + "Kcal");
-
                 sumcar = 0;
                 sumcarla.setText("탄수화물 : " + sumcar + "g");
-
                 sumpro = 0;
                 sumprola.setText("단백질 : " + sumpro + "g");
-
                 sumfat = 0;
                 sumfatla.setText("지방 : " + sumfat + "g");
 
@@ -259,22 +250,22 @@ public class food_Dialog extends JDialog {
         });
         add(fInfo_clear);
         ////////////////////////////////////////////////////////////////////////
-        sumcalla.setBounds(500, 100, 300, 35);
+        sumcalla.setBounds(400, 100, 300, 35);
         sumcalla.setVisible(true);
         sumcalla.setFont(font);
         add(sumcalla);
 
-        sumcarla.setBounds(500, 150, 300, 35);
+        sumcarla.setBounds(400, 150, 300, 35);
         sumcarla.setVisible(true);
         sumcarla.setFont(font);
         add(sumcarla);
 
-        sumprola.setBounds(500, 200, 300, 35);
+        sumprola.setBounds(400, 200, 300, 35);
         sumprola.setVisible(true);
         sumprola.setFont(font);
         add(sumprola);
 
-        sumfatla.setBounds(500, 250, 300, 35);
+        sumfatla.setBounds(400, 250, 300, 35);
         sumfatla.setVisible(true);
         sumfatla.setFont(font);
         add(sumfatla);
@@ -360,37 +351,37 @@ public class food_Dialog extends JDialog {
         base_metabolic.setFont(font);
         add(base_metabolic);
 
-        maintenance_cal.setBounds(50, 400, 450, 35);
+        maintenance_cal.setBounds(50, 385, 450, 35);
         maintenance_cal.setVisible(true);
         maintenance_cal.setFont(font);
         add(maintenance_cal);
 
-        target_downcal.setBounds(50, 450, 450, 35);
+        target_downcal.setBounds(50, 420, 450, 35);
         target_downcal.setVisible(true);
         target_downcal.setFont(font);
         add(target_downcal);
 
-        target_upcal.setBounds(50, 500, 450, 35);
+        target_upcal.setBounds(50, 455, 450, 35);
         target_upcal.setVisible(true);
         target_upcal.setFont(font);
         add(target_upcal);
 
-        carbohydrate_g.setBounds(500, 350, 450, 35);
+        carbohydrate_g.setBounds(50, 490, 450, 35);
         carbohydrate_g.setVisible(true);
         carbohydrate_g.setFont(font);
         add(carbohydrate_g);
 
-        protein_g.setBounds(500, 400, 450, 35);
+        protein_g.setBounds(50, 525, 450, 35);
         protein_g.setVisible(true);
         protein_g.setFont(font);
         add(protein_g);
 
-        Fat_g.setBounds(500, 450, 450, 35);
+        Fat_g.setBounds(50, 560, 450, 35);
         Fat_g.setVisible(true);
         Fat_g.setFont(font);
         add(Fat_g);
 ////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(아침)
-        food_br.setBounds(900, 180, 100, 20);
+        food_br.setBounds(720, 180, 100, 20);
         food_br.setVisible(true);
         food_br.addActionListener(new ActionListener() {
             @Override
@@ -403,7 +394,7 @@ public class food_Dialog extends JDialog {
                 br_cal[1] = sumcar;
                 br_cal[2] = sumpro;
                 br_cal[3] = sumfat;
-                diet_scalla = br_cal[0]+lun_cal[0]+ din_cal[0];
+                diet_scalla = (int)(br_cal[0]+lun_cal[0]+ din_cal[0]);
                 diet_scarla = br_cal[1]+lun_cal[1]+ din_cal[1];
                 diet_sprola = br_cal[2]+lun_cal[2]+ din_cal[2];
                 diet_sfatla = br_cal[3]+lun_cal[3]+ din_cal[3];
@@ -431,7 +422,7 @@ public class food_Dialog extends JDialog {
         });
         add(food_br);
 ////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(점심)
-        food_lun.setBounds(900, 330, 100, 20);
+        food_lun.setBounds(720, 330, 100, 20);
         food_lun.setVisible(true);
         food_lun.addActionListener(new ActionListener() {
             @Override
@@ -444,7 +435,7 @@ public class food_Dialog extends JDialog {
                 lun_cal[1] = sumcar;
                 lun_cal[2] = sumpro;
                 lun_cal[3] = sumfat;
-                diet_scalla = br_cal[0]+lun_cal[0]+ din_cal[0];
+                diet_scalla = (int)(br_cal[0]+lun_cal[0]+ din_cal[0]);
                 diet_scarla = br_cal[1]+lun_cal[1]+ din_cal[1];
                 diet_sprola = br_cal[2]+lun_cal[2]+ din_cal[2];
                 diet_sfatla = br_cal[3]+lun_cal[3]+ din_cal[3];
@@ -470,7 +461,7 @@ public class food_Dialog extends JDialog {
         });
         add(food_lun);
 ////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(저녁)
-        food_din.setBounds(900, 480, 100, 20);
+        food_din.setBounds(720, 480, 100, 20);
         food_din.setVisible(true);
         food_din.addActionListener(new ActionListener() {
             @Override
@@ -483,7 +474,7 @@ public class food_Dialog extends JDialog {
                 din_cal[1] = sumcar;
                 din_cal[2] = sumpro;
                 din_cal[3] = sumfat;
-                diet_scalla = br_cal[0]+lun_cal[0]+ din_cal[0];
+                diet_scalla = (int)(br_cal[0]+lun_cal[0]+ din_cal[0]);
                 diet_scarla = br_cal[1]+lun_cal[1]+ din_cal[1];
                 diet_sprola = br_cal[2]+lun_cal[2]+ din_cal[2];
                 diet_sfatla = br_cal[3]+lun_cal[3]+ din_cal[3];
@@ -512,38 +503,38 @@ public class food_Dialog extends JDialog {
 
         JScrollPane scrollPane_br = new JScrollPane(JTA_br, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane_br.setBounds(800, 50, 200, 130);
+        scrollPane_br.setBounds(620, 50, 200, 130);
         add(scrollPane_br);
         scrollPane_br.setVisible(true);
 
 
         JScrollPane scrollPane_lun = new JScrollPane(JTA_lun, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane_lun.setBounds(800, 200, 200, 130);
+        scrollPane_lun.setBounds(620, 200, 200, 130);
         add(scrollPane_lun);
         scrollPane_lun.setVisible(true);
 
 
         JScrollPane scrollPane_din = new JScrollPane(JTA_din, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane_din.setBounds(800, 350, 200, 130);
+        scrollPane_din.setBounds(620, 350, 200, 130);
         add(scrollPane_din);
         scrollPane_din.setVisible(true);
 
         ///////////////////////////////////////////////////////각 식사 마다의 칼로리 및 탄단지양 표시
-        diet_sumcalla.setBounds(1100, 50, 200, 35);
+        diet_sumcalla.setBounds(620, 500, 200, 30);
         diet_sumcalla.setVisible(true);
         diet_sumcalla.setFont(font);
         add(diet_sumcalla);
-        diet_sumcarla.setBounds(1100, 85, 200, 35);
+        diet_sumcarla.setBounds(620, 530, 200, 30);
         diet_sumcarla.setVisible(true);
         diet_sumcarla.setFont(font);
         add(diet_sumcarla);
-        diet_sumprola.setBounds(1100, 120, 200, 35);
+        diet_sumprola.setBounds(620, 560, 200, 30);
         diet_sumprola.setVisible(true);
         diet_sumprola.setFont(font);
         add(diet_sumprola);
-        diet_sumfatla.setBounds(1100, 155, 200, 35);
+        diet_sumfatla.setBounds(620, 590, 200, 30);
         diet_sumfatla.setVisible(true);
         diet_sumfatla.setFont(font);
         add(diet_sumfatla);
@@ -553,26 +544,43 @@ public class food_Dialog extends JDialog {
         diet_sel.add(diet_sel1);
         diet_sel.add(diet_sel2);
 
-        diet_sel1.setBounds(0, 442, 50, 50);
+        diet_sel1.setBounds(0, 412, 50, 50);
         diet_sel1.setVisible(true);
         diet_sel1.setFont(font);
-        diet_sel1.setBackground(new Color(236, 217, 213));
+        diet_sel1.setBackground(new Color(178, 195, 207));
         add(diet_sel1);
 
-        diet_sel2.setBounds(0, 492, 50, 50);
+        diet_sel2.setBounds(0, 447, 50, 50);
         diet_sel2.setVisible(true);
-        diet_sel2.setBackground(new Color(236, 217, 213));
+        diet_sel2.setBackground(new Color(178, 195, 207));
         diet_sel2.setFont(font);
         add(diet_sel2);
 //////////////////////////////////////////////////////////////////////////적용하기
-        eatfood_update.setBounds(600, 400, 100, 20);
+        eatfood_update.setBounds(620, 620, 200, 30);
         eatfood_update.setVisible(true);
-        eatfood_update.setBackground(new Color(236, 217, 213));
         eatfood_update.setFont(font);
         eatfood_update.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dbCon.set_myeatCal(id, now.toString(), (int)diet_scalla);
+
+                for(int i=0; i<4; i++)
+                {
+                    br_cal[i] =0;
+                    lun_cal[i] =0;
+                    din_cal[i] =0;
+                }
+                diet_scalla = 0;
+                diet_scarla = 0;
+                diet_sprola = 0;
+                diet_sfatla = 0;
+                diet_sumcalla.setText("칼로리 : " + diet_scalla + "Kcal");
+                diet_sumcarla.setText("탄수화물 : " + diet_scarla + "g");
+                diet_sumprola.setText("단백질 : " + diet_sprola + "g");
+                diet_sumfatla.setText("지방 : " + diet_sfatla + "g");
+                JTA_br.setText("");
+                JTA_lun.setText("");
+                JTA_din.setText("");
             }
         });
         add(eatfood_update);
