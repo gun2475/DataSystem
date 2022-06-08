@@ -2,7 +2,6 @@ package global;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
-import javax.swing.*;
 import Database.DB_Connect;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.CategoryAxis;

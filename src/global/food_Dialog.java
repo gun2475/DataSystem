@@ -2,12 +2,13 @@ package global;
 import java.awt.*;
 import javax.swing.*;
 import Database.DB_Connect;
-
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
+    LocalDate now = LocalDate.now();
     private static JPanel food = new GlobalPanel("src/asset/food_background.png");
     private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
@@ -90,6 +91,7 @@ public class food_Dialog extends JDialog {
     JRadioButton diet_sel2 = new JRadioButton("");
     ButtonGroup diet_sel = new ButtonGroup();
 
+    private int eatfood = 0;
     private JButton eatfood_update = new JButton("적용하기");
     public food_Dialog(String id) {
         setTitle("식단 관리");
@@ -563,12 +565,17 @@ public class food_Dialog extends JDialog {
         diet_sel2.setFont(font);
         add(diet_sel2);
 //////////////////////////////////////////////////////////////////////////적용하기
-        eatfood_update.setBounds(600, 600, 100, 100);
+        eatfood_update.setBounds(600, 400, 100, 20);
         eatfood_update.setVisible(true);
         eatfood_update.setBackground(new Color(236, 217, 213));
         eatfood_update.setFont(font);
+        eatfood_update.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dbCon.set_myeatCal(id, now.toString(), (int)diet_scalla);
+            }
+        });
         add(eatfood_update);
-
     }
     ////////////////////////////////////////////////////////////GUI 다시 그리기
     public static void repaintGUI() {
