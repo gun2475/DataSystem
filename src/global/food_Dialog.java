@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
-    private static JPanel food = new JPanel();
+    private static JPanel food = new GlobalPanel("src/asset/food_background.png");
     private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];

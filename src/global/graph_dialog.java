@@ -31,7 +31,7 @@ public class graph_dialog {
         this.user_id = id;
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         chart = getChart();
-        ChartFrame frame2 = new ChartFrame("Bar chart1",chart);
+        ChartFrame frame2 = new ChartFrame("Bmi Graph",chart);
         frame2.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame2.setVisible(true);
     }
