@@ -47,7 +47,7 @@ public class made_dialog extends JDialog{
         madePanel.add(jaemin_id);
         madePanel.add(jaemin_work);
 
-        ImageIcon profileChange_png_1 = new ImageIcon("src/asset/jaemin.png");
+        ImageIcon profileChange_png_1 = new ImageIcon("src/asset/hun.png");
         Image img_1 = profileChange_png_1.getImage();
         Image changeImg_1 = img_1.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_1 = new ImageIcon(changeImg_1);
@@ -89,7 +89,7 @@ public class made_dialog extends JDialog{
         madePanel.add(daehee_id);
         madePanel.add(daehee_work);
 
-        ImageIcon profileChange_png_3 = new ImageIcon("src/asset/jaemin.png");
+        ImageIcon profileChange_png_3 = new ImageIcon("src/asset/jun.png");
         Image img_3 = profileChange_png_3.getImage();
         Image changeImg_3 = img_3.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_3 = new ImageIcon(changeImg_3);
@@ -110,7 +110,7 @@ public class made_dialog extends JDialog{
         madePanel.add(youngwoo_id);
         madePanel.add(youngwoo_work);
 
-        ImageIcon profileChange_png_4 = new ImageIcon("src/asset/jaemin.png");
+        ImageIcon profileChange_png_4 = new ImageIcon("src/asset/un.png");
         Image img_4 = profileChange_png_4.getImage();
         Image changeImg_4 = img_4.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_4 = new ImageIcon(changeImg_4);
@@ -131,8 +131,8 @@ public class made_dialog extends JDialog{
         madePanel.add(jongsik_id);
         madePanel.add(jongsik_work);
 
-        ImageIcon profileChange_png_5 = new ImageIcon("src/asset/jaemin.png");
-        Image img_5 = profileChange_png_4.getImage();
+        ImageIcon profileChange_png_5 = new ImageIcon("src/asset/chan.png");
+        Image img_5 = profileChange_png_5.getImage();
         Image changeImg_5 = img_5.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_5 = new ImageIcon(changeImg_5);
         JLabel chanmin_Image = new JLabel(change_png_5);
