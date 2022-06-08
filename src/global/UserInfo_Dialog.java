@@ -19,6 +19,7 @@ public class UserInfo_Dialog extends JDialog {
     private JLabel sexShow = new JLabel("");
 
     private JLabel bmilabel = new JLabel("BMI: ");
+    private JLabel target_cal = new JLabel("target_cal: ");
 
     private JLabel bmiShow = new JLabel("");
 
@@ -128,8 +129,9 @@ public class UserInfo_Dialog extends JDialog {
         /////////////////////////////////////////////////////////////
         bmilabel.setBounds(50,240,100,20);
         InfoPanel.add(bmilabel);
-        bmiShow.setBounds(80,240,100,20);
-        InfoPanel.add(bmiShow);
+
+        target_cal.setBounds(180,240,100,20);
+        InfoPanel.add(target_cal);
         /////////////////////////////////////////////////////////////
         my_info = dbCon.getUser_info(name);
         weightText.setText(my_info[0]);
