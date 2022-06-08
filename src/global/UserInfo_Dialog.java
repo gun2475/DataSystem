@@ -124,7 +124,7 @@ public class UserInfo_Dialog extends JDialog {
         sexShow.setBounds(210,190,100,20);
         InfoPanel.add(sexShow);
         /////////////////////////////////////////////////////////////
-        bmilabel.setBounds(50,240,100,20);
+        bmilabel.setBounds(50,250,100,20);
         InfoPanel.add(bmilabel);
         bmiShow.setBounds(75,250,100,20);
         InfoPanel.add(bmiShow);
