@@ -91,6 +91,7 @@ public class food_Dialog extends JDialog {
     ButtonGroup diet_sel = new ButtonGroup();
 
     public food_Dialog(String id) {
+        setTitle("식단 관리");
         Font font = new Font("Serif", Font.BOLD, 25);
         dbCon.connect();
         setTitle("나만의 식단");

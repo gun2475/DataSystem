@@ -79,6 +79,7 @@ public class GlobalGUI extends JFrame{
         });
     }
     public void login(){
+        setTitle("로그인창");
         JLabel loginID_lb = new JLabel("id :");
         JLabel loginPW_lb = new JLabel("pw :");
         JTextField loginID_tf = new JTextField();

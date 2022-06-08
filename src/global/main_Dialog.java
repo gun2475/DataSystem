@@ -16,6 +16,7 @@ public class main_Dialog extends JDialog {
     static JLabel username = new JLabel();
 
     public main_Dialog(String id){
+        setTitle("메인");
         String name = id;
         dbCon.connect();
         setContentPane(mainPanel);

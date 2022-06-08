@@ -34,6 +34,7 @@ public class UserInfo_Dialog extends JDialog {
     LocalDate now = LocalDate.now();
     static JLabel username = new JLabel();
     UserInfo_Dialog(String id) {
+        setTitle("유저정보");
         String name = id;
         dbCon.connect();
         setContentPane(InfoPanel);
@@ -52,9 +53,10 @@ public class UserInfo_Dialog extends JDialog {
         JButton exit = new JButton(exit_png);
         JButton rectify = new JButton(rectify_png);
 
+        username.setForeground(new Color(178,102,255));
 
         username.setText(name + "님 정보입니다.");
-        username.setBounds(10, 10, 150, 15);
+        username.setBounds(10, 10, 150, 20);
         username.setVisible(true);
         InfoPanel.add(username);
 
