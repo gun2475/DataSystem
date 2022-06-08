@@ -29,13 +29,11 @@ public class graph_dialog {
 
     graph_dialog(String id){
         this.user_id = id;
-        System.out.println("굿1");
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         chart = getChart();
         ChartFrame frame2 = new ChartFrame("Bar chart1",chart);
         frame2.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame2.setVisible(true);
-        System.out.println("굿2");
     }
 
     public JFreeChart getChart(){

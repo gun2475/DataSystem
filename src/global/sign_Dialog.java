@@ -141,6 +141,11 @@ public class sign_Dialog extends JDialog {
                 float height_c = Float.parseFloat(heightText.getText());
                 int age_c = Integer.parseInt(ageText.getText());
                 String sex_c = new String(sexText.getText());
+                if (sex_c.equals("남성")  || sex_c.equals("여성")){
+                    }
+                else{
+                    MessageBox.showMessageDialog(null, "성별 : '남성' 혹은 '여성'으로 입력해주세요.");
+                }
                 if (idlabel == null || pass == null || passcheck == null || weight_c == 0 || height_c == 0 || age_c == 0 || sex_c == null) {
                     MessageBox.showMessageDialog(null, "빈칸을 입력해주세요.");
                 } else if (!check) {
@@ -149,7 +154,8 @@ public class sign_Dialog extends JDialog {
                     MessageBox.showMessageDialog(null, "비밀번호를 4글자 이상으로 작성해주세요.");
                 } else if (!pass.equals(passcheck)) {
                     MessageBox.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
-                } else {
+                }
+                else {
                     if (dbCon.Enrollment(idText.getText(), pass, weight_c, height_c, sex_c, age_c)) {
                         MessageBox.showMessageDialog(null, "회원가입이 완료되었습니다.");
                         setVisible(false);

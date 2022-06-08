@@ -36,10 +36,24 @@ public class DB_Connect {
         }
     }
 
-    public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) { // 회원가입
+    public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) {
         boolean flag1 = false;
         boolean flag2 = false;
-        //int target_cal = 0;
+        float targetUp_cal;
+        float targetDown_cal;
+
+        if(sex.equals("남성")){
+            targetUp_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) +
+                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+            targetDown_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) -
+                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+        }
+        else{
+            targetUp_cal = ((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) +
+                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+            targetDown_cal =((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) -
+                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+        }
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
             String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
@@ -49,8 +63,8 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            //String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi, target_cal) VALUES('" + myId + "','" + now + "','" + bmi + "' + target_cal);";
-            String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi) VALUES('" + myId + "','" + now + "','" + bmi + "');";
+            String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi, targetUp_cal, targetDown_cal) " +
+                    "VALUES('" + myId + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
             if (re == 1) {
@@ -129,7 +143,20 @@ public class DB_Connect {
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         boolean flag1 = false;
         boolean flag2 = false;
-        // 똑같은거
+        float targetUp_cal;
+        float targetDown_cal;
+        if(sex.equals("남성")){
+            targetUp_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) +
+                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+            targetDown_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) -
+                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+        }
+        else{
+            targetUp_cal = ((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) +
+                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+            targetDown_cal =((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) -
+                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+        }
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
             String SQL1 = "UPDATE User SET weight=" + weight + ",height=" +
@@ -139,11 +166,24 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "UPDATE Date_bmi2 SET bmi = " + bmi + " WHERE id='" +id+ "' and date = '" + now + "'";
+            String SQL2 = "INSERT INTO Date_bmi2 (id, date, bmi, targetUp_cal, targetDown_cal) " +
+                    "VALUES('" + id + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
             if (re == 1) {
                 flag2 = true;
+            }
+            else{
+                flag2 = false;
+            }
+            if(flag1 == true && flag2 == false){
+                String SQL3 = "UPDATE Date_bmi2 SET bmi = " + bmi + "', targetUp_cal = " + targetUp_cal +
+                        ", targetDown_cal = " + targetDown_cal + " WHERE id='" +id+ "' and date = '" + now + "'";
+                pstmt = connection.prepareStatement(SQL3);
+                re = pstmt.executeUpdate();
+                if (re == 1) {
+                    flag2 = true;
+                }
             }
         } catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
@@ -198,31 +238,12 @@ public class DB_Connect {
         }  catch (Exception e) {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
-
-        System.out.println(data.get(0));
-        //user_bmi[0]
         return data;
     }
 
-    public boolean set_myeatCal(String userName, String date, float myeat_cal)
+    public boolean set_myeatCal(String userName, String date)
     {
-        try
-        {
-            String SQL1 = "UPDATE Date_bmi2 SET target_cal=" + weight + ",height=" +
-                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE id='"+id+"'";
-            PreparedStatement pstmt = connection.prepareStatement(SQL1);
-            int re = pstmt.executeUpdate();
-            if (re == 1) {
-                return true;
-            }
-        }
-        catch (Exception e) {
-            System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
-        }
+        // insert into Date_bmi2(mycal) VALUES(mycal) WHERE id = '', date = now;
         return false;
     }
-
-
-
-
 }
