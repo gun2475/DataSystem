@@ -12,7 +12,7 @@ public class main_Dialog extends JDialog {
     private JPanel mainPanel = new GlobalPanel("src/asset/sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 720;
-    final static int WINDOW_WIDTH = 1280;
+    final static int WINDOW_WIDTH = 500;
     static JLabel username = new JLabel();
 
     public main_Dialog(String id){
@@ -41,7 +41,7 @@ public class main_Dialog extends JDialog {
         JButton profileChange = new JButton(change_png);
 
         profileChange.setVisible(true);
-        profileChange.setBounds(1150,10,100,100);
+        profileChange.setBounds(380,10,100,100);
 
         profileChange.setBorderPainted(false); //버튼 투명하게 만들기
         profileChange.setContentAreaFilled(false);
@@ -51,7 +51,7 @@ public class main_Dialog extends JDialog {
         Image changeImg_1 = img_1.getScaledInstance(300,100,Image.SCALE_SMOOTH);
         ImageIcon change_png_1 = new ImageIcon(changeImg_1);
         JButton food = new JButton(change_png_1);
-        food.setBounds(100,200,300,100);
+        food.setBounds(90,200,300,100);
         food.setVisible(true);
         food.setBorderPainted(false); //버튼 투명하게 만들기
         food.setContentAreaFilled(false);
@@ -76,7 +76,7 @@ public class main_Dialog extends JDialog {
         ImageIcon change_png_2 = new ImageIcon(changeImg_2);
         JButton graph = new JButton(change_png_2);
 
-        graph.setBounds(100,500,300,100);
+        graph.setBounds(90,350,300,100);
         graph.setVisible(true);
         graph.setBorderPainted(false); //버튼 투명하게 만들기
         graph.setContentAreaFilled(false);

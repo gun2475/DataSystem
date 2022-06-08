@@ -12,8 +12,8 @@ import Database.*;
 
 public class GlobalGUI extends JFrame{
     static String user_id;
-    final static int WINDOW_HEIGHT = 720;
-    final static int WINDOW_WIDTH = 1280;
+    final static int WINDOW_HEIGHT = 600;
+    final static int WINDOW_WIDTH = 720;
     private sign_Dialog sign = new sign_Dialog();
     static JPanel panel = new GlobalPanel("src/asset/background.png");
 
