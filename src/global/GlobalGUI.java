@@ -85,19 +85,19 @@ public class GlobalGUI extends JFrame{
         JPasswordField loginPW_tf = new JPasswordField();
 
         loginID_lb.setSize(100,20);
-        loginID_lb.setLocation(this.getWidth() / 2 - 150, this.getHeight() /2 - 25);
+        loginID_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() /2 - 25);
 
-        loginPW_lb.setLocation(this.getWidth() / 2 - 150, this.getHeight() / 2);
+        loginPW_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() / 2);
         loginPW_lb.setSize(100,20);
 
-        loginID_tf.setLocation(this.getWidth() / 2 - 100 , this.getHeight() / 2 - 25);
+        loginID_tf.setLocation(this.getWidth() / 2 - 80 , this.getHeight() / 2 - 25);
         loginID_tf.setSize(100,20);
 
-        loginPW_tf.setLocation(this.getWidth() / 2 - 100, this.getHeight() /2);
+        loginPW_tf.setLocation(this.getWidth() / 2 - 80, this.getHeight() /2);
         loginPW_tf.setSize(100,20);
         
         JButton login_btn = new JButton("로그인");
-        login_btn.setLocation(this.getWidth() / 2 + 20, this.getHeight() / 2);
+        login_btn.setLocation(this.getWidth() / 2 + 30, this.getHeight() / 2);
         login_btn.setSize(100,20);
         login_btn.addActionListener(new ActionListener() {
             @Override

@@ -85,5 +85,23 @@ public class main_Dialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) { new graph_dialog(id);}
         });
+
+        ImageIcon button_3_png = new ImageIcon("src/asset/button_3.png");
+        Image img_3 = button_3_png.getImage();
+        Image changeImg_3 = img_3.getScaledInstance(300,100,Image.SCALE_SMOOTH);
+        ImageIcon change_png_3 = new ImageIcon(changeImg_3);
+        JButton made = new JButton(change_png_3);
+
+        made.setBounds(90,500,300,100);
+        made.setVisible(true);
+        made.setBorderPainted(false);
+        made.setContentAreaFilled(false);
+        mainPanel.add(made);
+        made.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new made_dialog(id);
+            }
+        });
     }
 }

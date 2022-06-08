@@ -27,7 +27,7 @@ public class UserInfo_Dialog extends JDialog {
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
     private JTextField bmiText = new JTextField(15);
-    private JPanel InfoPanel = new JPanel();
+    private JPanel InfoPanel = new GlobalPanel("src/asset/sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
     final static int Info_WIDTH = 360;
