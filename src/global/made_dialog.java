@@ -69,7 +69,7 @@ public class made_dialog extends JDialog{
         madePanel.add(hyunsu_id);
         madePanel.add(hyunsu_work);
 
-        ImageIcon profileChange_png_2 = new ImageIcon("src/asset/jaemin.png"); //이미지파일 크기 조정하는 하드코딩
+        ImageIcon profileChange_png_2 = new ImageIcon("src/asset/daehui.png"); //이미지파일 크기 조정하는 하드코딩
         Image img_2 = profileChange_png_2.getImage();
         Image changeImg_2 = img_2.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_2 = new ImageIcon(changeImg_2);
@@ -78,8 +78,8 @@ public class made_dialog extends JDialog{
         daehee_Image.setBounds(90,310,100,130);
         madePanel.add(daehee_Image);
         JLabel daehee_name = new JLabel("이름 : 정대희");
-        JLabel daehee_id = new JLabel("학번 : 22210??");
-        JLabel daehee_work = new JLabel("맡은일 : ?? 담당");
+        JLabel daehee_id = new JLabel("학번 : 2221081");
+        JLabel daehee_work = new JLabel("맡은일 : Calculation/Logic 담당");
         daehee_name.setVisible(true);
         daehee_id.setVisible(true);
         daehee_work.setVisible(true);
