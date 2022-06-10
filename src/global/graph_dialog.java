@@ -20,27 +20,25 @@ public class graph_dialog {
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 840;
     Vector<Double> data1 = new Vector<>();
-
     Vector<String> data2 = new Vector<>();
     String user_id;
     DB_Connect dbCon = new DB_Connect();
     JFreeChart chart;
-
     graph_dialog(String id){
         this.user_id = id;
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         chart = getChart();
         ChartFrame frame = new ChartFrame("Bmi Graph",chart);
+        frame.setLocation((windowSize.width - WINDOW_WIDTH) / 2, (windowSize.height - WINDOW_HEIGHT) / 2);
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setVisible(true);
     }
-
     public JFreeChart getChart(){
         int cnt1 = 0;
         int cnt2 = 0;
         dbCon.connect();
         data1 = dbCon.get_date_bmi(user_id);
-        DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
+        DefaultCategoryDataset dataset1 = new DefaultCategoryDataset(); // bmi
         for(int i = 0; i < data1.size() / 3; i++){
             int month_i = data1.get(0 + cnt1 * 3).intValue();
             int day_i = data1.get(1 + cnt1 * 3).intValue();
@@ -63,8 +61,8 @@ public class graph_dialog {
         //여기서부터 63~114줄 반복문으로 해줘
         final LineAndShapeRenderer[] renderer = new LineAndShapeRenderer[3];
         //////////////////////////////////공통옵션//////////////////////////////////////////
-        final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator(); // 안해도됨
-        final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT); // 안해도됨
+        final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
+        final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT);
         Font f = new Font("Gulim", Font.BOLD, 14);
         Font axisF = new Font("Gulim", Font.PLAIN, 14);
         //////////////////////////////////공통옵션//////////////////////////////////////////
@@ -85,7 +83,6 @@ public class graph_dialog {
         renderer[1].setSeriesPaint(0,new Color(0,191,255));
         renderer[2].setSeriesPaint(0,new Color(60,179,113));
 
-
         final CategoryPlot plot = new CategoryPlot(); // plot 생성 및 데이터 적재
         plot.setDataset(1, dataset1);
         plot.setRenderer(1,renderer[0]);
@@ -94,7 +91,7 @@ public class graph_dialog {
         plot.setDataset(3, dataset3);
         plot.setRenderer(3,renderer[2]);
 
-        ///////////////////////////////////plot 기본 설정 여기까지
+        ///////////////////////////////////plot 기본 설정
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
         plot.setDomainGridlinesVisible(true); // Y축 가이드 라인 표시여부
@@ -105,7 +102,6 @@ public class graph_dialog {
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
         plot.getRangeAxis().setAutoRange(true);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정
-
         // 세팅된 plot을 바탕으로 chart 생성
         final JFreeChart chart = new JFreeChart(plot);
         return chart;
