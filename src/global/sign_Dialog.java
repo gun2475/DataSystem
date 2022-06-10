@@ -44,18 +44,16 @@ public class sign_Dialog extends JDialog {
         signUpPanel.add(idlabel);
         idText.setBounds(50, 40, 100, 20);
         signUpPanel.add(idText);
-        overlapBtn.setBounds(180, 40, 90, 20);
+        overlapBtn.setBounds(180, 40, 100, 20);
         overlapBtn.setContentAreaFilled(false);
         overlapBtn.setFocusPainted(false);
-        overlapBtn.setForeground(Color.white);
-        overlapBtn.setFont(new Font("나눔고딕",Font.BOLD,10));
+        overlapBtn.setForeground(Color.black);
+        overlapBtn.setFont(new Font("나눔고딕",Font.BOLD,15));
         signUpPanel.repaint();
         signUpPanel.revalidate();
         overlapBtn.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                overlapBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
+            public void mouseEntered(MouseEvent e) {overlapBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));}
 
             @Override
             public void mouseExited(MouseEvent e) {

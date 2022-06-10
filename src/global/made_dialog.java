@@ -57,7 +57,7 @@ public class made_dialog extends JDialog{
         hyunsu_Image.setBounds(290,130,100,130);
         madePanel.add(hyunsu_Image);
         JLabel hyunsu_name = new JLabel("이름 : 이현수");
-        JLabel hyunsu_id = new JLabel("학번 : 22210??");
+        JLabel hyunsu_id = new JLabel("학번 : 2221072");
         JLabel hyunsu_work = new JLabel("맡은일 : DB/Logic 담당");
         hyunsu_name.setVisible(true);
         hyunsu_id.setVisible(true);

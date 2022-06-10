@@ -143,6 +143,7 @@ public class DB_Connect {
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         boolean flag1 = false;
         boolean flag2 = false;
+        boolean flag3 = false;
         float targetUp_cal;
         float targetDown_cal;
         if(sex.equals("남성")){
@@ -166,19 +167,24 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "INSERT INTO Date_bmi2 (id, date, bmi, targetUp_cal, targetDown_cal) " +
-                    "VALUES('" + id + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
-            pstmt = connection.prepareStatement(SQL2);
-            re = pstmt.executeUpdate();
-            if (re == 1) {
-                flag2 = true;
+            String SQL2 = "select date FROM Date_bmi2 where id = '" + id + "' and date = '" + now + "';";
+            rs = st.executeQuery(SQL2);
+            if(rs.next()){
+                if(rs.getString("date").equals(now.toString())){
+                    flag3 = true;
+                }
+            }
+            if(flag3 == true){
+                String SQL4 = "UPDATE Date_bmi2 SET bmi = '" + bmi + "', targetUp_cal = '" + targetUp_cal + "', targetDown_cal = '" + targetDown_cal + "' WHERE id='" +id+ "' and date = '" + now + "'";
+                pstmt = connection.prepareStatement(SQL4);
+                re = pstmt.executeUpdate();
+                if (re == 1) {
+                    flag2 = true;
+                }
             }
             else{
-                flag2 = false;
-            }
-            if(flag1 == true && flag2 == false){
-                String SQL3 = "UPDATE Date_bmi2 SET bmi = " + bmi + "', targetUp_cal = " + targetUp_cal +
-                        ", targetDown_cal = " + targetDown_cal + " WHERE id='" +id+ "' and date = '" + now + "'";
+                String SQL3 = "INSERT INTO Date_bmi2 (id, date, bmi, targetUp_cal, targetDown_cal) " +
+                        "VALUES('" + id + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
                 pstmt = connection.prepareStatement(SQL3);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
