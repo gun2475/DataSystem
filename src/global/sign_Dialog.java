@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 public class sign_Dialog extends JDialog {
-    private JPanel signUpPanel = new GlobalPanel("src/asset/sign.png");
+    private JPanel signUpPanel = new GlobalPanel("sign.png");
     private JOptionPane MessageBox = new JOptionPane();
     private JLabel idlabel = new JLabel("아이디");
     private JLabel pwlabel = new JLabel("비밀번호");

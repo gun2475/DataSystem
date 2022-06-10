@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class made_dialog extends JDialog{
-    private JPanel madePanel = new GlobalPanel("src/asset/sign.png");
+    private JPanel madePanel = new GlobalPanel("sign.png");
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 500;
     JLabel welcome = new JLabel("만든 사람들");
@@ -26,9 +26,9 @@ public class made_dialog extends JDialog{
         welcome.setBounds(75,30,400,80);
         welcome.setVisible(true);
         madePanel.add(welcome);
-        ImageIcon profileChange_png = new ImageIcon("src/asset/jaemin.png");
-        Image img = profileChange_png.getImage();
-        Image changeImg = img.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+
+        Image img1 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("jaemin.png"));
+        Image changeImg = img1.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png = new ImageIcon(changeImg);
         JLabel jaemin_Image = new JLabel(change_png);
         jaemin_Image.setVisible(true);
@@ -47,9 +47,8 @@ public class made_dialog extends JDialog{
         madePanel.add(jaemin_id);
         madePanel.add(jaemin_work);
 
-        ImageIcon profileChange_png_1 = new ImageIcon("src/asset/hun.png");
-        Image img_1 = profileChange_png_1.getImage();
-        Image changeImg_1 = img_1.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+        Image img2 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("hun.png"));
+        Image changeImg_1 = img2.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_1 = new ImageIcon(changeImg_1);
         JLabel hyunsu_Image = new JLabel(change_png_1);
         hyunsu_Image.setVisible(true);
@@ -68,9 +67,8 @@ public class made_dialog extends JDialog{
         madePanel.add(hyunsu_id);
         madePanel.add(hyunsu_work);
 
-        ImageIcon profileChange_png_2 = new ImageIcon("src/asset/daehui.png");
-        Image img_2 = profileChange_png_2.getImage();
-        Image changeImg_2 = img_2.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+        Image img3 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("daehui.png"));
+        Image changeImg_2 = img3.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_2 = new ImageIcon(changeImg_2);
         JLabel daehee_Image = new JLabel(change_png_2);
         daehee_Image.setVisible(true);
@@ -89,9 +87,8 @@ public class made_dialog extends JDialog{
         madePanel.add(daehee_id);
         madePanel.add(daehee_work);
 
-        ImageIcon profileChange_png_3 = new ImageIcon("src/asset/jun.png");
-        Image img_3 = profileChange_png_3.getImage();
-        Image changeImg_3 = img_3.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+        Image img4 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("jun.png"));
+        Image changeImg_3 = img4.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_3 = new ImageIcon(changeImg_3);
         JLabel youngwoo_Image = new JLabel(change_png_3);
         youngwoo_Image.setVisible(true);
@@ -110,9 +107,8 @@ public class made_dialog extends JDialog{
         madePanel.add(youngwoo_id);
         madePanel.add(youngwoo_work);
 
-        ImageIcon profileChange_png_4 = new ImageIcon("src/asset/un.png");
-        Image img_4 = profileChange_png_4.getImage();
-        Image changeImg_4 = img_4.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+        Image img5 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("un.png"));
+        Image changeImg_4 = img5.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_4 = new ImageIcon(changeImg_4);
         JLabel jongsik_Image = new JLabel(change_png_4);
         jongsik_Image.setVisible(true);
@@ -131,9 +127,8 @@ public class made_dialog extends JDialog{
         madePanel.add(jongsik_id);
         madePanel.add(jongsik_work);
 
-        ImageIcon profileChange_png_5 = new ImageIcon("src/asset/chan.png");
-        Image img_5 = profileChange_png_5.getImage();
-        Image changeImg_5 = img_5.getScaledInstance(100,130,Image.SCALE_SMOOTH);
+        Image img6 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("chan.png"));
+        Image changeImg_5 = img6.getScaledInstance(100,130,Image.SCALE_SMOOTH);
         ImageIcon change_png_5 = new ImageIcon(changeImg_5);
         JLabel chanmin_Image = new JLabel(change_png_5);
         chanmin_Image.setVisible(true);

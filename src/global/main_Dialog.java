@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class main_Dialog extends JDialog {
-    private JPanel mainPanel = new GlobalPanel("src/asset/menu.jpg");
+    private JPanel mainPanel = new GlobalPanel("menu.jpg");
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 700;
     final static int WINDOW_WIDTH = 500;
@@ -30,9 +30,8 @@ public class main_Dialog extends JDialog {
         username.setVisible(true);
         mainPanel.add(username);
 
-        ImageIcon profileChange_jpg = new ImageIcon("src/asset/set.jpg"); //이미지파일 크기 조정하는 하드코딩
-        Image img = profileChange_jpg.getImage();
-        Image changeImg = img.getScaledInstance(70,70,Image.SCALE_SMOOTH);
+        Image img1 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("set.jpg"));
+        Image changeImg = img1.getScaledInstance(70,70,Image.SCALE_SMOOTH);
         ImageIcon change_png = new ImageIcon(changeImg);
         JButton profileChange = new JButton(change_png);
         profileChange.setVisible(true);
@@ -47,9 +46,8 @@ public class main_Dialog extends JDialog {
             }
         });
 
-        ImageIcon exit_p = new ImageIcon("src/asset/exit.jpg");
-        Image exit_img = exit_p.getImage();
-        Image exitImg = exit_img.getScaledInstance(70,70,Image.SCALE_SMOOTH);
+        Image img2 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("exit.jpg"));
+        Image exitImg = img2.getScaledInstance(70,70,Image.SCALE_SMOOTH);
         ImageIcon exit_jpg = new ImageIcon(exitImg);
         JButton exit = new JButton(exit_jpg);
         exit.setVisible(true);
@@ -64,9 +62,8 @@ public class main_Dialog extends JDialog {
             }
         });
 
-        ImageIcon button_1_jpg = new ImageIcon("src/asset/식단.jpg");
-        Image img_1 = button_1_jpg.getImage();
-        Image changeImg_1 = img_1.getScaledInstance(262,213,Image.SCALE_SMOOTH);
+        Image img3 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("food_menu.jpg"));
+        Image changeImg_1 = img3.getScaledInstance(262,213,Image.SCALE_SMOOTH);
         ImageIcon change_png_1 = new ImageIcon(changeImg_1);
         JButton food = new JButton(change_png_1);
         food.setBounds(119,80,262,213);
@@ -81,9 +78,8 @@ public class main_Dialog extends JDialog {
             }
         });
 
-        ImageIcon button2_jpg = new ImageIcon("src/asset/graph.jpg");
-        Image img_2 = button2_jpg.getImage();
-        Image changeImg_2 = img_2.getScaledInstance(267,226,Image.SCALE_SMOOTH);
+        Image img4 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("graph.jpg"));
+        Image changeImg_2 = img4.getScaledInstance(267,226,Image.SCALE_SMOOTH);
         ImageIcon change_png_2 = new ImageIcon(changeImg_2);
         JButton graph = new JButton(change_png_2);
         graph.setBounds(117,280,267,226);
@@ -96,9 +92,8 @@ public class main_Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) { new graph_dialog(id);}
         });
 
-        ImageIcon button3_jpg = new ImageIcon("src/asset/made.jpg");
-        Image img_3 = button3_jpg.getImage();
-        Image changeImg_3 = img_3.getScaledInstance(172,182,Image.SCALE_SMOOTH);
+        Image img5 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("made.jpg"));
+        Image changeImg_3 = img5.getScaledInstance(172,182,Image.SCALE_SMOOTH);
         ImageIcon change_png_3 = new ImageIcon(changeImg_3);
         JButton made = new JButton(change_png_3);
         made.setBounds(164,490,172,182);

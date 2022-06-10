@@ -4,7 +4,7 @@ import java.awt.*;
 public class GlobalPanel extends JPanel {
     private final Image img;
     public GlobalPanel(String BackgroundImgURL) {
-        img = new ImageIcon(BackgroundImgURL).getImage();
+        img = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource(BackgroundImgURL));
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

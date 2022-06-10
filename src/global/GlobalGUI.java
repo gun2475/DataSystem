@@ -8,7 +8,7 @@ public class GlobalGUI extends JFrame{
     final static int WINDOW_HEIGHT = 800;
     final static int WINDOW_WIDTH = 600;
     private sign_Dialog sign = new sign_Dialog();
-    static JPanel panel = new GlobalPanel("src/asset/background.jpg");
+    static JPanel panel = new GlobalPanel("background.jpg");
     private DB_Connect dbCon = new DB_Connect();
     public GlobalGUI(String title){
         super();
@@ -61,8 +61,7 @@ public class GlobalGUI extends JFrame{
         loginID_tf.setBounds(200,545,100,22);
         loginPW_tf.setBounds(200,600,100,22);
 
-        ImageIcon profileChange_jpg = new ImageIcon("src/asset/login.png"); //이미지파일 크기 조정하는 하드코딩
-        Image img = profileChange_jpg.getImage();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("login.png"));
         Image changeImg = img.getScaledInstance(100,22,Image.SCALE_SMOOTH);
         ImageIcon change_png = new ImageIcon(changeImg);
         JButton login_btn = new JButton(change_png);

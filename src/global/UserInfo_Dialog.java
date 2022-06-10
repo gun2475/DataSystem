@@ -26,7 +26,7 @@ public class UserInfo_Dialog extends JDialog {
     private JTextField heightText = new JTextField(15);
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
-    private JPanel InfoPanel = new GlobalPanel("src/asset/sign.png");
+    private JPanel InfoPanel = new GlobalPanel("sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
     final static int Info_WIDTH = 360;
@@ -45,9 +45,10 @@ public class UserInfo_Dialog extends JDialog {
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((windowSize.width - Info_WIDTH) / 2,(windowSize.height - Info_HEIGHT) / 2);
 
-        ImageIcon exit_png = new ImageIcon("src/asset/exit.png");
-        ImageIcon rectify_png = new ImageIcon("src/asset/rectify.png");
-
+        Image img1 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("exit.png"));
+        Image img2 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("rectify.png"));
+        ImageIcon exit_png = new ImageIcon(img1);
+        ImageIcon rectify_png = new ImageIcon(img2);
         JButton exit = new JButton(exit_png);
         JButton rectify = new JButton(rectify_png);
 

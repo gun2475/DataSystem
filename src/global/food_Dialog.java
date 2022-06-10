@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
     LocalDate now = LocalDate.now();
-    private static JPanel food = new GlobalPanel("src/asset/sign.png");
+    private static JPanel food = new GlobalPanel("sign.png");
     private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];
