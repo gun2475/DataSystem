@@ -58,8 +58,6 @@ public class graph_dialog {
             dataset2.addValue(down_rate,"감량 목표 칼로리(%)",date);
             double up_rate = Double.parseDouble(data2.get(0 + cnt2 * 3));
             dataset3.addValue(up_rate,"증량 목표 칼로리(%)",date);
-            System.out.println(down_rate);
-            System.out.println(up_rate);
             cnt2++;
         }
 

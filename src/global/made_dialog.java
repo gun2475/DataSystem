@@ -98,8 +98,8 @@ public class made_dialog extends JDialog{
         youngwoo_Image.setBounds(290,310,100,130);
         madePanel.add(youngwoo_Image);
         JLabel youngwoo_name = new JLabel("이름 : 전영우");
-        JLabel youngwoo_id = new JLabel("학번 : 22210??");
-        JLabel youngwoo_work = new JLabel("맡은일 : ?? 담당");
+        JLabel youngwoo_id = new JLabel("학번 : 2221080");
+        JLabel youngwoo_work = new JLabel("맡은일 : DB_data 수집 및 관리");
         youngwoo_name.setVisible(true);
         youngwoo_id.setVisible(true);
         youngwoo_work.setVisible(true);
@@ -119,8 +119,8 @@ public class made_dialog extends JDialog{
         jongsik_Image.setBounds(90,490,100,130);
         madePanel.add(jongsik_Image);
         JLabel jongsik_name = new JLabel("이름 : 윤종식");
-        JLabel jongsik_id = new JLabel("학번 : 22210??");
-        JLabel jongsik_work = new JLabel("맡은일 : ?? 담당");
+        JLabel jongsik_id = new JLabel("학번 : 2221056");
+        JLabel jongsik_work = new JLabel("맡은일 : DB_data 수집 및 관리");
         jongsik_name.setVisible(true);
         jongsik_id.setVisible(true);
         jongsik_work.setVisible(true);
@@ -140,8 +140,8 @@ public class made_dialog extends JDialog{
         chanmin_Image.setBounds(290,490,100,130);
         madePanel.add(chanmin_Image);
         JLabel chanmin_name = new JLabel("이름 : 김찬민");
-        JLabel chanmin_id = new JLabel("학번 : 22200??");
-        JLabel chanmin_work = new JLabel("맡은일 : ?? 담당");
+        JLabel chanmin_id = new JLabel("학번 : 2121019");
+        JLabel chanmin_work = new JLabel("맡은일 : 팀장 및 DB design");
         chanmin_name.setVisible(true);
         chanmin_id.setVisible(true);
         chanmin_work.setVisible(true);
@@ -151,7 +151,5 @@ public class made_dialog extends JDialog{
         madePanel.add(chanmin_name);
         madePanel.add(chanmin_id);
         madePanel.add(chanmin_work);
-
-
     }
 }

@@ -250,7 +250,6 @@ public class DB_Connect {
             rs = st.executeQuery(SQL1);
             if(rs.next()){
                 if(rs.getString("date").equals(now.toString())){
-                    System.out.println("date 여부 성공");
                     flag = true;
                 }
             }
@@ -259,7 +258,6 @@ public class DB_Connect {
                 pstmt = connection.prepareStatement(SQL2);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
-                    System.out.println("update 성공");
                     flag = true;
                 }
             }
@@ -268,7 +266,6 @@ public class DB_Connect {
                 pstmt = connection.prepareStatement(SQL3);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
-                    System.out.println("insert 성공");
                     flag = true;
                 }
             }

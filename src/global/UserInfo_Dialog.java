@@ -126,8 +126,6 @@ public class UserInfo_Dialog extends JDialog {
         InfoPanel.add(bmilabel);
         bmiShow.setBounds(75,250,100,20);
         InfoPanel.add(bmiShow);
-
-        target_cal.setBounds(180,250,100,20);
         InfoPanel.add(target_cal);
         /////////////////////////////////////////////////////////////
         my_info = dbCon.getUser_info(name);
