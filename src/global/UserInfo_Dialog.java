@@ -27,7 +27,6 @@ public class UserInfo_Dialog extends JDialog {
     private JTextField heightText = new JTextField(15);
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
-    private JTextField bmiText = new JTextField(15);
     private JPanel InfoPanel = new GlobalPanel("src/asset/sign.png");
     private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
@@ -96,8 +95,6 @@ public class UserInfo_Dialog extends JDialog {
                 }
             }
         });
-
-
         /////////////////////////////////////////////////////////////
         weightlabel.setBounds(50, 100, 100, 20);
         InfoPanel.add(weightlabel);
@@ -129,8 +126,10 @@ public class UserInfo_Dialog extends JDialog {
         /////////////////////////////////////////////////////////////
         bmilabel.setBounds(50,240,100,20);
         InfoPanel.add(bmilabel);
+        bmiShow.setBounds(75,250,100,20);
+        InfoPanel.add(bmiShow);
 
-        target_cal.setBounds(180,240,100,20);
+        target_cal.setBounds(180,250,100,20);
         InfoPanel.add(target_cal);
         /////////////////////////////////////////////////////////////
         my_info = dbCon.getUser_info(name);

@@ -571,8 +571,3 @@ public class food_Dialog extends JDialog {
         System.out.println("GUI를 다시 그리는 중...");
     }
 }
-
-
-
-
-
