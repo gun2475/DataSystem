@@ -34,7 +34,7 @@ public class DB_Connect {
             System.out.println("[연결 오류]\n" + e.getStackTrace());
         }
     }
-
+    ////////////////////////////////////회원가입
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) {
         boolean flag1 = false;
         boolean flag2 = false;
@@ -55,8 +55,8 @@ public class DB_Connect {
         }
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
-            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age, bmi) VALUES('" + myId + "','" + myPw + "','" +
-                    weight + "','" + height + "','" + sex + "','" + age + "','"+ bmi +"');";
+            String SQL1 = "INSERT INTO User(id, pw, weight, height, sex, age) VALUES('" + myId + "','" + myPw + "','" +
+                    weight + "','" + height + "','" + sex + "','" + age + "');";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
@@ -75,8 +75,8 @@ public class DB_Connect {
         }
         return false;
     }
-
-    public boolean isAdmin(String id) { // 아이디 중복확인
+    ////////////////////////////////////아이디 중복확인
+    public boolean isAdmin(String id) {
         try {
             String SQL = "SELECT * FROM User WHERE id = '" + id + "';".toString();
             rs = st.executeQuery(SQL);
@@ -90,9 +90,8 @@ public class DB_Connect {
         }
         return false;
     }
-
-
-    public boolean login(String id, String pw) { // 로그인
+    //////////////////////////////////// 로그인
+    public boolean login(String id, String pw) {
         boolean idFlag = false;
         boolean pwFlag = false;
         try {
@@ -119,9 +118,10 @@ public class DB_Connect {
         }
         else return false;
     }
+    //////////////////////////////////// 유저 정보 가져오기
     public String[] getUser_info(String id){
         try {
-            String SQL = "SELECT weight, height, sex, age, bmi FROM User WHERE id = '" + id + "';";
+            String SQL = "SELECT weight, height, sex, age, bmi FROM User U join Date_bmi2 D WHERE U.id = '" + id + "' and D.id = '" + id + "';";
             rs = st.executeQuery(SQL);
             while(rs.next()) {
                 user_info[0] = rs.getString("weight");
@@ -135,6 +135,7 @@ public class DB_Connect {
         }
         return user_info;
     }
+    ////////////////////////////////////유저정보 수정하기
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         boolean flag1 = false;
         boolean flag2 = false;
@@ -156,7 +157,7 @@ public class DB_Connect {
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
             String SQL1 = "UPDATE User SET weight=" + weight + ",height=" +
-                    height + ",sex='" + sex + "',age="+ age +",bmi = " + bmi + " WHERE id='"+id+"'";
+                    height + ",sex='" + sex + "',age="+ age + " WHERE id='"+id+"'";
             PreparedStatement pstmt = connection.prepareStatement(SQL1);
             int re = pstmt.executeUpdate();
             if (re == 1) {
@@ -170,7 +171,8 @@ public class DB_Connect {
                 }
             }
             if(flag3 == true){
-                String SQL4 = "UPDATE Date_bmi2 SET bmi = '" + bmi + "', targetUp_cal = '" + targetUp_cal + "', targetDown_cal = '" + targetDown_cal + "' WHERE id='" +id+ "' and date = '" + now + "'";
+                String SQL4 = "UPDATE Date_bmi2 SET bmi = '" + bmi + "', targetUp_cal = '" + targetUp_cal + "', " +
+                        "targetDown_cal = '" + targetDown_cal + "' WHERE id='" +id+ "' and date = '" + now + "'";
                 pstmt = connection.prepareStatement(SQL4);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
@@ -192,6 +194,7 @@ public class DB_Connect {
         if(flag1 == true && flag2 == true) return true;
         else return false;
     }
+    ////////////////////////////////////음식 가져오기
     public Vector<String> get_food()
     {
         Vector<String> vec = new Vector<String>();
@@ -206,6 +209,7 @@ public class DB_Connect {
         }
         return vec;
     }
+    //////////////////////////////// 음식 정보 가져오기
     public double[] get_fInfo(String fName){
         try {
             String SQL = "SELECT * FROM Food WHERE food_name = '" + fName + "';";
@@ -221,10 +225,11 @@ public class DB_Connect {
         }
         return fInfo;
     }
+    //////////////////////////////////// 날짜 bmi 가져오기 - Date_bmi join User 테이블에서
     public Vector<Double> get_date_bmi(String userName){
         Vector<Double> data = new Vector<>();
         try {
-            String SQL1 = "SELECT date, bmi FROM Date_bmi2 WHERE id = '" + userName + "';";
+            String SQL1 = "SELECT date, bmi FROM Date_bmi2 D join User U WHERE U.id = '" + userName + "' and D.id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
             while(rs.next()) {
                 LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
@@ -239,6 +244,7 @@ public class DB_Connect {
         }
         return data;
     }
+    //////////////////////////////////// 내가 먹은 칼로리 넣기 - bmi테이블로
     public boolean set_myeatCal(String userName, String date, int eatcal)
     {
         boolean flag = false;
@@ -277,6 +283,7 @@ public class DB_Connect {
         }
         return false;
     }
+    //////////////////////////////////// 값 가져오기, bmi테이블에서
     public Vector<String> get_rate(String id){
         Vector<String> data = new Vector<>();
         try {
