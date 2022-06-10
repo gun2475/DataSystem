@@ -61,9 +61,7 @@ public class graph_dialog {
             cnt2++;
         }
         //여기서부터 63~114줄 반복문으로 해줘
-        final LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
-        final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
-        final LineAndShapeRenderer renderer3 = new LineAndShapeRenderer();
+        final LineAndShapeRenderer[] renderer = new LineAndShapeRenderer[3];
         //////////////////////////////////공통옵션//////////////////////////////////////////
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator(); // 안해도됨
         final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER); //안해도됨
@@ -71,46 +69,34 @@ public class graph_dialog {
         Font f = new Font("Gulim", Font.BOLD, 14);
         Font axisF = new Font("Gulim", Font.PLAIN, 14);
         //////////////////////////////////공통옵션//////////////////////////////////////////
-        renderer1.setBaseItemLabelGenerator(generator);
-        renderer1.setBaseItemLabelsVisible(true);
-        renderer1.setBaseShapesVisible(true);
-        renderer1.setDrawOutlines(true);
-        renderer1.setUseFillPaint(true);
-        renderer1.setBaseFillPaint(Color.WHITE);
-        renderer1.setBaseItemLabelFont(f);
-        renderer1.setBasePositiveItemLabelPosition(p_below);
-        renderer1.setSeriesPaint(0,new Color(219,121,22));
-        renderer1.setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
-        //////////////////////////////////////////////////////////////////////////////////
-        renderer2.setBaseItemLabelGenerator(generator);
-        renderer2.setBaseItemLabelsVisible(true);
-        renderer2.setBaseShapesVisible(true);
-        renderer2.setDrawOutlines(true);
-        renderer2.setUseFillPaint(true);
-        renderer2.setBaseFillPaint(Color.WHITE);
-        renderer2.setBaseItemLabelFont(f);
-        renderer2.setBasePositiveItemLabelPosition(p_below);
-        renderer2.setSeriesPaint(0,new Color(0,191,255));
-        renderer2.setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
-        ///////////////////////////////////////////////////////////////////////////////
-        renderer3.setBaseItemLabelGenerator(generator);
-        renderer3.setBaseItemLabelsVisible(true);
-        renderer3.setBaseShapesVisible(true);
-        renderer3.setDrawOutlines(true);
-        renderer3.setUseFillPaint(true);
-        renderer3.setBaseFillPaint(Color.WHITE);
-        renderer3.setBaseItemLabelFont(f);
-        renderer3.setBasePositiveItemLabelPosition(p_below);
-        renderer3.setSeriesPaint(0,new Color(60,179,113));
-        renderer3.setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
-        ///////////////////////////////////////////////////////////////////////////////
+        for(int i=0;i<3;i++){
+            renderer[i].setBaseItemLabelGenerator(generator);
+            renderer[i].setBaseItemLabelsVisible(true);
+            renderer[i].setBaseShapesVisible(true);
+            renderer[i].setDrawOutlines(true);
+            renderer[i].setUseFillPaint(true);
+            renderer[i].setBaseFillPaint(Color.WHITE);
+            renderer[i].setBaseItemLabelFont(f);
+            renderer[i].setBasePositiveItemLabelPosition(p_below);
+            if(i==0){
+                renderer[i].setSeriesPaint(0,new Color(219,121,22));
+            }else if(i==1){
+                renderer[i].setSeriesPaint(0,new Color(0,191,255));
+            }else{
+                renderer[i].setSeriesPaint(0,new Color(60,179,113));
+            }
+            renderer[i].setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
+        }
+
         final CategoryPlot plot = new CategoryPlot(); // plot 생성 및 데이터 적재
+
         plot.setDataset(1, dataset1);
-        plot.setRenderer(1, renderer1);
+        plot.setRenderer(1,renderer[0]);
         plot.setDataset(2, dataset2);
-        plot.setRenderer(2, renderer2);
+        plot.setRenderer(2,renderer[1]);
         plot.setDataset(3, dataset3);
-        plot.setRenderer(3, renderer3);
+        plot.setRenderer(3,renderer[2]);
+
         ///////////////////////////////////plot 기본 설정 여기까지
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
