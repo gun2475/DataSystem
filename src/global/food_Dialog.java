@@ -90,6 +90,7 @@ public class food_Dialog extends JDialog {
     JRadioButton diet_sel2 = new JRadioButton("");
     ButtonGroup diet_sel = new ButtonGroup();
 
+    private JButton eatfood_update = new JButton("적용하기");
     public food_Dialog(String id) {
         setTitle("식단 관리");
         Font font = new Font("Serif", Font.BOLD, 25);
@@ -561,6 +562,12 @@ public class food_Dialog extends JDialog {
         diet_sel2.setBackground(new Color(236, 217, 213));
         diet_sel2.setFont(font);
         add(diet_sel2);
+//////////////////////////////////////////////////////////////////////////적용하기
+        eatfood_update.setBounds(600, 600, 100, 100);
+        eatfood_update.setVisible(true);
+        eatfood_update.setBackground(new Color(236, 217, 213));
+        eatfood_update.setFont(font);
+        add(eatfood_update);
 
     }
     ////////////////////////////////////////////////////////////GUI 다시 그리기
