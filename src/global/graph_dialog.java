@@ -64,12 +64,12 @@ public class graph_dialog {
         final LineAndShapeRenderer[] renderer = new LineAndShapeRenderer[3];
         //////////////////////////////////공통옵션//////////////////////////////////////////
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator(); // 안해도됨
-        final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER); //안해도됨
         final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT); // 안해도됨
         Font f = new Font("Gulim", Font.BOLD, 14);
         Font axisF = new Font("Gulim", Font.PLAIN, 14);
         //////////////////////////////////공통옵션//////////////////////////////////////////
         for(int i=0;i<3;i++){
+            renderer[i] = new LineAndShapeRenderer();
             renderer[i].setBaseItemLabelGenerator(generator);
             renderer[i].setBaseItemLabelsVisible(true);
             renderer[i].setBaseShapesVisible(true);
@@ -78,18 +78,15 @@ public class graph_dialog {
             renderer[i].setBaseFillPaint(Color.WHITE);
             renderer[i].setBaseItemLabelFont(f);
             renderer[i].setBasePositiveItemLabelPosition(p_below);
-            if(i==0){
-                renderer[i].setSeriesPaint(0,new Color(219,121,22));
-            }else if(i==1){
-                renderer[i].setSeriesPaint(0,new Color(0,191,255));
-            }else{
-                renderer[i].setSeriesPaint(0,new Color(60,179,113));
-            }
             renderer[i].setSeriesStroke(0,new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 3.0f));
         }
 
-        final CategoryPlot plot = new CategoryPlot(); // plot 생성 및 데이터 적재
+        renderer[0].setSeriesPaint(0,new Color(219,121,22));
+        renderer[1].setSeriesPaint(0,new Color(0,191,255));
+        renderer[2].setSeriesPaint(0,new Color(60,179,113));
 
+
+        final CategoryPlot plot = new CategoryPlot(); // plot 생성 및 데이터 적재
         plot.setDataset(1, dataset1);
         plot.setRenderer(1,renderer[0]);
         plot.setDataset(2, dataset2);
