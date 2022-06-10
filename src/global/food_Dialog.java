@@ -86,8 +86,8 @@ public class food_Dialog extends JDialog {
     private JTextArea JTA_lun = new JTextArea();
     private JTextArea JTA_din = new JTextArea();
 
-    JRadioButton diet_sel1= new JRadioButton("감량");
-    JRadioButton diet_sel2 = new JRadioButton("증량");
+    JRadioButton diet_sel1= new JRadioButton("");
+    JRadioButton diet_sel2 = new JRadioButton("");
     ButtonGroup diet_sel = new ButtonGroup();
 
     public food_Dialog(String id) {
@@ -553,10 +553,12 @@ public class food_Dialog extends JDialog {
         diet_sel1.setBounds(0, 450, 50, 50);
         diet_sel1.setVisible(true);
         diet_sel1.setFont(font);
+        diet_sel1.setBackground(new Color(236, 217, 213));
         add(diet_sel1);
-
         diet_sel2.setBounds(0, 500, 50, 50);
         diet_sel2.setVisible(true);
+
+        diet_sel2.setBackground(new Color(236, 217, 213));
         diet_sel2.setFont(font);
         add(diet_sel2);
 
