@@ -60,14 +60,14 @@ public class graph_dialog {
             dataset3.addValue(up_rate,"증량 목표 칼로리(%)",date);
             cnt2++;
         }
-
+        //여기서부터 63~114줄 반복문으로 해줘
         final LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
         final LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
         final LineAndShapeRenderer renderer3 = new LineAndShapeRenderer();
         //////////////////////////////////공통옵션//////////////////////////////////////////
-        final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
-        final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER);
-        final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT);
+        final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator(); // 안해도됨
+        final ItemLabelPosition p_center = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER); //안해도됨
+        final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT); // 안해도됨
         Font f = new Font("Gulim", Font.BOLD, 14);
         Font axisF = new Font("Gulim", Font.PLAIN, 14);
         //////////////////////////////////공통옵션//////////////////////////////////////////
@@ -111,16 +111,14 @@ public class graph_dialog {
         plot.setRenderer(2, renderer2);
         plot.setDataset(3, dataset3);
         plot.setRenderer(3, renderer3);
-        ///////////////////////////////////plot 기본 설정
+        ///////////////////////////////////plot 기본 설정 여기까지
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
         plot.setDomainGridlinesVisible(true); // Y축 가이드 라인 표시여부
-
         plot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD); // 랜더링 순서 정의
         plot.setDomainAxis(new CategoryAxis()); // X축 종류 설정
         plot.getDomainAxis().setTickLabelFont(axisF); // X축 눈금라벨 폰트 조정
         plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // 카테고리 라벨 위치 조정
-
         plot.setRangeAxis(new NumberAxis()); // Y축 종류 설정
         plot.getRangeAxis().setAutoRange(true);
         plot.getRangeAxis().setTickLabelFont(axisF); // Y축 눈금라벨 폰트 조정

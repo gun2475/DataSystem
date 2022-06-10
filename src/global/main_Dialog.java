@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class main_Dialog extends JDialog {
-    private JPanel mainPanel = new GlobalPanel("src/asset/sign.png");
+    private JPanel mainPanel = new GlobalPanel("src/asset/menu.jpg");
     private DB_Connect dbCon = new DB_Connect();
-    final static int WINDOW_HEIGHT = 720;
+    final static int WINDOW_HEIGHT = 700;
     final static int WINDOW_WIDTH = 500;
     static JLabel username = new JLabel();
     public main_Dialog(String id){

@@ -5,10 +5,10 @@ import java.awt.event.*;
 import Database.*;
 public class GlobalGUI extends JFrame{
     static String user_id;
-    final static int WINDOW_HEIGHT = 600;
-    final static int WINDOW_WIDTH = 720;
+    final static int WINDOW_HEIGHT = 800;
+    final static int WINDOW_WIDTH = 600;
     private sign_Dialog sign = new sign_Dialog();
-    static JPanel panel = new GlobalPanel("src/asset/background.png");
+    static JPanel panel = new GlobalPanel("src/asset/background.jpg");
     private DB_Connect dbCon = new DB_Connect();
     public GlobalGUI(String title){
         super();
@@ -56,21 +56,12 @@ public class GlobalGUI extends JFrame{
     }
     public void login(){
         setTitle("로그인창");
-        JLabel loginID_lb = new JLabel("id :");
-        JLabel loginPW_lb = new JLabel("pw :");
         JTextField loginID_tf = new JTextField();
         JPasswordField loginPW_tf = new JPasswordField();
-        loginID_lb.setSize(100,20);
-        loginID_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() /2 - 25);
-        loginPW_lb.setLocation(this.getWidth() / 2 - 130, this.getHeight() / 2);
-        loginPW_lb.setSize(100,20);
-        loginID_tf.setLocation(this.getWidth() / 2 - 80 , this.getHeight() / 2 - 25);
-        loginID_tf.setSize(100,20);
-        loginPW_tf.setLocation(this.getWidth() / 2 - 80, this.getHeight() /2);
-        loginPW_tf.setSize(100,20);
+        loginID_tf.setBounds(200,540,100,22);
+        loginPW_tf.setBounds(200,595,100,22);
         JButton login_btn = new JButton("로그인");
-        login_btn.setLocation(this.getWidth() / 2 + 30, this.getHeight() / 2);
-        login_btn.setSize(100,20);
+        login_btn.setBounds(350,595,100,22);
         login_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,8 +76,6 @@ public class GlobalGUI extends JFrame{
                 else JOptionPane.showMessageDialog(null, "ID와 PW를 확인해주세요.", "Invaild user", JOptionPane.ERROR_MESSAGE);
             }
         });
-        panel.add(loginID_lb);
-        panel.add(loginPW_lb);
         panel.add(loginID_tf);
         panel.add(loginPW_tf);
         panel.add(login_btn);
