@@ -120,6 +120,7 @@ public class sign_Dialog extends JDialog {
         signUpbtn.setBounds(120, 250, 100, 20);
         signUpbtn.setContentAreaFilled(false);
         signUpbtn.setFocusPainted(false);
+
         signUpbtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

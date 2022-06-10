@@ -58,10 +58,19 @@ public class GlobalGUI extends JFrame{
         setTitle("로그인창");
         JTextField loginID_tf = new JTextField();
         JPasswordField loginPW_tf = new JPasswordField();
-        loginID_tf.setBounds(200,540,100,22);
-        loginPW_tf.setBounds(200,595,100,22);
-        JButton login_btn = new JButton("로그인");
-        login_btn.setBounds(350,595,100,22);
+        loginID_tf.setBounds(200,545,100,22);
+        loginPW_tf.setBounds(200,600,100,22);
+
+        ImageIcon profileChange_jpg = new ImageIcon("src/asset/login.png"); //이미지파일 크기 조정하는 하드코딩
+        Image img = profileChange_jpg.getImage();
+        Image changeImg = img.getScaledInstance(100,22,Image.SCALE_SMOOTH);
+        ImageIcon change_png = new ImageIcon(changeImg);
+        JButton login_btn = new JButton(change_png);
+        login_btn.setVisible(true);
+        login_btn.setBounds(320,600,100,22);
+        login_btn.setBorderPainted(false); //버튼 투명하게 만들기
+        login_btn.setContentAreaFilled(false);
+        add(login_btn);
         login_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
