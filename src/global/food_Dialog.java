@@ -341,32 +341,26 @@ public class food_Dialog extends JDialog {
         base_metabolic.setVisible(true);
         base_metabolic.setFont(font);
         add(base_metabolic);
-
         maintenance_cal.setBounds(50, 385, 450, 35);
         maintenance_cal.setVisible(true);
         maintenance_cal.setFont(font);
         add(maintenance_cal);
-
         target_downcal.setBounds(50, 420, 450, 35);
         target_downcal.setVisible(true);
         target_downcal.setFont(font);
         add(target_downcal);
-
         target_upcal.setBounds(50, 455, 450, 35);
         target_upcal.setVisible(true);
         target_upcal.setFont(font);
         add(target_upcal);
-
         carbohydrate_g.setBounds(50, 490, 450, 35);
         carbohydrate_g.setVisible(true);
         carbohydrate_g.setFont(font);
         add(carbohydrate_g);
-
         protein_g.setBounds(50, 525, 450, 35);
         protein_g.setVisible(true);
         protein_g.setFont(font);
         add(protein_g);
-
         Fat_g.setBounds(50, 560, 450, 35);
         Fat_g.setVisible(true);
         Fat_g.setFont(font);
@@ -491,7 +485,6 @@ public class food_Dialog extends JDialog {
         });
         add(food_din);
 ////////////////////////////////////////////////////////////텍스트 에어리어 추가
-
         JScrollPane scrollPane_br = new JScrollPane(JTA_br, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane_br.setBounds(620, 50, 200, 130);
@@ -554,7 +547,6 @@ public class food_Dialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dbCon.set_myeatCal(id, now.toString(), (int)diet_scalla);
-
                 for(int i=0; i<4; i++)
                 {
                     br_cal[i] =0;

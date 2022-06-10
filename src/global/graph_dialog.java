@@ -58,7 +58,7 @@ public class graph_dialog {
             dataset3.addValue(up_rate,"증량 목표 칼로리(%)",date);
             cnt2++;
         }
-        //여기서부터 63~114줄 반복문으로 해줘
+
         final LineAndShapeRenderer[] renderer = new LineAndShapeRenderer[3];
         //////////////////////////////////공통옵션//////////////////////////////////////////
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
@@ -90,7 +90,6 @@ public class graph_dialog {
         plot.setRenderer(2,renderer[1]);
         plot.setDataset(3, dataset3);
         plot.setRenderer(3,renderer[2]);
-
         ///////////////////////////////////plot 기본 설정
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부

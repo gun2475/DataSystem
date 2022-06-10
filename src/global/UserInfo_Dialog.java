@@ -134,10 +134,6 @@ public class UserInfo_Dialog extends JDialog {
         heightText.setText(my_info[1]);
         sexText.setText(my_info[2]);
         ageText.setText(my_info[3]);
-        weightShow.setText(my_info[0]);
-        heightShow.setText(my_info[1]);
-        sexShow.setText(my_info[2]);
-        ageShow.setText(my_info[3]);
         bmiShow.setText(my_info[4]);
     }
 }

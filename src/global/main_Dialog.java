@@ -4,6 +4,8 @@ import Database.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 public class main_Dialog extends JFrame {
     private JPanel mainPanel = new GlobalPanel("menu.jpg");
     private DB_Connect dbCon = new DB_Connect();
@@ -59,7 +61,12 @@ public class main_Dialog extends JFrame {
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                try {
+                    dbCon.close_DB();
+                    System.exit(0);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

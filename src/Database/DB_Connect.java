@@ -42,16 +42,14 @@ public class DB_Connect {
         float targetDown_cal;
 
         if(sex.equals("남성")){
-            targetUp_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) +
-                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
-            targetDown_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) -
-                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+            float maintenance = (66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55;
+            targetUp_cal = maintenance + (maintenance*(float)0.2);
+            targetDown_cal = maintenance - (maintenance*(float)0.2);
         }
         else{
-            targetUp_cal = ((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) +
-                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
-            targetDown_cal =((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) -
-                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+            float maintenance = (665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55;
+            targetUp_cal = maintenance + (maintenance*(float)0.2);
+            targetDown_cal = maintenance - (maintenance*(float)0.2);
         }
         try {
             bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
@@ -143,16 +141,14 @@ public class DB_Connect {
         float targetUp_cal;
         float targetDown_cal;
         if(sex.equals("남성")){
-            targetUp_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) +
-                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
-            targetDown_cal = ((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55) -
-                    (((66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55)*(float)0.2);
+            float maintenance = (66 + ((float)13.7 * weight) + (5 * height) - ((float)6.8 * age)) * (float) 1.55;
+            targetUp_cal = maintenance + (maintenance*(float)0.2);
+            targetDown_cal = maintenance - (maintenance*(float)0.2);
         }
         else{
-            targetUp_cal = ((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) +
-                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
-            targetDown_cal =((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55) -
-                    (((665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55)*(float)0.2);
+            float maintenance = (665 + ((float)19.6 * weight) + ((float)1.7 * height) - ((float)4.7 * age)) * (float) 1.55;
+            targetUp_cal = maintenance + (maintenance*(float)0.2);
+            targetDown_cal = maintenance - (maintenance*(float)0.2);
         }
         bmi = (float)(Math.round(weight/(height/100 * height/100) * 100) / 100.0);
         try {
@@ -306,5 +302,8 @@ public class DB_Connect {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
         }
         return data;
+    }
+    public void close_DB() throws SQLException {
+        connection.close();
     }
 }
