@@ -4,7 +4,7 @@ import Database.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class main_Dialog extends JDialog {
+public class main_Dialog extends JFrame {
     private JPanel mainPanel = new GlobalPanel("menu.jpg");
     private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 700;
@@ -15,6 +15,7 @@ public class main_Dialog extends JDialog {
         String name = id;
         dbCon.connect();
         setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainPanel.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         setVisible(true);
         mainPanel.setVisible(true);
