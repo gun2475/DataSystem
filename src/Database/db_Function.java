@@ -245,36 +245,17 @@ public class db_Function {
     //                  /*내가 먹은 칼로리 저장*/                  //
     public boolean set_myeatCal(String userName, String date, int eatcal)
     {
-        boolean flag = false;
         try
         {
             PreparedStatement pstmt;
             int re;
-            String SQL1 = "select date FROM daily_Info where id = '" + userName + "' and date = '" + now + "';";
-            rs = st.executeQuery(SQL1);
-            if(rs.next()){
-                if(rs.getString("date").equals(now.toString())){
-                    flag = true;
-                }
+            String SQL = "UPDATE daily_Info SET my_cal = '" + eatcal + "' WHERE id='" + userName + "' and date = '" + now + "'";
+            pstmt = connection.prepareStatement(SQL);
+            re = pstmt.executeUpdate();
+            if (re == 1) {
+                return true;
             }
-            if(flag == true){
-                String SQL2 = "UPDATE daily_Info SET my_cal = '" + eatcal + "' WHERE id='" + userName + "' and date = '" + now + "'";
-                pstmt = connection.prepareStatement(SQL2);
-                re = pstmt.executeUpdate();
-                if (re == 1) {
-                    flag = true;
-                }
-            }
-            else{
-                String SQL3 = "INSERT INTO daily_Info(mycal) VALUES('" + eatcal + "') WHERE id = '" + userName + "', date = '" + date + "';";
-                pstmt = connection.prepareStatement(SQL3);
-                re = pstmt.executeUpdate();
-                if (re == 1) {
-                    flag = true;
-                }
-            }
-            if(flag == true) return true;
-            else return false;
+            return false;
         }catch (Exception e)
         {
             System.out.println("[데이터베이스 검색 오류] : " + e.getMessage());
