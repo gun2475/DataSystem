@@ -3,12 +3,12 @@ package global;
 import javax.swing.*;
 import java.awt.*;
 
-public class made_dialog extends JDialog{
-    private JPanel madePanel = new GlobalPanel("sign.png");
+public class made_Dialog extends JDialog{
+    private JPanel madePanel = new global_Panel("sign.png");
     final static int WINDOW_HEIGHT = 720;
     final static int WINDOW_WIDTH = 500;
     JLabel welcome = new JLabel("만든 사람들");
-    made_dialog(String id){
+    made_Dialog(String id){
         setTitle("만든 사람들");
         setContentPane(madePanel);
         madePanel.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);

@@ -1,5 +1,5 @@
 package global;
-import Database.DB_Connect;
+import Database.db_Function;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 public class sign_Dialog extends JDialog {
-    private JPanel signUpPanel = new GlobalPanel("sign.png");
+    private JPanel signUpPanel = new global_Panel("sign.png");
     private JOptionPane MessageBox = new JOptionPane();
     private JLabel idlabel = new JLabel("아이디");
     private JLabel pwlabel = new JLabel("비밀번호");
@@ -31,7 +31,7 @@ public class sign_Dialog extends JDialog {
     private JButton signUpbtn = new JButton("회원가입");
     private JButton overlapBtn = new JButton("중복확인");
     private boolean check = false;
-    public DB_Connect dbCon = new DB_Connect();
+    public db_Function dbCon = new db_Function();
 
 
     public sign_Dialog() {
@@ -49,6 +49,9 @@ public class sign_Dialog extends JDialog {
         overlapBtn.setFocusPainted(false);
         overlapBtn.setForeground(Color.black);
         overlapBtn.setFont(new Font("나눔고딕",Font.BOLD,15));
+
+
+        //                  /*예외 처리*/                  //
         signUpPanel.repaint();
         signUpPanel.revalidate();
         overlapBtn.addMouseListener(new MouseAdapter() {
@@ -87,40 +90,34 @@ public class sign_Dialog extends JDialog {
         pwCheckText.setBounds(180, 110, 100, 20);
         signUpPanel.add(pwCheckText);
 
-        ///weight
         weightlabel.setBounds(50, 140, 100, 20);
         signUpPanel.add(weightlabel);
 
         weightText.setBounds(50, 160, 100, 20);
         signUpPanel.add(weightText);
-        ///
 
-        ///height
         heightlabel.setBounds(180, 140, 100, 20);
         signUpPanel.add(heightlabel);
 
         heightText.setBounds(180, 160, 100, 20);
         signUpPanel.add(heightText);
-        ///
 
-        ///age
         agelabel.setBounds(50, 190, 100, 20);
         signUpPanel.add(agelabel);
 
         ageText.setBounds(50, 210, 100, 20);
         signUpPanel.add(ageText);
-        ///
-        ///sex
+
         sexlabel.setBounds(180, 190, 100, 20);
         signUpPanel.add(sexlabel);
 
         sexText.setBounds(180, 210, 100, 20);
         signUpPanel.add(sexText);
-        ///
+
         signUpbtn.setBounds(120, 250, 100, 20);
         signUpbtn.setContentAreaFilled(false);
         signUpbtn.setFocusPainted(false);
-
+        //                  /*회원가입*/                  //
         signUpbtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

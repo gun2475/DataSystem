@@ -1,7 +1,7 @@
 package global;
 import java.awt.*;
 import java.util.Vector;
-import Database.DB_Connect;
+import Database.db_Function;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
@@ -16,15 +16,15 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.*;
-public class graph_dialog {
+public class graph_Dialog {
     final static int WINDOW_HEIGHT = 600;
     final static int WINDOW_WIDTH = 840;
     Vector<Double> data1 = new Vector<>();
     Vector<String> data2 = new Vector<>();
     String user_id;
-    DB_Connect dbCon = new DB_Connect();
+    db_Function dbCon = new db_Function();
     JFreeChart chart;
-    graph_dialog(String id){
+    graph_Dialog(String id){
         this.user_id = id;
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         chart = getChart();
@@ -60,12 +60,14 @@ public class graph_dialog {
         }
 
         final LineAndShapeRenderer[] renderer = new LineAndShapeRenderer[3];
-        //////////////////////////////////공통옵션//////////////////////////////////////////
+
+        //                  /*공통옵션*/                  //
         final CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
         final ItemLabelPosition p_below = new ItemLabelPosition( ItemLabelAnchor.OUTSIDE6, TextAnchor.TOP_LEFT);
         Font f = new Font("Gulim", Font.BOLD, 14);
         Font axisF = new Font("Gulim", Font.PLAIN, 14);
-        //////////////////////////////////공통옵션//////////////////////////////////////////
+
+
         for(int i=0;i<3;i++){
             renderer[i] = new LineAndShapeRenderer();
             renderer[i].setBaseItemLabelGenerator(generator);
@@ -90,7 +92,8 @@ public class graph_dialog {
         plot.setRenderer(2,renderer[1]);
         plot.setDataset(3, dataset3);
         plot.setRenderer(3,renderer[2]);
-        ///////////////////////////////////plot 기본 설정
+
+        //                  /*plot 기본 설정*/                  //
         plot.setOrientation(PlotOrientation.VERTICAL); // 그래프 표시 방향
         plot.setRangeGridlinesVisible(true); // X축 가이드 라인 표시여부
         plot.setDomainGridlinesVisible(true); // Y축 가이드 라인 표시여부

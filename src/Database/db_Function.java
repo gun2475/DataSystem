@@ -2,7 +2,7 @@ package Database;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Vector;
-public class DB_Connect {
+public class db_Function {
     static int cnt = 0;
     private float bmi;
     private double[] fInfo = new double[4];
@@ -17,6 +17,7 @@ public class DB_Connect {
     private String driverName = "com.mysql.cj.jdbc.Driver";
     LocalDate now = LocalDate.now();
 
+    //                  /*DB 연결*/                  //
     public void connect(){
         try {
             Class.forName(driverName);
@@ -34,7 +35,7 @@ public class DB_Connect {
             System.out.println("[연결 오류]\n" + e.getStackTrace());
         }
     }
-    ////////////////////////////////////회원가입
+    //                  /*회원가입*/                  //
     public boolean Enrollment(String myId, String myPw, float weight, float height, String sex, int age) {
         boolean flag1 = false;
         boolean flag2 = false;
@@ -60,7 +61,7 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "INSERT INTO Date_bmi2(id, date, bmi, targetUp_cal, targetDown_cal) " +
+            String SQL2 = "INSERT INTO daily_Info(id, date, bmi, targetUp_cal, targetDown_cal) " +
                     "VALUES('" + myId + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
             pstmt = connection.prepareStatement(SQL2);
             re = pstmt.executeUpdate();
@@ -73,7 +74,7 @@ public class DB_Connect {
         }
         return false;
     }
-    ////////////////////////////////////아이디 중복확인
+    //                  /*아이디 중복확인*/                  // /
     public boolean isAdmin(String id) {
         try {
             String SQL = "SELECT * FROM User WHERE id = '" + id + "';".toString();
@@ -88,7 +89,7 @@ public class DB_Connect {
         }
         return false;
     }
-    //////////////////////////////////// 로그인
+    //                  /*로그인*/                  //
     public boolean login(String id, String pw) {
         boolean idFlag = false;
         boolean pwFlag = false;
@@ -116,10 +117,11 @@ public class DB_Connect {
         }
         else return false;
     }
-    //////////////////////////////////// 유저 정보 가져오기
+    //                  /*유저정보 가져오기*/                  //
     public String[] getUser_info(String id){
         try {
-            String SQL = "SELECT weight, height, sex, age, bmi FROM User U join Date_bmi2 D WHERE U.id = '" + id + "' and D.id = '" + id + "';";
+            String SQL = "SELECT weight, height, sex, age, bmi FROM User U join daily_Info D " +
+                    "WHERE U.id = '" + id + "' and D.id = '" + id + "';";
             rs = st.executeQuery(SQL);
             while(rs.next()) {
                 user_info[0] = rs.getString("weight");
@@ -133,7 +135,7 @@ public class DB_Connect {
         }
         return user_info;
     }
-    ////////////////////////////////////유저정보 수정하기
+    //                  /*유저정보 수정*/                  //
     public boolean setUser_info(String id, float weight, float height, String sex, int age){
         boolean flag1 = false;
         boolean flag2 = false;
@@ -159,7 +161,7 @@ public class DB_Connect {
             if (re == 1) {
                 flag1 = true;
             }
-            String SQL2 = "select date FROM Date_bmi2 where id = '" + id + "' and date = '" + now + "';";
+            String SQL2 = "select date FROM daily_Info where id = '" + id + "' and date = '" + now + "';";
             rs = st.executeQuery(SQL2);
             if(rs.next()){
                 if(rs.getString("date").equals(now.toString())){
@@ -167,7 +169,7 @@ public class DB_Connect {
                 }
             }
             if(flag3 == true){
-                String SQL4 = "UPDATE Date_bmi2 SET bmi = '" + bmi + "', targetUp_cal = '" + targetUp_cal + "', " +
+                String SQL4 = "UPDATE daily_Info SET bmi = '" + bmi + "', targetUp_cal = '" + targetUp_cal + "', " +
                         "targetDown_cal = '" + targetDown_cal + "' WHERE id='" +id+ "' and date = '" + now + "'";
                 pstmt = connection.prepareStatement(SQL4);
                 re = pstmt.executeUpdate();
@@ -176,7 +178,7 @@ public class DB_Connect {
                 }
             }
             else{
-                String SQL3 = "INSERT INTO Date_bmi2 (id, date, bmi, targetUp_cal, targetDown_cal) " +
+                String SQL3 = "INSERT INTO daily_Info(id, date, bmi, targetUp_cal, targetDown_cal) " +
                         "VALUES('" + id + "','" + now + "','" + bmi + "','" + targetUp_cal + "','" + targetDown_cal + "');";
                 pstmt = connection.prepareStatement(SQL3);
                 re = pstmt.executeUpdate();
@@ -190,7 +192,7 @@ public class DB_Connect {
         if(flag1 == true && flag2 == true) return true;
         else return false;
     }
-    ////////////////////////////////////음식 가져오기
+    //                  /*음식 이름 가져오기*/                  //
     public Vector<String> get_food()
     {
         Vector<String> vec = new Vector<String>();
@@ -221,11 +223,11 @@ public class DB_Connect {
         }
         return fInfo;
     }
-    //////////////////////////////////// 날짜 bmi 가져오기 - Date_bmi join User 테이블에서
+    //                  /*date, bmi 가져오기*/                  //
     public Vector<Double> get_date_bmi(String userName){
         Vector<Double> data = new Vector<>();
         try {
-            String SQL1 = "SELECT date, bmi FROM Date_bmi2 D join User U WHERE U.id = '" + userName + "' and D.id = '" + userName + "';";
+            String SQL1 = "SELECT date, bmi FROM daily_Info D join User U WHERE U.id = '" + userName + "' and D.id = '" + userName + "';";
             rs = st.executeQuery(SQL1);
             while(rs.next()) {
                 LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();
@@ -240,7 +242,7 @@ public class DB_Connect {
         }
         return data;
     }
-    //////////////////////////////////// 내가 먹은 칼로리 넣기 - bmi테이블로
+    //                  /*내가 먹은 칼로리 저장*/                  //
     public boolean set_myeatCal(String userName, String date, int eatcal)
     {
         boolean flag = false;
@@ -248,7 +250,7 @@ public class DB_Connect {
         {
             PreparedStatement pstmt;
             int re;
-            String SQL1 = "select date FROM Date_bmi2 where id = '" + userName + "' and date = '" + now + "';";
+            String SQL1 = "select date FROM daily_Info where id = '" + userName + "' and date = '" + now + "';";
             rs = st.executeQuery(SQL1);
             if(rs.next()){
                 if(rs.getString("date").equals(now.toString())){
@@ -256,7 +258,7 @@ public class DB_Connect {
                 }
             }
             if(flag == true){
-                String SQL2 = "UPDATE Date_bmi2 SET my_cal = '" + eatcal + "' WHERE id='" + userName + "' and date = '" + now + "'";
+                String SQL2 = "UPDATE daily_Info SET my_cal = '" + eatcal + "' WHERE id='" + userName + "' and date = '" + now + "'";
                 pstmt = connection.prepareStatement(SQL2);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
@@ -264,7 +266,7 @@ public class DB_Connect {
                 }
             }
             else{
-                String SQL3 = "INSERT INTO Date_bmi2(mycal) VALUES('" + eatcal + "') WHERE id = '" + userName + "', date = '" + date + "';";
+                String SQL3 = "INSERT INTO daily_Info(mycal) VALUES('" + eatcal + "') WHERE id = '" + userName + "', date = '" + date + "';";
                 pstmt = connection.prepareStatement(SQL3);
                 re = pstmt.executeUpdate();
                 if (re == 1) {
@@ -279,11 +281,11 @@ public class DB_Connect {
         }
         return false;
     }
-    //////////////////////////////////// 값 가져오기, bmi테이블에서
+    //                  /*daily_Info테이블 값 가져와서 변수 저장*/                  //
     public Vector<String> get_rate(String id){
         Vector<String> data = new Vector<>();
         try {
-            String SQL = "SELECT date, my_cal, targetUp_cal, targetDown_cal FROM Date_bmi2 WHERE id = '" + id + "';";
+            String SQL = "SELECT date, my_cal, targetUp_cal, targetDown_cal FROM daily_Info WHERE id = '" + id + "';";
             rs = st.executeQuery(SQL);
             while(rs.next()) {
                 LocalDate date = rs.getTimestamp("date").toLocalDateTime().toLocalDate();

@@ -1,7 +1,7 @@
 package global;
 import java.awt.*;
 import javax.swing.*;
-import Database.DB_Connect;
+import Database.db_Function;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.util.Vector;
 public class food_Dialog extends JDialog {
     LocalDate now = LocalDate.now();
-    private static JPanel food = new GlobalPanel("sign.png");
-    private final DB_Connect dbCon = new DB_Connect();
+    private static JPanel food = new global_Panel("sign.png");
+    private final db_Function dbCon = new db_Function();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];
     private JButton fInfo_add = new JButton("식단 추가하기");
@@ -103,7 +103,7 @@ public class food_Dialog extends JDialog {
         noticela.setVisible(true);
         add(noticela);
 
-        ////////////////////////////////////////////////////////////////////////콤보박스, 해당 음식 영양소 가져오기
+        //                  /*콤보박스, 해당 음식 영양소 가져오기*/                  //
         JComboBox<String> food_list = new JComboBox<String>();
         food_list.setBounds(50, 50, 120, 20);
         food_list.setVisible(true);
@@ -111,7 +111,7 @@ public class food_Dialog extends JDialog {
         for (int i = 0; i < vec.size(); i++) {
             food_list.addItem(vec.get(i));
         }
-        ////////////////////////////////////////////////////////////////////////영양소 정보 나타내는 메서드
+        //                  /*영양소 정보 나타내기*/                  //
         food_list.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,7 +124,7 @@ public class food_Dialog extends JDialog {
             }
         });
         food.add(food_list);
-        ////////////////////////////////////////////////////////////////////////라벨 설정
+        //                  /*라벨 설정*/                  //
         calla.setBounds(50, 100, 300, 35);
         calla.setVisible(true);
         calla.setFont(font);
@@ -142,15 +142,15 @@ public class food_Dialog extends JDialog {
         fatla.setFont(font);
         add(fatla);
 
-        ////////////////////////////////////////////////////////////////////////식단 추가하기
+
         JComboBox<String> food_addlist = new JComboBox<String>();
         food_addlist.setBounds(400, 50, 120, 20);
         food_addlist.setVisible(true);
         food.add(food_list);
-        ////////////////////////////////////////////////////////////////////////
+
+        //                  /*식단 추가하기*/                  //
         fInfo_add.setBounds(270, 50, 120, 20);
         fInfo_add.setVisible(true);
-
         fInfo_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -176,7 +176,8 @@ public class food_Dialog extends JDialog {
         });
         add(fInfo_add);
         add(food_addlist);
-        ////////////////////////////////////////////////////////////////////////식단 빼기
+
+        //                  /*식단 제거하기*/                  //
         fInfo_dlete.setBounds(270, 100, 120, 20);
         fInfo_dlete.setVisible(true);
         fInfo_dlete.addActionListener(new ActionListener() {
@@ -210,7 +211,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(fInfo_dlete);
-        ////////////////////////////////////////////////////////////////////////식단 초기화하기
+        //                  /*식단 초기화하기*/                  //
         fInfo_clear.setBounds(270, 150, 120, 20);
         fInfo_clear.setVisible(true);
         fInfo_clear.addActionListener(new ActionListener() {
@@ -244,7 +245,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(fInfo_clear);
-        ////////////////////////////////////////////////////////////////////////
+
         sumcalla.setBounds(400, 100, 300, 35);
         sumcalla.setVisible(true);
         sumcalla.setFont(font);
@@ -264,10 +265,10 @@ public class food_Dialog extends JDialog {
         sumfatla.setVisible(true);
         sumfatla.setFont(font);
         add(sumfatla);
-///////////////////////////////////////////////////////////////////////////////칼로리 계산하기
+        //                  /*칼로리 계산하기*/                  //
         User_if = dbCon.getUser_info(id);
         User_kcal.setBounds(50, 320, 200, 20);
-        User_kcal.setVisible(true);//계산하기 함수
+        User_kcal.setVisible(true);
         User_kcal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -278,18 +279,15 @@ public class food_Dialog extends JDialog {
                 {
                     base = 66 + ((float)13.7 * wei) + (5 * hei) - ((float)6.8 * age);
                     base_metabolic.setText("기초 대사량 : " + (int)base + "Kcal");
-
                     maintenance = base * (float) 1.55;
                     maintenance_cal.setText("유지 칼로리 : " + (int)maintenance + "Kcal");
-
                     targetup = maintenance + (maintenance*(float)0.2);
-                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
-
                     targetdown = maintenance - (maintenance*(float)0.2);
+                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
                     target_downcal.setText("목표 감량 칼로리 : " + (int)targetdown + "Kcal");
-
                     if(diet_sel1.isSelected())
                     {
+
                         carbohydrate = (targetdown*(float)0.5)/4;
                         protein = (targetdown*(float)0.3)/4;
                         Fat = (targetdown*(float)0.2)/9;
@@ -299,25 +297,19 @@ public class food_Dialog extends JDialog {
                         protein = (targetup*(float)0.3)/4;
                         Fat = (targetup*(float)0.2)/9;
                     }
-
                     carbohydrate_g.setText("탄수화물 : " + (int)carbohydrate + "g");
                     protein_g.setText("단백질 : " + (int)protein + "g");
                     Fat_g.setText("지방 : " + (int)Fat + "g");
-
                 }
                 else {
                     base =665 + ((float)19.6 * wei) + ((float)1.7 * hei) - ((float)4.7 * age);;
                     base_metabolic.setText("기초 대사량 : " + (int)base + "Kcal");
-
                     maintenance = base * (float) 1.55;
                     maintenance_cal.setText("유지 칼로리 : " + (int)maintenance + "Kcal");
-
                     targetup = maintenance + (maintenance*(float)0.2);
-                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
-
                     targetdown =maintenance - (maintenance*(float)0.2);
+                    target_upcal.setText("목표 증량 칼로리 : " + (int)targetup + "Kcal");
                     target_downcal.setText("목표 감량 칼로리 : " + (int)targetdown + "Kcal");
-
                     if(diet_sel1.isSelected())
                     {
                         carbohydrate = (targetdown*(float)0.5)/4;
@@ -336,7 +328,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(User_kcal);
-//////////////////////////////////////////////////////////////////칼로리 계산 관련 라벨 추가
+        //                  /*칼로리 계산 관련 라벨 추가*/                  //
         base_metabolic.setBounds(50, 350, 450, 35);
         base_metabolic.setVisible(true);
         base_metabolic.setFont(font);
@@ -365,7 +357,7 @@ public class food_Dialog extends JDialog {
         Fat_g.setVisible(true);
         Fat_g.setFont(font);
         add(Fat_g);
-////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(아침)
+        //                  /*저장된 식단을 각 텍스트 에어리어에 저장(아침)*/                  //
         food_br.setBounds(720, 180, 100, 20);
         food_br.setVisible(true);
         food_br.addActionListener(new ActionListener() {
@@ -406,7 +398,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(food_br);
-////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(점심)
+        //                  /*저장된 식단을 각 텍스트 에어리어에 저장(점심)*/                  //
         food_lun.setBounds(720, 330, 100, 20);
         food_lun.setVisible(true);
         food_lun.addActionListener(new ActionListener() {
@@ -445,7 +437,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(food_lun);
-////////////////////////////////////////////////////////////저장된 식단을 각 텍스트 에어리어에 저장(저녁)
+        //                  /*저장된 식단을 각 텍스트 에어리어에 저장(저녁)*/                  //
         food_din.setBounds(720, 480, 100, 20);
         food_din.setVisible(true);
         food_din.addActionListener(new ActionListener() {
@@ -484,7 +476,7 @@ public class food_Dialog extends JDialog {
             }
         });
         add(food_din);
-////////////////////////////////////////////////////////////텍스트 에어리어 추가
+        //                  /*텍스트 에어리어 추가*/                  //
         JScrollPane scrollPane_br = new JScrollPane(JTA_br, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane_br.setBounds(620, 50, 200, 130);
@@ -505,7 +497,7 @@ public class food_Dialog extends JDialog {
         add(scrollPane_din);
         scrollPane_din.setVisible(true);
 
-        ///////////////////////////////////////////////////////각 식사 마다의 칼로리 및 탄단지양 표시
+        //                  /*각 식사 마다의 칼로리 및 탄단지양 표시*/                  //
         diet_sumcalla.setBounds(620, 500, 200, 30);
         diet_sumcalla.setVisible(true);
         diet_sumcalla.setFont(font);
@@ -522,7 +514,7 @@ public class food_Dialog extends JDialog {
         diet_sumfatla.setVisible(true);
         diet_sumfatla.setFont(font);
         add(diet_sumfatla);
-////////////////////////////////////////////////////////////////// 라디오 버튼으로 증량 감량 정하기
+        //                  /*라디오 버튼으로 증량 감량 정하기*/                  //
 
         diet_sel1.setSelected(true);
         diet_sel.add(diet_sel1);
@@ -539,7 +531,7 @@ public class food_Dialog extends JDialog {
         diet_sel2.setBackground(new Color(178, 195, 207));
         diet_sel2.setFont(font);
         add(diet_sel2);
-//////////////////////////////////////////////////////////////////////////적용하기
+        //                  /*적용하기*/                  //
         eatfood_update.setBounds(620, 620, 200, 30);
         eatfood_update.setVisible(true);
         eatfood_update.setFont(font);
@@ -568,11 +560,8 @@ public class food_Dialog extends JDialog {
         });
         add(eatfood_update);
     }
-    ////////////////////////////////////////////////////////////GUI 다시 그리기
     public static void repaintGUI() {
         food.repaint();
         food.revalidate();
-
-        System.out.println("GUI를 다시 그리는 중...");
     }
 }

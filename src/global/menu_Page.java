@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class main_Dialog extends JFrame {
-    private JPanel mainPanel = new GlobalPanel("menu.jpg");
-    private DB_Connect dbCon = new DB_Connect();
+public class menu_Page extends JFrame {
+    private JPanel mainPanel = new global_Panel("menu.jpg");
+    private db_Function dbCon = new db_Function();
     final static int WINDOW_HEIGHT = 700;
     final static int WINDOW_WIDTH = 500;
     static JLabel username = new JLabel();
-    public main_Dialog(String id){
+    public menu_Page(String id){
         setTitle("메인");
         String name = id;
         dbCon.connect();
@@ -39,13 +39,13 @@ public class main_Dialog extends JFrame {
         JButton profileChange = new JButton(change_png);
         profileChange.setVisible(true);
         profileChange.setBounds(320,10,70,70);
-        profileChange.setBorderPainted(false); //버튼 투명하게 만들기
+        profileChange.setBorderPainted(false);
         profileChange.setContentAreaFilled(false);
         mainPanel.add(profileChange);
         profileChange.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UserInfo_Dialog(id);
+                new userInfo_Dialog(id);
             }
         });
 
@@ -55,7 +55,7 @@ public class main_Dialog extends JFrame {
         JButton exit = new JButton(exit_jpg);
         exit.setVisible(true);
         exit.setBounds(400,10,70,70);
-        exit.setBorderPainted(false); //버튼 투명하게 만들기
+        exit.setBorderPainted(false);
         exit.setContentAreaFilled(false);
         mainPanel.add(exit);
         exit.addActionListener(new ActionListener() {
@@ -97,7 +97,7 @@ public class main_Dialog extends JFrame {
         mainPanel.add(graph);
         graph.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { new graph_dialog(id);}
+            public void actionPerformed(ActionEvent e) { new graph_Dialog(id);}
         });
 
         Image img5 = Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("made.jpg"));
@@ -112,7 +112,7 @@ public class main_Dialog extends JFrame {
         made.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new made_dialog(id);
+                new made_Dialog(id);
             }
         });
     }

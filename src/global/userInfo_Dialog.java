@@ -1,12 +1,12 @@
 package global;
 
-import Database.DB_Connect;
+import Database.db_Function;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-public class UserInfo_Dialog extends JDialog {
+public class userInfo_Dialog extends JDialog {
     private String[] my_info;
     private JLabel weightlabel = new JLabel("몸무게: ");
     private JLabel weightShow = new JLabel("");
@@ -26,13 +26,13 @@ public class UserInfo_Dialog extends JDialog {
     private JTextField heightText = new JTextField(15);
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
-    private JPanel InfoPanel = new GlobalPanel("sign.png");
-    private DB_Connect dbCon = new DB_Connect();
+    private JPanel InfoPanel = new global_Panel("sign.png");
+    private db_Function dbCon = new db_Function();
     final static int Info_HEIGHT = 450;
     final static int Info_WIDTH = 360;
     LocalDate now = LocalDate.now();
     static JLabel username = new JLabel();
-    UserInfo_Dialog(String id) {
+    userInfo_Dialog(String id) {
         setTitle("유저정보");
         String name = id;
         dbCon.connect();
@@ -69,6 +69,7 @@ public class UserInfo_Dialog extends JDialog {
         rectify.setVisible(true);
         rectify.setBorderPainted(false);
         rectify.setContentAreaFilled(false);
+        //                  /*수정사항 적용*/                  //
         InfoPanel.add(rectify);
         exit.addActionListener(new ActionListener() {
             @Override
@@ -94,41 +95,40 @@ public class UserInfo_Dialog extends JDialog {
                 }
             }
         });
-        /////////////////////////////////////////////////////////////
         weightlabel.setBounds(50, 100, 100, 20);
         InfoPanel.add(weightlabel);
         weightText.setBounds(50, 120, 100, 20);
         InfoPanel.add(weightText);
         weightShow.setBounds(95,100,100,20);
         InfoPanel.add(weightShow);
-        /////////////////////////////////////////////////////////////
+
         heightlabel.setBounds(180, 100, 100, 20);
         InfoPanel.add(heightlabel);
         heightText.setBounds(180, 120, 100, 20);
         InfoPanel.add(heightText);
         heightShow.setBounds(200,100,100,20);
         InfoPanel.add(heightShow);
-        /////////////////////////////////////////////////////////////
+
         agelabel.setBounds(50, 190, 100, 20);
         InfoPanel.add(agelabel);
         ageText.setBounds(50, 210, 100, 20);
         InfoPanel.add(ageText);
         ageShow.setBounds(80,190,100,20);
         InfoPanel.add(ageShow);
-        /////////////////////////////////////////////////////////////
+
         sexlabel.setBounds(180, 190, 100, 20);
         InfoPanel.add(sexlabel);
         sexText.setBounds(180, 210, 100, 20);
         InfoPanel.add(sexText);
         sexShow.setBounds(210,190,100,20);
         InfoPanel.add(sexShow);
-        /////////////////////////////////////////////////////////////
+
         bmilabel.setBounds(50,250,100,20);
         InfoPanel.add(bmilabel);
         bmiShow.setBounds(75,250,100,20);
         InfoPanel.add(bmiShow);
         InfoPanel.add(target_cal);
-        /////////////////////////////////////////////////////////////
+
         my_info = dbCon.getUser_info(name);
         weightText.setText(my_info[0]);
         heightText.setText(my_info[1]);
