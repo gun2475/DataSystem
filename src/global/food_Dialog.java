@@ -188,6 +188,7 @@ public class food_Dialog extends JDialog {
                     String temp_foodName = food_addlist.getSelectedItem().toString();
                     myfInfo = dbCon.get_fInfo(temp_foodName);
                     food_addlist.removeItemAt(food_addlist.getSelectedIndex());
+                    food_vec.remove(food_addlist.getSelectedIndex());
                     tempCnt = 0;
                 }
                 else if(food_addlist.getItemCount() == 0) {
