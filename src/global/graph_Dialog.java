@@ -1,7 +1,7 @@
 package global;
 import java.awt.*;
 import java.util.Vector;
-import Database.db_Function;
+import Database.DB_Connect;
 import org.jfree.chart.*;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
@@ -22,7 +22,7 @@ public class graph_Dialog {
     Vector<Double> data1 = new Vector<>();
     Vector<String> data2 = new Vector<>();
     String user_id;
-    db_Function dbCon = new db_Function();
+    DB_Connect dbCon = new DB_Connect();
     JFreeChart chart;
     graph_Dialog(String id){
         this.user_id = id;

@@ -1,4 +1,4 @@
-import global.sign_Page;
+import global.GlobalGui;
 import javax.swing.*;
 public class Main extends JFrame{
     private static String id="";
@@ -6,6 +6,6 @@ public class Main extends JFrame{
     private final static int WINDOW_HEIGHT = 720;
     private final static int WINDOW_WIDTH = 1280;
     public static void main(String[]args){
-        new sign_Page("database");
+        new GlobalGui("database");
     }
 }

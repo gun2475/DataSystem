@@ -1,7 +1,7 @@
 package global;
 import java.awt.*;
 import javax.swing.*;
-import Database.db_Function;
+import Database.DB_Connect;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import java.util.Vector;
 public class food_Dialog extends JDialog {
     LocalDate now = LocalDate.now();
     private static JPanel food = new global_Panel("sign.png");
-    private final db_Function dbCon = new db_Function();
+    private final DB_Connect dbCon = new DB_Connect();
     private double[] myfInfo = new double[4];
     private String[] User_if = new String[4];
     private JButton fInfo_add = new JButton("식단 추가하기");

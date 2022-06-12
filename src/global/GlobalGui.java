@@ -3,14 +3,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import Database.*;
-public class sign_Page extends JFrame{
+public class GlobalGui extends JFrame{
     static String user_id;
     final static int WINDOW_HEIGHT = 800;
     final static int WINDOW_WIDTH = 600;
     private sign_Dialog sign = new sign_Dialog();
     static JPanel panel = new global_Panel("background.jpg");
-    private db_Function dbCon = new db_Function();
-    public sign_Page(String title){
+    private DB_Connect dbCon = new DB_Connect();
+    public GlobalGui(String title){
         super();
         dbCon.connect();
         createMenu();

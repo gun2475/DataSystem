@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class menu_Page extends JFrame {
     private JPanel mainPanel = new global_Panel("menu.jpg");
-    private db_Function dbCon = new db_Function();
+    private DB_Connect dbCon = new DB_Connect();
     final static int WINDOW_HEIGHT = 700;
     final static int WINDOW_WIDTH = 500;
     static JLabel username = new JLabel();

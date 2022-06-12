@@ -1,5 +1,5 @@
 package global;
-import Database.db_Function;
+import Database.DB_Connect;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -31,7 +31,7 @@ public class sign_Dialog extends JDialog {
     private JButton signUpbtn = new JButton("회원가입");
     private JButton overlapBtn = new JButton("중복확인");
     private boolean check = false;
-    public db_Function dbCon = new db_Function();
+    public DB_Connect dbCon = new DB_Connect();
 
 
     public sign_Dialog() {

@@ -1,6 +1,6 @@
 package global;
 
-import Database.db_Function;
+import Database.DB_Connect;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +27,7 @@ public class userInfo_Dialog extends JDialog {
     private JTextField ageText = new JTextField(15);
     private JTextField sexText = new JTextField(15);
     private JPanel InfoPanel = new global_Panel("sign.png");
-    private db_Function dbCon = new db_Function();
+    private DB_Connect dbCon = new DB_Connect();
     final static int Info_HEIGHT = 450;
     final static int Info_WIDTH = 360;
     LocalDate now = LocalDate.now();

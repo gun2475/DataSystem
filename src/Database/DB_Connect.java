@@ -2,7 +2,7 @@ package Database;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Vector;
-public class db_Function {
+public class DB_Connect {
     static int cnt = 0;
     private float bmi;
     private double[] fInfo = new double[4];
