@@ -4,4 +4,4 @@
 
 https://www.miricanvas.com/templates
 
-# 사용하실려면 라이브러리에 External_Library폴더에 있는 jar파일들을 넣어주셔야 합니다.
+<h2>사용하실려면 라이브러리에 External_Library폴더에 있는 jar파일들을 넣어주셔야 합니다.</h2>
